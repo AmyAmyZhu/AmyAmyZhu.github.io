@@ -2,100 +2,12 @@
 <html>
     <head>
         <title>Zefang Zhu's personal website</title>
-        <style>
-            
-            body {margin:0;}
-        
-        div.content {
-            margin-left: 180px;
-            border-left: 1px solid gray;
-            padding: 1em;
-        }
-        
-        div.container {
-            width: 100%;
-            margin: 0px;
-            line-height: 100%;
-        }
-        
-        .header-section {
-            min-height: 350px;
-        }
-        .header-section h1 {
-            text-align: right;
-            margin-right: 37%;
-            font-family: 'Nunito-Bold';
-            font-size: 4em;
-            text-transform: capitalize;
-            color: #393b3a;
-            padding: 0.5em 0 0 0;
-        }
-        
-        .header-section p {
-            text-align: right;
-            margin-right: 37%;
-            font-family: 'Nunito-Bold';
-            font-size: 1.3em;
-            color: #393b3a;
-        }
-        
-        .up ul {
-                list-style-type: none;
-                margin: 0;
-                padding: 0;
-                overflow: hidden;
-                background-color: #333;
-                position: fixed;
-                top: 0;
-                width: 100%;
-        }
-        
-        .meunresume ul {
-            list-style-type: none;
-            margin-top:150px;
-            padding: 0;
-            width: 15%;
-            background-color: #f1f1f1;
-            position: fixed;
-            height: 30%;
-            overflow: auto;
-        }
-        
-        .up li a {
-            display: block;
-            color: white;
-            text-align: center;
-            padding: 14px 16px;
-            text-decoration: none;
-        }
-        
-        .meunresume li a {
-            display: block;
-            color: #000;
-            padding: 8px 0 8px 16px;
-            text-decoration: none;
-        }
-        
-        .up li {
-            float: left;
-        }
-        
-        .active {
-            background-color: #01DFA5;
-            color:white;
-        }
-        
-        li a:hover:not(.active) {
-            background-color: #111;
-            color:white;
-        }
-        
-    </style>
+        <link href="mystyle.css" rel="stylesheet" type="text/css" media="all">
     </head>
     <body>
         
-        <!-- meum up -->
-        <div class="up">
+        <!-- meum mainmeun -->
+        <div class="mainmeun">
             <ul>
                 <li><a class="active" href="#home">Home</a></li>
                 <li><a href="index.html">Resume</a></li>
@@ -115,8 +27,8 @@
             </ul>
         </div>
         
-        <!-- first page -->
-        <div style="padding:20px;margin-top:30px;background-color:#819FF7;height:450px;">
+        <!-- first page introduction -->
+        <div style="padding:0;margin-top:0;background-color:#819FF7;height:450px;">
             <div class="container">
                 <div class="header-section">
                     <br><br><br><br><br><br>
@@ -126,29 +38,57 @@
                 </div>
         </div>
         
-        <div style="padding:40px;margin-top:60px;height:500px;">
+        <!-- second page skills -->
+        <div style="padding:40px;margin-top:60px;height:650px;">
             <div class="content">
-            <div class="summary">
-                <h3>Summary of Quantification</h3>
-                <p>Proficiency in C/C++, Scheme(Racket)</p>
-                <p>Advanced knowledge with Windows, OS X, Linux(Ubuntu/debian) operating systems, and Bash scripting</p>
-                <p>Knowledge of web-development languages including HTML, CSS, Javascript</p>
-                <p>Proficiency in functional, procedural, and object-oriented programs</p>
-                <p>Experience with scientific packages including Matlab</p>
-                <p>Able to manage projects independently or work with others in interdependently</p>
-            </div>
-            
-            <div class="projects">
-                <h3>Projects</h3>
-                <h4><a href="https://github.com/AmyAmyZhu/bb7k">Monopoly Game, C++</a></h4>
-                <p>Implemented a game of monopoly with basic graph display UI and utilized some popular design patterns</p>
-                <p>Used a detailed UML to plan and illustrate relationship between classes</p>
-                <p>Strengthened project management skills by working in pairs</p>
+                <h1>Program Skills</h1>
                 
-                <h4><a href="https://github.com/AmyAmyZhu/CS241">WLP4 Compiler, C++, MIPS</a></h4>
-                <p>Developed a simplified C++ language(WLP4) compiler that supports linking, loading, and parsing</p>
-                <p>Implemented a MIPS assembler that translates a MIPS assembly language program into a MIPS machine language binary file</p>
+                <ul class="skills program">
+                    <li class="eight"><span>C/C++</span></li>
+                    <li class="four"><span>Java</span></li>
+                    <li class="seven"><span>Scheme(Racket)</span></li>
+                </ul>
+                
+                <h1>Web Development</h1>
+                
+                <ul class="skills web">
+                    <li class="six"><span>HTML</span></li>
+                    <li class="three"><span>Javascript</span></li>
+                    <li class="four"><span>CSS</span></li>
+                </ul>
+                
+                <h1>Others</h1>
+                
+                <ul class="skills other">
+                    <li class="seven"><span>Matlab</span></li>
+                    <li class="four"><span>Latex</span></li>
+                    <li class="three"><span>SQL</span></li>
+                </ul>
             </div>
+        </div>
+        
+        <!-- 3 page summary -->
+        <div style="padding:40px;margin-top:10px;background-color:#819FF7;height:450px;">
+            <div class="content">
+                <h1><font color="white">Projects</font></h1>
+                <h2><font color="white"><a href="https://github.com/AmyAmyZhu/bb7k">Monopoly Game, C++</a></font></h2>
+                <p><font color="white">Implemented a game of monopoly with basic graph display UI and utilized some popular design patterns</font></p>
+                <p><font color="white">Used a detailed UML to plan and illustrate relationship between classes</font></p>
+                <p><font color="white">Strengthened project management skills by working in pairs</font></p>
+                
+                <h2><font color="white"><a href="https://github.com/AmyAmyZhu/CS241">WLP4 Compiler, C++, MIPS</a></font></h2>
+                <p><font color="white">Developed a simplified C++ language(WLP4) compiler that supports linking, loading, and parsing</font></p>
+                <p><font color="white">Implemented a MIPS assembler that translates a MIPS assembly language program into a MIPS machine language binary file</font></p>
+            </div>
+        </div>
+        
+        
+        
+        
+        
+        
+        
+        
             
             <div class="work">
                 <h3>Work Experience</h3>
