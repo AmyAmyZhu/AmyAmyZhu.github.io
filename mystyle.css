@@ -53,7 +53,7 @@ div.container {
     box-shadow: none;
 }
 
-.mainmeun ul {
+ul.mainmeun {
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -63,7 +63,7 @@ div.container {
     width: 100%;
 }
 
-.meunresume ul {
+ul.meunresume {
     list-style-type: none;
     margin-top:150px;
     padding: 0;
@@ -74,7 +74,7 @@ div.container {
     overflow: auto;
 }
 
-.mainmeun li a {
+ul.mainmeun li a {
     display: block;
     color: white;
     text-align: center;
@@ -82,14 +82,14 @@ div.container {
     text-decoration: none;
 }
 
-.meunresume li a {
+ul.meunresume li a {
     display: block;
     color: #000;
     padding: 8px 0 8px 16px;
     text-decoration: none;
 }
 
-.mainmeun li {
+ul.mainmeun li {
     float: left;
 }
 
@@ -181,3 +181,5 @@ ul.skills.program li:after {
 ul.skills.web li:after {
     background-color: #DF0101;
 }
+
+
