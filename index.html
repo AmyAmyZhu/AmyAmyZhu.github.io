@@ -3,35 +3,38 @@
     <head>
         <title>Zefang Zhu's personal website</title>
         <style>
-            div.container {
-                width: 100%;
-                margin: 0px;
-                line-height: 100%;
+            
+            .header-section {
+                text-align: center;
+                min-height: 500px;
             }
-        
-        
-        <!--for green-->
-        
-        div.left {
-            float: left;
-            width: 150px;
-            margin: 0;
-            padding: 1em;
+        .header-section h1 {
+            font-family: 'Nunito-Bold';
+            font-size: 4em;
+            text-transform: capitalize;
+            color: #393b3a;
+            padding: 0.5em 0 0 0;
         }
-        
-        div.content {
-            margin-left: 190px;
-            border-left: 1px solid gray;
-            padding: 1em;
+
+        .header-section p {
+            font-family: 'Nunito-Bold';
+            font-size: 1.3em;
+            color: #393b3a;
         }
-        
-        ul {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-            background-color: #333;
-        }
+            
+            
+            body {margin:0;}
+            
+            ul {
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
+                overflow: hidden;
+                background-color: #333;
+                position: fixed;
+                top: 0;
+                width: 100%;
+            }
         
         li {
             float: left;
@@ -45,42 +48,71 @@
             text-decoration: none;
         }
         
-        a:hover:not(.active) {
+        li a:hover:not(.active) {
             background-color: #111;
         }
         
         .active {
-            background-color:#4CAF50;
+            background-color: #01DFA5;
         }
-        </style>
+        
+        div.container {
+                width: 100%;
+                margin: 0px;
+                line-height: 100%;
+            }
+
+        div.left {
+            float: left;
+            width: 150px;
+            margin: 0;
+            padding: 1em;
+        }
+        
+        div.content {
+            margin-left: 190px;
+            border-left: 1px solid gray;
+            padding: 1em;
+        }
+        
+    </style>
     </head>
     <body>
         
-        <div class="container">
-            
-            <div class="left">
-                <h2>Zefang Zhu</h2>
-                <p>3A Computer Science</p>
-                <p>University of Waterloo</p>
-                <p></p>
-                <h3>Phone Number:</h3>
-                <p>+1 519-589-5488</p>
-                <h3>E-Mail:</h3>
-                <p><a href="zhuzefang12@gmail.com">zhuzefang12@gmail.com</a></p>
-                <h3>Address:</h3>
-                <p>208 Sunview St.</p>
-                <p>Waterloo, ON</p>
-                <p>Canada, N2L 3V6</p>
+        
+        <ul>
+            <li><a class="active" href="#home">Home</a></li>
+            <li><a href="index.html">Resume</a></li>
+            <li><a href="contact.html">Email me</a></li>
+            <li><a href="#about">Notes</a></li>
+        </ul>
+        
+        <div style="padding:20px;margin-top:30px;background-color:#819FF7;height:500px;">
+            <div class="container">
+                <div class="header-section">
+                <h1><font color="white">Welcome...</font></h1>
+                <p><font color="white">Zefang Zhu</font></p>
+                <p><font color="white">3A Computer Science Student</font></p>
+                <p><font color="white">University of Waterloo</font></p>
+                </div>
             </div>
+                
+                <div class="left">
+                    <h2><font color="white">Zefang Zhu</font></h2>
+                    <p>3A Computer Science</p>
+                    <p>University of Waterloo</p>
+                    <p></p>
+                    <h3>Phone Number:</h3>
+                    <p>+1 519-589-5488</p>
+                    <h3>E-Mail:</h3>
+                    <p><a href="zhuzefang12@gmail.com">zhuzefang12@gmail.com</a></p>
+                    <h3>Address:</h3>
+                    <p>208 Sunview St.</p>
+                    <p>Waterloo, ON</p>
+                    <p>Canada, N2L 3V6</p>
+                </div>
             
             <div class="content">
-                <ul>
-                    <li><a class="active" href="#resume">Resume</a></li>
-                    <li><a href="#email">Email Me</a></li>
-                    <li><a href="#photo">Photo</a></li>
-                    <li><a href="#about">About</a></li>
-                </ul>
-                
             <div class="summary">
                 <h3>Summary of Quantification</h3>
                 <p>Proficiency in C/C++, Scheme(Racket)</p>
@@ -114,16 +146,15 @@
             <div class="extra">
                 <h3>Extra-Curricular Activities</h3>
                 <h4>University of Waterloo, Waterloo, ON</h4>
-                <h5>Volunteered Peer Mentorship Training Program, April, 2014 -- Augest, 2014</h5>
+                <p>Volunteered Peer Mentorship Training Program, April, 2014 -- Augest, 2014</p>
                 
                 <h4>Maple Leaf International High School, Dalian, China</h4>
-                <h5>Leader of Angels' Club, Jan. 2012 -- June 2013</h5>
-                <h5>English Ambassador, Sept. 2010 -- Dec 2011</h5>
+                <p>Leader of Angels' Club, Jan. 2012 -- June 2013</p>
+                <p>English Ambassador, Sept. 2010 -- Dec 2011</p>
 
                 <h4>Interests</h4>
                 <p>Play the violin, guitar, and zither. Painting.</p>
             </div>
-            
         </div>
         
     </body>
