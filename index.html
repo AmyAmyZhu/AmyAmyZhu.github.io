@@ -4,10 +4,24 @@
         <title>Zefang Zhu's personal website</title>
         <style>
             
-            .header-section {
-                text-align: center;
-                min-height: 500px;
-            }
+            body {margin:0;}
+        
+        div.content {
+            margin-left: 180px;
+            border-left: 1px solid gray;
+            padding: 1em;
+        }
+        
+        div.container {
+            width: 100%;
+            margin: 0px;
+            line-height: 100%;
+        }
+        
+        .header-section {
+            text-align: center;
+            min-height: 350px;
+        }
         .header-section h1 {
             font-family: 'Nunito-Bold';
             font-size: 4em;
@@ -15,17 +29,14 @@
             color: #393b3a;
             padding: 0.5em 0 0 0;
         }
-
+        
         .header-section p {
             font-family: 'Nunito-Bold';
             font-size: 1.3em;
             color: #393b3a;
         }
             
-            
-            body {margin:0;}
-            
-            ul {
+        .up ul {
                 list-style-type: none;
                 margin: 0;
                 padding: 0;
@@ -34,13 +45,20 @@
                 position: fixed;
                 top: 0;
                 width: 100%;
-            }
-        
-        li {
-            float: left;
         }
         
-        li a {
+        .meunresume ul {
+            list-style-type: none;
+            margin-top:150px;
+            padding: 0;
+            width: 15%;
+            background-color: #f1f1f1;
+            position: fixed;
+            height: 30%;
+            overflow: auto;
+        }
+        
+        .up li a {
             display: block;
             color: white;
             text-align: center;
@@ -48,46 +66,52 @@
             text-decoration: none;
         }
         
-        li a:hover:not(.active) {
-            background-color: #111;
+        .meunresume li a {
+            display: block;
+            color: #000;
+            padding: 8px 0 8px 16px;
+            text-decoration: none;
+        }
+        
+        .up li {
+            float: left;
         }
         
         .active {
             background-color: #01DFA5;
+            color:white;
         }
         
-        div.container {
-                width: 100%;
-                margin: 0px;
-                line-height: 100%;
-            }
-
-        div.left {
-            float: left;
-            width: 150px;
-            margin: 0;
-            padding: 1em;
-        }
-        
-        div.content {
-            margin-left: 190px;
-            border-left: 1px solid gray;
-            padding: 1em;
+        li a:hover:not(.active) {
+            background-color: #111;
+            color:white;
         }
         
     </style>
     </head>
     <body>
         
+        <div class="up">
+            <ul>
+                <li><a class="active" href="#home">Home</a></li>
+                <li><a href="index.html">Resume</a></li>
+                <li><a href="contact.html">Email me</a></li>
+                <li><a href="#about">Notes</a></li>
+            </ul>
+        </div>
         
-        <ul>
-            <li><a class="active" href="#home">Home</a></li>
-            <li><a href="index.html">Resume</a></li>
-            <li><a href="contact.html">Email me</a></li>
-            <li><a href="#about">Notes</a></li>
-        </ul>
+        <div class="meunresume">
+            <ul>
+                <li><a class="active" href="#home">Home</a></li>
+                <li><a href="index.html">Summary</a></li>
+                <li><a href="index.html">Projects</a></li>
+                <li><a href="contact.html">Work</a></li>
+                <li><a href="#about">Activities</a></li>
+            </ul>
+        </div>
         
-        <div style="padding:20px;margin-top:30px;background-color:#819FF7;height:500px;">
+        
+        <div style="padding:20px;margin-top:30px;background-color:#819FF7;height:450px;">
             <div class="container">
                 <div class="header-section">
                 <h1><font color="white">Welcome...</font></h1>
@@ -95,23 +119,9 @@
                 <p><font color="white">3A Computer Science Student</font></p>
                 <p><font color="white">University of Waterloo</font></p>
                 </div>
-            </div>
-                
-                <div class="left">
-                    <h2><font color="white">Zefang Zhu</font></h2>
-                    <p>3A Computer Science</p>
-                    <p>University of Waterloo</p>
-                    <p></p>
-                    <h3>Phone Number:</h3>
-                    <p>+1 519-589-5488</p>
-                    <h3>E-Mail:</h3>
-                    <p><a href="zhuzefang12@gmail.com">zhuzefang12@gmail.com</a></p>
-                    <h3>Address:</h3>
-                    <p>208 Sunview St.</p>
-                    <p>Waterloo, ON</p>
-                    <p>Canada, N2L 3V6</p>
-                </div>
-            
+        </div>
+        
+        <div style="padding:40px;margin-top:60px;height:500px;">
             <div class="content">
             <div class="summary">
                 <h3>Summary of Quantification</h3>
@@ -156,6 +166,7 @@
                 <p>Play the violin, guitar, and zither. Painting.</p>
             </div>
         </div>
+            </div>
         
     </body>
 </html>
