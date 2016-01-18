@@ -1,125 +1,28 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Zefang Zhu's personal website</title>
-        <style>
-            div.container {
-                width: 100%;
-                margin: 0px;
-                line-height: 100%;
-            }
-
-        div.left {
-            float: left;
-            width: 150px;
-            margin: 0;
-            padding: 1em;
-        }
-        
-        div.content {
-            margin-left: 190px;
-            border-left: 1px solid gray;
-            padding: 1em;
-        }
-        
-        ul {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-            background-color: #333;
-        }
-        
-        li {
-            float: left;
-        }
-        
-        li a {
-            display: block;
-            color: white;
-            text-align: center;
-            padding: 14px 16px;
-            text-decoration: none;
-        }
-        
-        a:hover:not(.active) {
-            background-color: #111;
-        }
-        
-        .active {
-            background-color:#4CAF50;
-        }
-        </style>
-    </head>
+        <title>Contact Zefang Zhu</title>
+        <link href="mystyle.css" rel="stylesheet" type="text/css" media="all">
+            </head>
     <body>
-        
-        <div class="container">
-            
-            <div class="left">
-                <h2>Zefang Zhu</h2>
-                <p>3A Computer Science</p>
-                <p>University of Waterloo</p>
-                <p></p>
-                <h3>Phone Number:</h3>
-                <p>+1 519-589-5488</p>
-                <h3>E-Mail:</h3>
-                <p><a href="zhuzefang12@gmail.com">zhuzefang12@gmail.com</a></p>
-                <h3>Address:</h3>
-                <p>208 Sunview St.</p>
-                <p>Waterloo, ON</p>
-                <p>Canada, N2L 3V6</p>
-            </div>
-            
-            <div class="content">
-                <ul>
-                    <li><a href="index.html">Resume</a></li>
-                    <li><a href="contact.html">Email me</a></li>
-                </ul>
-                
-            <div class="summary">
-                <h3>Summary of Quantification</h3>
-                <p>Proficiency in C/C++, Scheme(Racket)</p>
-                <p>Advanced knowledge with Windows, OS X, Linux(Ubuntu/debian) operating systems, and Bash scripting</p>
-                <p>Knowledge of web-development languages including HTML, CSS, Javascript</p>
-                <p>Proficiency in functional, procedural, and object-oriented programs</p>
-                <p>Experience with scientific packages including Matlab</p>
-                <p>Able to manage projects independently or work with others in interdependently</p>
-            </div>
-            
-            <div class="projects">
-                <h3>Projects</h3>
-                <h4><a href="https://github.com/AmyAmyZhu/bb7k">Monopoly Game, C++</a></h4>
-                <p>Implemented a game of monopoly with basic graph display UI and utilized some popular design patterns</p>
-                <p>Used a detailed UML to plan and illustrate relationship between classes</p>
-                <p>Strengthened project management skills by working in pairs</p>
-                
-                <h4><a href="https://github.com/AmyAmyZhu/CS241">WLP4 Compiler, C++, MIPS</a></h4>
-                <p>Developed a simplified C++ language(WLP4) compiler that supports linking, loading, and parsing</p>
-                <p>Implemented a MIPS assembler that translates a MIPS assembly language program into a MIPS machine language binary file</p>
-            </div>
-            
-            <div class="work">
-                <h3>Work Experience</h3>
-                <h4>Accoutant's Assistant, HuaMing Accountants Company</h4>
-                <p>06/2012 to 08/2012</p>
-                <p>Organizing files and learn accounting and invoicing</p>
-                <p>Computing spreadsheets for accountants by using Excel</p>
-            </div>
-            
-            <div class="extra">
-                <h3>Extra-Curricular Activities</h3>
-                <h4>University of Waterloo, Waterloo, ON</h4>
-                <p>Volunteered Peer Mentorship Training Program, April, 2014 -- Augest, 2014</p>
-                
-                <h4>Maple Leaf International High School, Dalian, China</h4>
-                <p>Leader of Angels' Club, Jan. 2012 -- June 2013</p>
-                <p>English Ambassador, Sept. 2010 -- Dec 2011</p>
-
-                <h4>Interests</h4>
-                <p>Play the violin, guitar, and zither. Painting.</p>
-            </div>
-            
+        <div class="contact">
+            <h1>Contact Me</h1>
+            <form action="action_page.php">
+                <label for="fname">First Name</label>
+                <input type="text" id="fname" name="firstname">
+                    
+                    <label for="lname">Last Name</label>
+                    <input type="text" id="lname" name="lastname">
+                        
+                        <label for="country">State</label>
+                        <select id="country" name="country">
+                            <option value="Canada">Australia</option>
+                            <option value="China">Canada</option>
+                            <option value="USA">USA</option>
+                        </select>
+                        <textarea></textarea>
+                        <input type="submit" value="Submit">
+            </form>
         </div>
-        
     </body>
 </html>
