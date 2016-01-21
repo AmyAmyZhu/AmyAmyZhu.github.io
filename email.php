@@ -1,23 +1,27 @@
 <?php
        // from the form
+       if(!isset($_POST['submit'])) {
+           echo "Sorry, you need to hit Submit button!";
+       }
+       
+       $name = $_POST['name'];
+       $visitor_email = $_POST['email'];
+       $message = $_POST['message'];
+       
+       if(empty($name)||empty($visitor_email)){
+           echo "Name and email are mandatory!";
+           exit;
+       }
+       
+       $email_from = "zhuzefang12@gmail.com";
+       $email_subject = "New Form submission";
+       $email_body = "email address: $visitor_email\nHere is the message:\n $message";
+       $to = "zhuzefang12@gmail.com";
+       $headers = "from: $email_from \r\n";
+       
+       mail($to, $email_subject, $email_body, $headers);
+       
        $name = trim(strip_tags($_POST['name']));
        $email = trim(strip_tags($_POST['email']));
        $message = htmlentities($_POST['message']);
-
-       // set here
-       $subject = "Contact form submitted!";
-       $to = 'zhuzefang12@email.com';
-
-       $body = <<<HTML
-$message
-HTML;
-
-       $headers = "From: $email\r\n";
-       $headers .= "Content-type: text/html\r\n";
-
-       // send the email
-       mail($to, $subject, $body, $headers);
-
-       // redirect afterwords, if needed
-       header('Location: contact.html');
 ?>
