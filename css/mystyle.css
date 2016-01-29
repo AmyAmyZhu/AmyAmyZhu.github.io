@@ -1,67 +1,11 @@
-body {margin:0;}
-
-a:link{color:white} 
-
-
-input[type=text], select {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
+body {
+    margin:0;
+    background-color:#99CCCC;
 }
 
-input[type=submit] {
-    width: 100%;
-    background-color: #4CAF50;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
+a:link{color:white}
 
-input[type=submit]:hover {
-    background-color: #45a049;
-}
-
-textarea {
-    width: 100%;
-    height: 150px;
-    padding: 12px 20px;
-    box-sizing: border-box;
-    border: 2px solid #ccc;
-    border-radius: 4px;
-    background-color: #f8f8f8;
-    font-size: 16px;
-    resize: none;
-}
-
-div.contact {
-    border-radius: 5px;
-    background-color: #f2f2f2;
-    padding: 40px;
-}
-
-
-
-div.content {
-    margin-left: 190px;
-    padding: 1em;
-}
-
-div.container {
-    width: 100%;
-    margin: 0px;
-    line-height: 100%;
-}
-
-.header-section {
-    min-height: 540px;
-}
+/* header-section text */
 .header-section h1 {
     text-align: right;
     margin-right: 37%;
@@ -80,57 +24,14 @@ div.container {
     color: #393b3a;
 }
 
-.progress {
-    margin: 10px 0;
-    box-shadow: none;
-}
-.progress-bar-success {
-    background-color: #DEECDF;
-    box-shadow: none;
-}
-.progress-bar-info {
-    background-color: #ACB5B8;
-    box-shadow: none;
-}
-.progress-bar-warning {
-    background-color: #78B3AE;
-    box-shadow: none;
-}
-.progress-bar-danger {
-    background-color: #8C9D82;
-    box-shadow: none;
-}
-
+/* mainmeun */
 ul.mainmeun {
     list-style-type: none;
     margin: 0;
     padding: 0;
     position: fixed;
     background-color: #333;
-    top: 0;
     width: 100%;
-}
-
-.footer {
-    text-align: center;
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #333;
-    top: 0;
-    width: 100%;
-}
-
-ul.meunresume {
-    list-style-type: none;
-    margin-top:150px;
-    padding: 0;
-    width: 15%;
-    background-color: #FFFFFF;
-    position: fixed;
-    height: 35%;
-    overflow: auto;
 }
 
 ul.mainmeun li a {
@@ -141,106 +42,11 @@ ul.mainmeun li a {
     text-decoration: none;
 }
 
-ul.meunresume li a {
-    display: block;
-    color: #000;
-    padding: 8px 0 8px 16px;
-    text-decoration: none;
-}
-
 ul.mainmeun li {
     float: left;
 }
 
-.active {
-    background-color: #01DFA5;
-    color:white;
-}
-
-li a:hover:not(.active) {
-    background-color: #111;
-    color:white;
-}
-
-ul.skills {
-    padding: 0;
-}
-
-ul.skills li {
-    background-color: #727e7f;
-    position: relative;
-    line-height: 2em;
-    margin: 1em 0;
-    padding: 0 .5em;
-    color: white;
-}
-
-ul.skills li span {
-    position: relative;
-    z-index: 10;
-    font-size: .8em;
-}
-
-ul.skills li:after {
-    position: absolute;
-    left: 3px;
-    top: 3px;
-    bottom: 3px;
-    content: '';
-}
-
-ul.skills li.one:after {
-    width: 10%;
-}
-
-ul.skills li.two:after {
-    width: 20%;
-}
-
-ul.skills li.three:after {
-    width: 30%;
-}
-
-ul.skills li.four:after {
-    width: 40%;
-}
-
-ul.skills li.five:after {
-    width: 50%;
-}
-
-ul.skills li.six:after {
-    width: 60%;
-}
-
-ul.skills li.seven:after {
-    width: 70%;
-}
-
-ul.skills li.eight:after {
-    width: 80%;
-}
-
-ul.skills li.nine:after {
-    width: 90%;
-}
-
-ul.skills li.ten:after {
-    right: 3px;
-}
-
-ul.skills.other li:after {
-    background-color: #31B404;
-}
-
-ul.skills.program li:after {
-    background-color: #34495e;
-}
-
-ul.skills.web li:after {
-    background-color: #DF0101;
-}
-
+/* dropdown */
 .dropbtn {
     background-color: #333;
     font-family: 'Nunito-Bold';
@@ -279,4 +85,46 @@ ul.skills.web li:after {
 
 .dropdown:hover .dropbtn {
     background-color: #01DFA5;
+}
+
+/* meunresume */
+ul.meunresume {
+    list-style-type: none;
+    margin-top:46px;
+    padding: 0;
+    width: 15%;
+    background-color: #FFFFFF;
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+}
+
+ul.meunresume li a {
+    display: block;
+    color: #000;
+    padding: 8px 0 8px 16px;
+    text-decoration: none;
+}
+
+/* active or not active */
+.active {
+    background-color: #01DFA5;
+    color:white;
+}
+
+li a:hover:not(.active) {
+    background-color: #111;
+    color:white;
+}
+
+/* footer */
+.footer {
+    text-align: center;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+    top: 0;
+    width: 100%;
 }
