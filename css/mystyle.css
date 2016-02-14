@@ -1,14 +1,76 @@
 body {
     margin:0;
-    background-color:#99CCCC;
 }
 
 a:link{color:white}
 
+/* 图标 */
+.social-icons {
+    float: left;
+    position: relative;
+    left: 42%;
+}
+
+.social-icons i {
+	width:45px;
+	height:45px;
+	background: url('../picture/img-sprite.png') no-repeat 0px 0px;
+	display:inline-block;
+	margin-right: 8px;
+}
+i.facebook {
+	background-position: 0px 0px;
+}
+i.facebook:hover {
+	background-position: 0px -45px;
+    transition:0.5s all;
+	-webkit-transition:0.5s all;
+	-moz-transition:0.5s all;
+	-o-transition:0.5s all;
+	-ms-transition:0.5s all;
+}
+i.twitter {
+	background-position: -45px 0px;
+}
+i.twitter:hover {
+	background-position: -45px -45px;
+    transition:0.5s all;
+	-webkit-transition:0.5s all;
+	-moz-transition:0.5s all;
+	-o-transition:0.5s all;
+	-ms-transition:0.5s all;
+}
+i.linkedin {
+	background-position: -90px 0px;
+}
+i.linkedin:hover {
+	background-position: -90px -45px;
+    transition:0.5s all;
+	-webkit-transition:0.5s all;
+	-moz-transition:0.5s all;
+	-o-transition:0.5s all;
+	-ms-transition:0.5s all;
+}
+i.skype {
+	background-position: -135px 0px;
+}
+i.skype:hover {
+	background-position: -135px -45px;
+    transition:0.5s all;
+	-webkit-transition:0.5s all;
+	-moz-transition:0.5s all;
+	-o-transition:0.5s all;
+	-ms-transition:0.5s all;
+}
 /* header-section text */
+.header-section{
+    background-image: url("../picture/back1.jpg");
+    background-size: cover;
+    height: 600px;
+}
+
 .header-section h1 {
-    text-align: right;
-    margin-right: 37%;
+    text-align: center;
     font-family: 'Nunito-Bold';
     font-size: 4em;
     text-transform: capitalize;
@@ -17,8 +79,7 @@ a:link{color:white}
 }
 
 .header-section p {
-    text-align: right;
-    margin-right: 37%;
+    text-align: center;
     font-family: 'Nunito-Bold';
     font-size: 1.3em;
     color: #393b3a;
