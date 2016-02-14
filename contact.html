@@ -10,9 +10,10 @@
         <!-- meum mainmeun -->
         <div class="mainmeun">
             <ul class="mainmeun">
-                <li><a class="active" href="index.html">Home</a></li>
+                <li><a href="index.html">Home</a></li>
                 <li><a href="resume.pdf">Resume</a></li>
-                <li><a href="contact.html">Contact Me</a></li>
+                <li><a class="active" href="contact.html">Contact Me</a></li>
+                <li><a href="projects.html">Projects</a></li>
                 <div class="dropdown">
                     <button class="dropbtn">Notes</button>
                     <div class="dropdown-content">
@@ -22,6 +23,29 @@
                     </div>
                 </div>
             </ul>
+        </div>
+        
+        <!-- contact -->
+        <div class="container">
+            <div class="header-section">
+                <br>
+                <h1>Contact Me</h1>
+                <div class="contact-form">
+                    <form method="post" name="myemailform" action="email.php">
+                    <div class="text">
+                        <input type="text" value="Your Name.." onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Your Name..';}"/>
+                    </div>
+                    <div class="text">
+                        <input type="text" value="Your Email.." onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Your Email..';}"/>
+                    </div>
+                    <div class="text">
+                        <textarea value="Message:" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Message';}">Your Message..</textarea>
+                    </div>
+                    <div class="text">
+                        <input type="submit"/>
+                    </div>
+                    </form>
+            </div>
         </div>
         
         <!-- footer -->
