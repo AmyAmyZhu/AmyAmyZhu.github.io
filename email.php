@@ -1,27 +1,51 @@
 <?php
-       // from the form
-       if(!isset($_POST['submit'])) {
-           echo "Sorry, you need to hit Submit button!";
-       }
-       
-       $name = $_POST['name'];
-       $visitor_email = $_POST['email'];
-       $message = $_POST['message'];
-       
-       if(empty($name)||empty($visitor_email)){
-           echo "Name and email are mandatory!";
-           exit;
-       }
-       
-       $email_from = "zhuzefang12@gmail.com";
-       $email_subject = "New Form submission";
-       $email_body = "email address: $visitor_email\nHere is the message:\n $message";
-       $to = "zhuzefang12@gmail.com";
-       $headers = "from: $email_from \r\n";
-       
-       mail($to, $email_subject, $email_body, $headers);
-       
-       $name = trim(strip_tags($_POST['name']));
-       $email = trim(strip_tags($_POST['email']));
-       $message = htmlentities($_POST['message']);
+
+if(isset($_POST['email'])) {     
+    // EDIT THE 2 LINES BELOW AS REQUIRED
+    $email_to = "zhuzefang12@gmail.com";
+    $email_subject = "Your email subject line";
+ 
+    function died($error) {
+        // your error code can go here
+        echo "We are very sorry, but there were error(s) found with the form you submitted. ";
+        echo "These errors appear below.<br /><br />";
+        echo $error."<br /><br />";
+        echo "Please go back and fix these errors.<br /><br />";
+        die();
+    }
+ 
+    // validation expected data exists
+    if(!isset($_POST['Name']) ||
+        !isset($_POST['Email']) ||
+        !isset($_POST['Message'])) {
+        died('We are sorry, but there appears to be a problem with the form you submitted.');       
+    }
+
+    $Name = $_POST['Name']; // required
+    $Email = $_POST['Email']; // required
+    $Message = $_POST['Message']; // required
+ 
+    $email_message = "Form details below.\n\n";
+
+    function clean_string($string) {
+      $bad = array("content-type","bcc:","to:","cc:","href");
+      return str_replace($bad,"",$string); 
+    } 
+ 
+    $email_message .= "Name: ".clean_string($Name)."\n";
+    $email_message .= "Email: ".clean_string($Email)."\n";
+    $email_message .= "Message: ".clean_string($Message)."\n";
+ 
+// create email headers
+$headers = 'From: '.$Email."\r\n".
+'Reply-To: '.$Email."\r\n" .
+'X-Mailer: PHP/' . phpversion();
+@mail($email_to, $Email, $email_message, $headers);  
+?>
+ 
+<!-- include your own success html here -->
+Thank you for contacting us. We will be in touch with you very soon.
+
+<?php
+}
 ?>
