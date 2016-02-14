@@ -125,12 +125,6 @@ i.skype:hover {
     -webkit-transform: rotate(360deg);
             transform: rotate(360deg); } }
 /* header-section text */
-.header-section{
-    /*background-image: url("../picture/back1.jpg");
-    background-size: cover;
-    height: 650px;*/
-}
-
 .header-section h1 {
     text-align: center;
     font-family: 'Nunito-Bold';
