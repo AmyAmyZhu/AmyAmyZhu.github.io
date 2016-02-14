@@ -247,6 +247,20 @@ li a:hover:not(.active) {
     width: 100%;
 }
 
+/* projects */
+.project{
+	background:#E0F8F7;
+    padding: 1em 1em;
+	margin: 40px 200px;
+}
+
+.project p {
+    text-align: left;
+    font-family: 'Nunito-Bold';
+    font-size: 1.3em;
+    color: #393b3a;
+}
+
 /* contact */
 .text{
     text-align: center;
