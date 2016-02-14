@@ -1,4 +1,4 @@
-        <?php
+<?php
             $to = "zhuzefang12@gmail.com";
             $subject = "This is subject";
             
