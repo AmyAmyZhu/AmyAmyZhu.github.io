@@ -124,6 +124,7 @@ i.skype:hover {
   100% {
     -webkit-transform: rotate(360deg);
             transform: rotate(360deg); } }
+            
 /* header-section text */
 .header-section h1 {
     text-align: center;
