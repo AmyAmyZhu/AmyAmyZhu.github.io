@@ -3,6 +3,8 @@
     <head>
         <title>AmyZhu</title>
         <link href="css/mystyle.css" rel="stylesheet" type="text/css" media="all">
+            <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all">
+
             </head>
     
     <body>
@@ -18,39 +20,54 @@
             <ul class="mainmeun">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="resume.pdf">Resume</a></li>
-                <li><a href="contact.html">Contact Me</a></li>
                 <li><a class="active" href="projects.html">Projects</a></li>
-                <div class="dropdown">
+                <li><a href="contact.html">Contact Me</a></li>
+                <!--<div class="dropdown">
                     <button class="dropbtn">Notes</button>
                     <div class="dropdown-content">
                         <a href="cs350.html">CS 350</a>
                         <a href="cs348.html">CS 348</a>
                         <a href="cs341.html">CS 341</a>
                     </div>
-                </div>
+                </div>-->
             </ul>
         </div>
         
         <!-- start here -->
-            <div class="header-section">
-                <br>
-                <h1>Projects</h1>
+        <div class="header-section">
+            <br><br>
+            <h1>Projects</h1>
+        </div>
+        <br><br>
+        <section class="container">
+            <div class="row">
+                <div class="col-md-6 col-sm-12">
+                    <div class="education">
+                        <h2><a href="https://github.com/AmyAmyZhu/bb7k">Monopoly Game, C++</a></h2>
+                        <br>
+                        <ul>
+                            <li>Implemented a game of monopoly with basic graph display UI and utilized some popular design patterns</li>
+                            <li>Used a detailed UML to plan and illustrate relationship between classes</li>
+                            <li>Strengthened project management skills by working in pairs</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Contact section -->
+                <div class="col-md-6 col-sm-12">
+                    <div class="about">
+                        <h2><a href="https://github.com/AmyAmyZhu/CS241">WLP4 Compiler, C++, MIPS</a></h2>
+                        <br>
+                        <ul class="projects">
+                            <li>Developed a simplified C++ language(WLP4) compiler that supports linking, loading, and parsing</li>
+                            <li>Implemented a MIPS assembler that translates a MIPS assembly language program into a MIPS machine language binary file</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-            <div class="project">
-                <h2><a href="https://github.com/AmyAmyZhu/bb7k">Monopoly Game, C++</a></h2>
-                <ul class="projects">
-                    <li>Implemented a game of monopoly with basic graph display UI and utilized some popular design patterns</li>
-                    <li>Used a detailed UML to plan and illustrate relationship between classes</li>
-                    <li>Strengthened project management skills by working in pairs</li>
-                </ul>
-            </div>
-            <div class="project">
-                <h2><a href="https://github.com/AmyAmyZhu/CS241">WLP4 Compiler, C++, MIPS</a></h2>
-                <ul class="projects">
-                    <li>Developed a simplified C++ language(WLP4) compiler that supports linking, loading, and parsing</li>
-                    <li>Implemented a MIPS assembler that translates a MIPS assembly language program into a MIPS machine language binary file</li>
-                </ul>
-            </div>
+        </section>
+        <br><br>
+        
 <!--
             <div class="content">
                 <div id="projects" name="projects" class="projects"></div>
@@ -87,9 +104,9 @@
         </div>
         -->
         <!-- footer -->
-        <div class="footer">
+        <!--<div class="footer">
             <p><font color="white">208 Sunview St. Suite 1005 Waterloo ON C: 5195895488 <color:white><a href="Mailto:zhuzefang12@gmail.com">zhuzefang12@gmail.com</a></font><p>
-        </div>
+        </div>-->
         
         
         <script src="js/jquery-1.12.0.min.js"></script>

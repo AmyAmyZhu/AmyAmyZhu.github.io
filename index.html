@@ -3,6 +3,7 @@
     <head>
         <title>AmyZhu</title>
         <link href="css/mystyle.css" rel="stylesheet" type="text/css" media="all">
+        <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all">
     </head>
     
     <body>
@@ -18,16 +19,16 @@
             <ul class="mainmeun">
                 <li><a class="active" href="index.html">Home</a></li>
                 <li><a href="resume.pdf">Resume</a></li>
-                <li><a href="contact.html">Contact Me</a></li>
                 <li><a href="projects.html">Projects</a></li>
-                <div class="dropdown">
+                <li><a href="contact.html">Contact Me</a></li>
+                <!--<div class="dropdown">
                     <button class="dropbtn">Notes</button>
                     <div class="dropdown-content">
                         <a href="cs350.html">CS 350</a>
                         <a href="cs348.html">CS 348</a>
                         <a href="cs341.html">CS 341</a>
                     </div>
-                </div>
+                </div>-->
             </ul>
         </div>
         
@@ -39,21 +40,100 @@
                     <p>3A Computer Science Student</p>
                     <p>University of Waterloo</p>
                     <p><img src="picture/cutmypic.png" style="float:center;width:200px;height:200px;"></p>
+                    <hr>
+                    <p>Welcome to Zefang Zhu's Personal Website</p>
                     <div class="social-icons">
                         <a href="https://www.facebook.com/zefang.zhu"><i class="facebook"></i></a>
                         <a href="https://twitter.com/ABamyzhu"><i class="twitter"></i></a>
                         <a href="https://www.linkedin.com/in/zefang-zhu-6a9259113?trk=nav_responsive_tab_profile"><i class="linkedin"></i></a>
                         <a href="https://web.skype.com/en/"><i class="skype"></i></a>
-                        <br><br><br><br><br><br><br>
                     </div>
                 </div>
-                <br><br>
+                <br><br><br><br><br><br><br>
             </div>
+            
+            <!-- about me section-->
+            <section class="container">
+                <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                        <div class="about">
+                            <h2>About Me</h2>
+                            <p>EDUCATION: Currently taking University of Waterloo Bachelor's Degree</p>
+                            <p>MAJOR: Computer Science</p>
+                            <p>MINOR: Economics</p>
+                            <p>LANGUAGE: Madrain, English, Japanese</p>
+                            <p>HOBBIES: </p>
+                            <ul>
+                                <li>baking and coking lovers</li>
+                                <li>playing musical instruments: violin, guitar, and zither</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- skills section -->
+                    <div class="col-md-6 col-sm-12">
+                        <div class="skills">
+                            <h2 class="white">Skills</h2>
+                            <strong>C/C++</strong>
+                            <span class="pull-right">50%</span>
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-primary" role="progressbar"
+                                    aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%;"></div>
+                            </div>
+                            <strong>MySQL,R</strong>
+                            <span class="pull-right">30%</span>
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-primary" role="progressbar"
+                                    aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="width: 30%;"></div>
+                            </div>
+                            <strong>HTML, CSS, PHP</strong>
+                            <span class="pull-right">45%</span>
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-primary" role="progressbar" 
+                                    aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 45%;"></div>
+                            </div>
+                            <strong>Mathlab</strong>
+                            <span class="pull-right">40%</span>
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-primary" role="progressbar"
+                                    aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <br><br>
+            <!-- Education section -->
+            <section class="container">
+                <div class="row">
+                    <div class="col-md-8 col-sm-12">
+                        <div class="education">
+                            <h2>Education</h2>
+                            <p>Computer Science Bachelor's Degree</p>
+                            <p>University of Waterloo Sept 2013 -- Current</p>
+                            <p>MINOR: Economics</p>
+                            <p>RELATIVE COURSES: Design and Abstraction, Object-Oriented Programming, Sequential Programs, Data Structure and Algorithm, Operating System, Database management, Numerical Computation</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Contact section -->
+                    <div class="col-md-4 col-sm-12">
+                        <div class="about">
+                            <h2>Contact</h2>
+                            <p>EMAIL: zhuzefang12@gmail.com</p>
+                            <p>PHONE: (+1) 519-589-5488</p>
+                            <p>ADDRESS: 208 Sunview St. Waterloo, ON</p>
+                            <p>WEBSITE: amyamyzhu@github.io</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        <br><br>
         
         <!-- footer -->
-        <div class="footer">
+        <!-- <div class="footer">
             <p><font color="white">208 Sunview St. Suite 1005 Waterloo ON C: 5195895488 <color:white><a href="Mailto:zhuzefang12@gmail.com">zhuzefang12@gmail.com</a></font><p>
-        </div>
+        </div> -->
 
 
 <script src="js/jquery-1.12.0.min.js"></script>

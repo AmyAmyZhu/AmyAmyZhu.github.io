@@ -6,8 +6,8 @@ a:link{color:white}
 
 /* 图标 */
 .social-icons {
-    float: left;
     position: relative;
+    float: left;
     left: 42%;
 }
 
@@ -140,6 +140,11 @@ i.skype:hover {
     font-family: 'Nunito-Bold';
     font-size: 1.3em;
     color: #393b3a;
+}
+
+.header-section hr {
+  border-color: #3366CC;
+  width: 100px;
 }
 
 /* mainmeun */
@@ -326,4 +331,106 @@ li a:hover:not(.active) {
 	-moz-transition:0.5s all;
 	-ms-transition:0.5s all;
 	
+}
+
+/* about me section */ 
+.about {
+  background: #fff;
+  box-shadow: 0px 1px 5px rgba(50,50,50,0.08);
+  padding: 40px;
+  min-height: 330px;
+}
+
+/* skill section */
+.skills {
+  background: #04B431;
+  color: #f5f5f5;
+  padding: 40px;
+  min-height: 330px;
+}
+.skills .progress {
+  border-radius: 0px;
+  height: 4px;
+}
+.skills .progress .progress-bar-primary {
+  background: #04B431;
+}
+.skills strong {
+  display: inline-block;
+  font-weight: normal;
+  padding-bottom: 6px;
+}
+
+/* education section */
+.education {
+  background: #04B431;
+  color: #f5f5f5;
+  padding: 40px;
+  min-height: 330px;
+}
+
+/* gallary */
+.gallery {
+    list-style: none;
+}
+.gallery li{
+    float:left;
+    margin:0.4%;
+    background: #E0F8F7;
+    padding: 8px;
+    width:33%;
+}
+
+.da-thumbs {
+	list-style: none;
+	position: relative;
+	margin: 0;
+	padding: 0;
+}
+.da-thumbs li {
+	float: left;
+	margin: 0.4%;
+	background: #EFEFEF;
+	padding: 8px;
+	position: relative;
+	box-shadow: 0 1px 3px rgba(231, 231, 231, 0.43);
+	width: 32.4%;
+}
+.da-thumbs li a,
+.da-thumbs li a img {
+	display: block;
+	position: relative;
+	width: 100%;
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-o-border-radius: 5px;
+	-ms-border-radius: 5px;
+}
+.da-thumbs li a {
+	overflow: hidden;
+}
+.da-thumbs li a div {
+  position: absolute;
+  background: rgba(25, 6, 8, 0.9);
+  width: 100%;
+  height: 100%;
+}
+.da-thumbs li a div span {
+  display: block;
+  padding: 10px 0;
+  margin: 11px 20px 20px 20px;
+  font-weight: normal;
+  text-transform: capitalize;
+  color: rgba(255,255,255,0.9);
+  text-align: center;
+  font-size: 14px;
+  font-family: 'Raleway-Regular';
+}
+.da-thumbs li a div  h5 {
+  color: #FFF;
+  font-size: 1.5em;
+  margin: 3.5em 0 0 0;
+ font-family: 'Audiowide-Regular';
+  text-align: center;
 }
