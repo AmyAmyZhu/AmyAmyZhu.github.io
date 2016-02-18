@@ -2,8 +2,6 @@ body {
     margin:0;
 }
 
-a:link{color:white}
-
 /* up */
 a.back-to-top{
     display:none;
