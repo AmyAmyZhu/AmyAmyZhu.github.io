@@ -4,6 +4,25 @@ body {
 
 a:link{color:white}
 
+/* up icon */
+.icons {
+    position: fixed;
+    float: right;
+    margin-top: 490px;
+    right: 2%;
+}
+
+.icons i {
+	width:48px;
+	height:48px;
+	display:inline-block;
+	margin-right: 8px;
+}
+
+i.upicon {
+   background: url('../picture/upicon.png') no-repeat 0px 0px;
+   background-position: 0px 0px;
+}
 /* 图标 */
 .social-icons {
     position: relative;
@@ -17,6 +36,7 @@ a:link{color:white}
 	display:inline-block;
 	margin-right: 8px;
 }
+
 i.facebook {
     background: url('../picture/img-sprite.png') no-repeat 0px 0px;
 	background-position: 0px 0px;
@@ -152,7 +172,7 @@ ul.mainmeun {
     list-style-type: none;
     margin: 0;
     padding: 0;
-    position: fixed;
+    /*position: fixed;*/
     background-color: #333;
     width: 100%;
 }
@@ -369,68 +389,33 @@ li a:hover:not(.active) {
   min-height: 330px;
 }
 
-/* gallary */
-.gallery {
-    list-style: none;
+/* gallery */
+.gallery{
+	background: #fff;
+	padding: 1em 1em;
+	box-shadow: 0px 1px 4px 0px rgba(104, 123, 144, 0.31);
 }
-.gallery li{
-    float:left;
-    margin:0.4%;
-    background: #E0F8F7;
-    padding: 8px;
-    width:33%;
+#rowgallery .gallery{
+	width: 32%;
+    margin:0.3em;
 }
-
-.da-thumbs {
-	list-style: none;
-	position: relative;
-	margin: 0;
-	padding: 0;
+.gallery-wrapper{
+     overflow:hidden;
+	position: relative !important;
 }
-.da-thumbs li {
-	float: left;
-	margin: 0.4%;
-	background: #EFEFEF;
-	padding: 8px;
-	position: relative;
-	box-shadow: 0 1px 3px rgba(231, 231, 231, 0.43);
-	width: 32.4%;
+.grid_box .zoom-icon {
+	width:100%;
 }
-.da-thumbs li a,
-.da-thumbs li a img {
-	display: block;
-	position: relative;
-	width: 100%;
-	border-radius: 5px;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	-o-border-radius: 5px;
-	-ms-border-radius: 5px;
+.grid_box a:hover .zoom-icon {
+	top: 0;
+	opacity: 1;
 }
-.da-thumbs li a {
-	overflow: hidden;
-}
-.da-thumbs li a div {
-  position: absolute;
-  background: rgba(25, 6, 8, 0.9);
-  width: 100%;
-  height: 100%;
-}
-.da-thumbs li a div span {
-  display: block;
-  padding: 10px 0;
-  margin: 11px 20px 20px 20px;
-  font-weight: normal;
-  text-transform: capitalize;
-  color: rgba(255,255,255,0.9);
-  text-align: center;
-  font-size: 14px;
-  font-family: 'Raleway-Regular';
-}
-.da-thumbs li a div  h5 {
-  color: #FFF;
-  font-size: 1.5em;
-  margin: 3.5em 0 0 0;
- font-family: 'Audiowide-Regular';
-  text-align: center;
+.zoom-icon {
+	position: absolute;
+	opacity: 0;
+	top: -152px;
+	width: 290px;
+	height: 219px;
+	background:center center no-repeat rgba(220, 142, 127, 0.58);
+	transition: all .5s ease-in-out;
 }
