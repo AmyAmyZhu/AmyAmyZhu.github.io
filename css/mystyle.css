@@ -4,25 +4,22 @@ body {
 
 a:link{color:white}
 
-/* up icon */
-.icons {
-    position: fixed;
-    float: right;
-    margin-top: 490px;
-    right: 2%;
+/* up */
+a.back-to-top{
+    display:none;
+    width:60px;
+    height:60px;
+    position:fixed;
+    bottom:40px;
+    right:40px;
+    background:green url('../picture/upicon.png') no-repeat center 43%;
+    text-indent: -9999px;
+    border-radius:30px;
+}
+a:hover back-to-top{
+    background-color: #000;
 }
 
-.icons i {
-	width:48px;
-	height:48px;
-	display:inline-block;
-	margin-right: 8px;
-}
-
-i.upicon {
-   background: url('../picture/upicon.png') no-repeat 0px 0px;
-   background-position: 0px 0px;
-}
 /* 图标 */
 .social-icons {
     position: relative;
