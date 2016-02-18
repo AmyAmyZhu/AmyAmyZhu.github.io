@@ -1,10 +1,11 @@
 <?php
-// the message
-$msg = "First line of text\nSecond line of text";
 
-// use wordwrap() if lines are longer than 70 characters
-$msg = wordwrap($msg,70);
+$to = "zhuzefang12@gmail.com";
+$subject = "Test mail";
+$message = "Hello! This is a simple email message.";
+$from = "z57zhu@uwaterloo.ca";
+$headers = "From: $from";
+mail($to,$subject,$message,$headers);
+echo "Mail Sent.";
 
-// send email
-mail("zhuzefang12@gmail.com","My subject",$msg);
 ?>
