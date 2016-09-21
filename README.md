@@ -1,3 +1,5 @@
-Zefang Zhu's Personal Website
+#Zefang Zhu's Personal Website
 
-http://AmyAmyZhu.github.io
+http://zefangzhu.com
+
+- Basically use knowledge of HTML, CSS and Javascript implement a personal website.
