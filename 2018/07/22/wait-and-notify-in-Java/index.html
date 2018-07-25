@@ -108,17 +108,20 @@
 
 
 
-  <meta name="description" content="Daily problems, daily solutions.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="AmyZhu&#39;s Blog">
-<meta property="og:url" content="http://yoursite.com/archives/2018/07/index.html">
+  <meta name="description" content="Remember in article synch/Asynch Callback in Java I wrote, multithreading in Java is important and can improve performance. We can use callbacks to notify some threads finish executing. What if we don">
+<meta property="og:type" content="article">
+<meta property="og:title" content="wait() and notify() in Java">
+<meta property="og:url" content="http://yoursite.com/2018/07/22/wait-and-notify-in-Java/index.html">
 <meta property="og:site_name" content="AmyZhu&#39;s Blog">
-<meta property="og:description" content="Daily problems, daily solutions.">
+<meta property="og:description" content="Remember in article synch/Asynch Callback in Java I wrote, multithreading in Java is important and can improve performance. We can use callbacks to notify some threads finish executing. What if we don">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-07-23T14:17:03.760Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="AmyZhu&#39;s Blog">
-<meta name="twitter:description" content="Daily problems, daily solutions.">
+<meta name="twitter:title" content="wait() and notify() in Java">
+<meta name="twitter:description" content="Remember in article synch/Asynch Callback in Java I wrote, multithreading in Java is important and can improve performance. We can use callbacks to notify some threads finish executing. What if we don">
 
+
+  
 
 
   <link rel="alternate" href="/atom.xml" title="AmyZhu's Blog" type="application/atom+xml" />
@@ -126,7 +129,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/archives/2018/07/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/07/22/wait-and-notify-in-Java/"/>
 
 
 
@@ -136,7 +139,7 @@
   };
 </script>
 
-  <title>Archive | AmyZhu's Blog</title>
+  <title>wait() and notify() in Java | AmyZhu's Blog</title>
   
 
 
@@ -183,7 +186,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -228,7 +231,7 @@
         
         
           
-          <li class="menu-item menu-item-archives menu-item-active">
+          <li class="menu-item menu-item-archives">
     <a href="/archives/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
   </li>
@@ -240,19 +243,6 @@
 
   
     
-
-    
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
 
   
 
@@ -278,228 +268,191 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-      
-      <span class="archive-page-counter">
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/22/wait-and-notify-in-Java/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Amy Zhu">
+      <meta itemprop="description" content="Daily problems, daily solutions.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AmyZhu's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
         
         
+          <h1 class="post-title" itemprop="name headline">wait() and notify() in Java
+              
+            
+          </h1>
         
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-07-22 09:54:56" itemprop="dateCreated datePublished" datetime="2018-07-22T09:54:56-04:00">2018-07-22</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-07-23 10:17:03" itemprop="dateModified" datetime="2018-07-23T10:17:03-04:00">2018-07-23</time>
+              
+            
+          </span>
+
           
-        
-        Um..! 11 posts in total. Keep on posting.
-      </span>
-      
 
-      
-
-        
-        
-        
-
-        
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2018">2018</h1>
-          </div>
-        
-        
+            
+          
 
-        
+          
+          
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+          
 
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/07/22/wait-and-notify-in-Java/" itemprop="url">
-              
-                <span itemprop="name">wait() and notify() in Java</span>
-              
-            </a>
-        
-      </h2>
+          
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-07-22T09:54:56-04:00"
-              content="2018-07-22" >
-          07-22
-        </time>
-      </div>
+          
 
-    </header>
-  </article>
+        </div>
+      </header>
+    
 
-
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/07/19/Use-Artifactory-to-Upload-SDKs/" itemprop="url">
-              
-                <span itemprop="name">Use Artifactory to Upload SDKs</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-07-19T09:59:31-04:00"
-              content="2018-07-19" >
-          07-19
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/07/19/Testing-SDKs-by-External-Storage/" itemprop="url">
-              
-                <span itemprop="name">Testing SDKs by External Storage</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-07-19T09:54:22-04:00"
-              content="2018-07-19" >
-          07-19
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+      
+        <p>Remember in article synch/Asynch Callback in Java I wrote, multithreading in Java is important and can improve performance. We can use callbacks to notify some threads finish executing. What if we don’t need to pass arguments, but we still want to implements multithreads falixable? Another simple way to let a thread wait and wake up is to use <strong>Object.wait()</strong> and <strong>Object.notify()</strong>.</p>
+<p>Keep in mind that:</p>
+<ul>
+<li><strong>Object.wait()</strong> means suspend a thread.</li>
+<li><strong>Object.notify()</strong> means wake a thread up.</li>
+</ul>
+<p>###Logic</p>
+<p>To use <strong>wait()</strong> and <strong>notify()</strong>, we need to create an object to control execuations. This is similary to a lock. We use the common object to lock execuation steps.</p>
+<p>Here is the sample code that keep waiting if the condition is not satisfied:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">synchronized</span> (object) &#123;</span><br><span class="line">    <span class="keyword">while</span> (!condition) &#123;</span><br><span class="line">        object.wait();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// do something:</span></span><br><span class="line">    <span class="comment">// those things will wait </span></span><br><span class="line">    <span class="comment">// until other place calls notify</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Use the following code in other places to notify the above wait code:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">synchronized</span> (object) &#123;</span><br><span class="line">    object.notify();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Keep in mind, there are two places need to be paid attention:</p>
+<ol>
+<li>use <strong>synchronized()</strong> to keep <strong>wait()</strong> and <strong>notify()</strong> under the same thread.</li>
+<li>use while loop instead of if loop to keep waiting and traking notifying.</li>
+</ol>
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/07/13/Apply-Dexguard-for-Modules/" itemprop="url">
-              
-                <span itemprop="name">Apply Dexguard for Modules</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-07-13T09:54:40-04:00"
-              content="2018-07-13" >
-          07-13
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/07/03/Synch-Asynch-Callback-in-Java/" itemprop="url">
-              
-                <span itemprop="name">Synch/Asynch Callback in Java</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-07-03T09:55:17-04:00"
-              content="2018-07-03" >
-          07-03
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
     </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/07/19/Use-Artifactory-to-Upload-SDKs/" rel="next" title="Use Artifactory to Upload SDKs">
+                <i class="fa fa-chevron-left"></i> Use Artifactory to Upload SDKs
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+  </div>
 
 
           </div>
           
+
+  
+
+
 
         </div>
         
@@ -703,6 +656,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
 
   
 

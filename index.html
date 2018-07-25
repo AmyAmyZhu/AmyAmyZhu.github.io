@@ -282,7 +282,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/25/hello-world/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/22/wait-and-notify-in-Java/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Amy Zhu">
@@ -301,8 +301,8 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/07/25/hello-world/" itemprop="url">
-                  Hello World
+                <a class="post-title-link" href="/2018/07/22/wait-and-notify-in-Java/" itemprop="url">
+                  wait() and notify() in Java
                 </a>
               
             
@@ -328,9 +328,25 @@
                 
               
 
-              <time title="Created: 2018-07-25 10:08:15" itemprop="dateCreated datePublished" datetime="2018-07-25T10:08:15-04:00">2018-07-25</time>
+              <time title="Created: 2018-07-22 09:54:56" itemprop="dateCreated datePublished" datetime="2018-07-22T09:54:56-04:00">2018-07-22</time>
             
 
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-07-23 10:17:03" itemprop="dateModified" datetime="2018-07-23T10:17:03-04:00">2018-07-23</time>
+              
             
           </span>
 
@@ -364,15 +380,1658 @@
       
         
           
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+            <p>Remember in article synch/Asynch Callback in Java I wrote, multithreading in Java is important and can improve performance. We can use callbacks to notify some threads finish executing. What if we don’t need to pass arguments, but we still want to implements multithreads falixable? Another simple way to let a thread wait and wake up is to use <strong>Object.wait()</strong> and <strong>Object.notify()</strong>.</p>
+<p>Keep in mind that:</p>
+<ul>
+<li><strong>Object.wait()</strong> means suspend a thread.</li>
+<li><strong>Object.notify()</strong> means wake a thread up.</li>
+</ul>
+<p>###Logic</p>
+<p>To use <strong>wait()</strong> and <strong>notify()</strong>, we need to create an object to control execuations. This is similary to a lock. We use the common object to lock execuation steps.</p>
+<p>Here is the sample code that keep waiting if the condition is not satisfied:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">synchronized</span> (object) &#123;</span><br><span class="line">    <span class="keyword">while</span> (!condition) &#123;</span><br><span class="line">        object.wait();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// do something:</span></span><br><span class="line">    <span class="comment">// those things will wait </span></span><br><span class="line">    <span class="comment">// until other place calls notify</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Use the following code in other places to notify the above wait code:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">synchronized</span> (object) &#123;</span><br><span class="line">    object.notify();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Keep in mind, there are two places need to be paid attention:</p>
+<ol>
+<li>use <strong>synchronized()</strong> to keep <strong>wait()</strong> and <strong>notify()</strong> under the same thread.</li>
+<li>use while loop instead of if loop to keep waiting and traking notifying.</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/19/Use-Artifactory-to-Upload-SDKs/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Amy Zhu">
+      <meta itemprop="description" content="Daily problems, daily solutions.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AmyZhu's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/07/19/Use-Artifactory-to-Upload-SDKs/" itemprop="url">
+                  Use Artifactory to Upload SDKs
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-07-19 09:59:31" itemprop="dateCreated datePublished" datetime="2018-07-19T09:59:31-04:00">2018-07-19</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-07-23 10:17:03" itemprop="dateModified" datetime="2018-07-23T10:17:03-04:00">2018-07-23</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>When you build up an Android library, but not sure if it works properly. When a company has multiple modules and want to allow their employees access and use module easily. Aritifactory is one tool that is useful for speeding up development cycles. You can publish your modules or libraries into Artifactory repositories, and only let people in localhost to use them.</p>
+<p>###How to install and setup Artifactory?</p>
+<p>I am using Linux environment to build up Artifactory. Therefore, I will only talk how to install it in Linux system. If you don’t have Linux system, you can use virtual machine (Virtual Box) or host a Linux system in clouding system (AWS).</p>
+<p>After you have Linux environment, please check if you have Java installed. If yes, check <strong>java -version</strong> to make sure it is at least SDK 8. If you don’t have java, downloaded and install it.</p>
+<p>Then simply download Artifactory and unzip it.</p>
+<p>Then you can run Artifactory by the following code:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ARTIFACTORY_HOME/bin/artifactoryctl start</span><br></pre></td></tr></table></figure>
+<p>After that, you can check in your browser to see if Artifactory is setted up or not. The url is <a href="http://SERVER_DOMAIN:8081/artifactory" target="_blank" rel="noopener">http://SERVER_DOMAIN:8081/artifactory</a>. Now you are able to build up repositories and setup permissions if you are Admin.</p>
+<p>If you want to build a repositories for Android APKs/AARs file, you can click on the user’s button and choose quick setup, then you can setup a Gradle repository for Android Libraries.</p>
+<p>###How to upload APKs/AARs into Artifactory</p>
+<p>In your Library Gradle file, add the following lines:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">apply plugin: <span class="string">'com.jfrog.artifactory'</span></span><br><span class="line">apply plugin: <span class="string">'maven-publish'</span></span><br><span class="line"></span><br><span class="line">def packageName = <span class="string">'com.package.company'</span></span><br><span class="line">def libraryVersion = <span class="string">'1.0.0'</span></span><br><span class="line"></span><br><span class="line">publishing &#123;</span><br><span class="line">    publications &#123;</span><br><span class="line">        aar(MavenPublication) &#123;</span><br><span class="line">            groupId packageName</span><br><span class="line">            version libraryVersion</span><br><span class="line">            artifactId project.getName()</span><br><span class="line">            artifact(<span class="string">"$buildDir/outputs/aar/$&#123;project.getName()&#125;-release.aar"</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">artifactory &#123;</span><br><span class="line">    contextUrl = <span class="string">"http://SERVER_DOMAIN:8081/artifactory"</span></span><br><span class="line">    publish &#123;</span><br><span class="line">        repository &#123;</span><br><span class="line">            repoKey = <span class="string">'gradle-release-local'</span></span><br><span class="line">            username = <span class="string">'YourUserName'</span></span><br><span class="line">            password = <span class="string">'YourPassWord'</span></span><br><span class="line">        &#125;</span><br><span class="line">        defaults &#123;</span><br><span class="line">            publications(<span class="string">'aar'</span>)</span><br><span class="line">            publishArtifacts = <span class="keyword">true</span></span><br><span class="line">            properties = [<span class="string">'qa.level'</span>: <span class="string">'basic'</span>, <span class="string">'dev.team'</span>: <span class="string">'core'</span>]</span><br><span class="line">            publishPom = <span class="keyword">true</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Now when you check Gradle artifactoryPublish you can publish your AARs to your Artifactory repository. However, the dependencies in your gradle file is not included. It means when your client uses your modules, they still need to add other libraries you included in your library. Therefore, you can add dependencies in your pom file.</p>
+<p>your pom file can be defaultly generated by generatePomFileForAarPublication by gradle. Then you can edit it in your <strong>build-&gt;publications-&gt;aar</strong> folder. Here is a sample to add a dependency. For example, translate gradle dependency:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">compile <span class="string">'com.android.support:support-v4:25.4.0'</span></span><br></pre></td></tr></table></figure>
+<p>In pom file, it should be:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.android.support<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>support-v4<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>25.4.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">scope</span>&gt;</span>compile<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>If you are not allowed to upload your edited pom file, you can go to your artifactory repository and check setting <strong>Suppress POM Consistency Checks</strong> to be true.</p>
+<p>Now you are able to upload your AAR files and your dependencies in pom files into your localhost Artifactory.</p>
+<p>###How to use Libraries in Artifactory?</p>
+<p>In your App, if you want to use modules already uploaded in Artifactory, you need to connect to your repository url and tell your credentials. Add those lines in to your project gradle file:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">allprojects &#123;</span><br><span class="line">    repositories &#123;</span><br><span class="line">        google()</span><br><span class="line">        jcenter()</span><br><span class="line">        maven &#123;</span><br><span class="line">            url <span class="string">"http://SERVER_DOMAIN:8081/artifactory/gradle-release-local"</span></span><br><span class="line">            credentials &#123;</span><br><span class="line">                username = <span class="string">'YourUserName'</span></span><br><span class="line">                password = <span class="string">'YourPassWord'</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Then you can simple import libraries in your app gradle files by adding up dependencies like:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">implementation <span class="string">'com.package.company:libraryname:1.0.0'</span></span><br></pre></td></tr></table></figure>
+<p>That is it. You now can use Methods and Classes open in your Libraries. If it is not successful, clean cache, and rebuild your project.</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/19/Testing-SDKs-by-External-Storage/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Amy Zhu">
+      <meta itemprop="description" content="Daily problems, daily solutions.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AmyZhu's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/07/19/Testing-SDKs-by-External-Storage/" itemprop="url">
+                  Testing SDKs by External Storage
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-07-19 09:54:22" itemprop="dateCreated datePublished" datetime="2018-07-19T09:54:22-04:00">2018-07-19</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-07-23 10:17:03" itemprop="dateModified" datetime="2018-07-23T10:17:03-04:00">2018-07-23</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>After I built up release version of APKs/AARs files and push SDK to Artifactory for exposing Android libraries for developing and testing (I will write an article explaining what is Artifactory), I find out it is still hard to testing. I don’t know what is wrong with my SDKs after I imported to a new App since there is no log for realease version and I cannot use debug mode.</p>
+<p>I finally find out one solution. I still feel like it is not the best. However, right now, I have no better solution. If you can solve this problem, please leave your comment and method here, it will help me out a lot.</p>
+<p>My solution is to write logs into External Storage of my device. Remeber the article I write to explain how to write information into a device, I use this method to help me see where is the problem.</p>
+<p>First, in order to write into external storage, I need to ask the device to have permission that can <strong>WRITE_EXTERNAL_STORAGE</strong> in new App side. Here is the sample code:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (ContextCompat.checkSelfPermission(<span class="keyword">this</span>, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) &#123;</span><br><span class="line">    <span class="keyword">if</span> (ActivityCompat.shouldShowRequestPermissionRationale(<span class="keyword">this</span>,  Manifest.permission.WRITE_EXTERNAL_STORAGE)) &#123;</span><br><span class="line"></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        ActivityCompat.requestPermissions(<span class="keyword">this</span>,</span><br><span class="line">            <span class="keyword">new</span> String[]&#123;Manifest.permission.WRITE_EXTERNAL_STORAGE&#125;,</span><br><span class="line">            MY_PERMISSIONS_REQUEST);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>You can use the above code to ask other permissions as well. It is useful.</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/13/Apply-Dexguard-for-Modules/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Amy Zhu">
+      <meta itemprop="description" content="Daily problems, daily solutions.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AmyZhu's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/07/13/Apply-Dexguard-for-Modules/" itemprop="url">
+                  Apply Dexguard for Modules
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-07-13 09:54:40" itemprop="dateCreated datePublished" datetime="2018-07-13T09:54:40-04:00">2018-07-13</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-07-23 10:17:03" itemprop="dateModified" datetime="2018-07-23T10:17:03-04:00">2018-07-23</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>###How to apply Proguard/Dexguard</p>
+<p>Proguard/Dexguard shrink and obsfucate resources and codes by scanning and looping up the dependencies. It will do everything it thinks necessary. To apply proguard, simple change <strong>minifyEnabled</strong> in the module/app you want to apply to be true. Android will apply for Proguard automatically.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">buildTypes &#123;</span><br><span class="line">    release &#123;</span><br><span class="line">        minifyEnabled <span class="keyword">true</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Make sure you are in the correct building type when you use Proguard/Dexguard. You can check <strong>Build Variants</strong> to see it you are in the correct building type or not.</p>
+<p>For applying Dexguard, you need to first buy licence of dexguard, and then put the licence file under your App library. You also need to change file <strong>gradle.properties</strong> which sepcify where you put the Dexguard licence. For example:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemProp.dexguard.licence=./app/libs/</span><br></pre></td></tr></table></figure>
+<p>Then your app knows where to find and verify your Dexguard licence. It is not only suitable for Dexguard licence, but also other Applications/Library licences.</p>
+<p>To apply Dexguard, first add a line in your app/module gradle file that says:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apply plugin: <span class="string">'dexguard'</span></span><br></pre></td></tr></table></figure>
+<p>Next you don’t need to change <strong>minifyEnabled</strong> to be true. Create a new txt file under your app files. You can call it <strong>dexguard-project.txt</strong>. Add Proguard/Dexguard rules in this file. Then go back to gradle file, add this line to tell your app where you put Dexguard rules:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">buildTypes &#123;</span><br><span class="line">    release &#123;</span><br><span class="line">        minifyEnabled <span class="keyword">false</span></span><br><span class="line">        proguardFile <span class="string">'dexguard-project.txt'</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>###Apply Dexguard for Android Libraries</p>
+<p>If you want to build up an Android library and you want to ship to SDK version to others. It is extremely important you Proguard/Dexguard your SDK, otherwise reverse engineers can see how you implement your library. It is a little bit different when you apply Proguard/Dexguard.</p>
+<p>There are four main rules for Proguard/Dexguard to protect your Apps:</p>
+<ul>
+<li>obfuscate: rename things, make revise engineer cannot understand your codes. They might find out multiple classes and methods are called, for example, a, therefore, they cannot find the relationship and dependencies of classes.</li>
+<li>preverify: pre-proguard your app. No need for Android Apps.</li>
+<li>shrink: remove unused resources. It will make your APKs/AARs small and efficient.</li>
+<li>optimize: optimize your code, reduce dependencies of your code.</li>
+</ul>
+<p>If you don’t know how to make your module to be library or you don’t know if your module is a library or not. Check if you have this line in your gradle file:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apply plugin: <span class="string">'com.android.library'</span></span><br></pre></td></tr></table></figure>
+<p>Not only you still need <strong>proguardFile</strong> line, but also please add <strong>cosumerProguardFiles</strong> to tell Dexguard this is a library.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">buildTypes &#123;</span><br><span class="line">    release &#123;</span><br><span class="line">        minifyEnabled <span class="keyword">false</span></span><br><span class="line">        proguardFile <span class="string">'dexguard-project.txt'</span></span><br><span class="line">        cosumerProguardFiles <span class="string">'dexguard-project.txt'</span></span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>###Key methods in Dexguard</p>
+<p>Now we know how to apply Proguard/Dexguard, but how to apply Dexguard rules and how to use them? I am going to illustrate four import keep rules in Proguard/Dexguard.</p>
+<ol>
+<li>No rule</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Classes</th>
+<th>Members</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>shrink</td>
+<td>yes</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>obfuscate</td>
+<td>yes</td>
+<td>yes</td>
+</tr>
+</tbody>
+</table>
+<p>It is default. If you don’t specify a keep directive of any kind, then Proguard is going to both shrink (remove unused code) and obfuscate (rename things) both classes and class members.</p>
+<ol start="2">
+<li>-keep<br>|           | Classes     | Members  |<br>|———–|————-| ———|<br>| shrink    | no         | no      |<br>| obfuscate | no         | no      |</li>
+</ol>
+<p>Keep means opposite of no rules. No shrinking, no obfuscation; not for classes, not for members. <strong>-keepclasseswithmembers</strong> is same as <strong>-keep</strong>.</p>
+<ol start="3">
+<li>-keepclassmembers</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Classes</th>
+<th>Members</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>shrink</td>
+<td>yes</td>
+<td>no</td>
+</tr>
+<tr>
+<td>obfuscate</td>
+<td>yes</td>
+<td>no</td>
+</tr>
+</tbody>
+</table>
+<p>This protects only the members of the class from shrinking and obfuscation.</p>
+<ol start="4">
+<li>-keepnames</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Classes</th>
+<th>Members</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>shrink</td>
+<td>yes</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>obfuscate</td>
+<td>no</td>
+<td>no</td>
+</tr>
+</tbody>
+</table>
+<p>This only allows shrinking for classes and members, but not obfuscation. <strong>-keepclasseswithmembernames</strong> act the same as <strong>-keepnames</strong>.</p>
+<ol start="5">
+<li>keepclassmembernames</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Classes</th>
+<th>Members</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>shrink</td>
+<td>yes</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>obfuscate</td>
+<td>yes</td>
+<td>no</td>
+</tr>
+</tbody>
+</table>
+<p>This just not obfuscate members.</p>
+<ol start="6">
+<li>Others<ul>
+<li>For Android, I faced a problem when I want to apply Proguard/Dexguard to a library which contains jni .so files. Remember to add <strong>-keepresources</strong> to such source files, otherwise, the name and contant will be obsfucate. Also, add <strong>-dontpreverrify</strong> at the beginning of your Proguard/Dexguard rules of your Android Application. The reason you’d better to do that is because <strong>-dontpreverify</strong> prevent pre-proguard your APKs/AARs. There is no need to do so for Android and it will save time.</li>
+</ul>
+</li>
+</ol>
+<p>###Examples</p>
+<p>Keep Constructor/Methods of a class:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-keep, allowshrinking, allowoptimization <span class="class"><span class="keyword">class</span> <span class="title">com</span>.<span class="title">package</span>.<span class="title">company</span>.<span class="title">class</span> </span>&#123;</span><br><span class="line">    &lt;init&gt;(...);</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">iAmAMethod</span><span class="params">(<span class="keyword">int</span>)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/03/Synch-Asynch-Callback-in-Java/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Amy Zhu">
+      <meta itemprop="description" content="Daily problems, daily solutions.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AmyZhu's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/07/03/Synch-Asynch-Callback-in-Java/" itemprop="url">
+                  Synch/Asynch Callback in Java
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-07-03 09:55:17" itemprop="dateCreated datePublished" datetime="2018-07-03T09:55:17-04:00">2018-07-03</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-07-23 10:17:03" itemprop="dateModified" datetime="2018-07-23T10:17:03-04:00">2018-07-23</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>###Callback Function</p>
+<p>Image a senario, you have several threads executed at the same time, how can you know some threads are already finished? Maybe you want to execuate a thread after another thread, then how can you control the flow? Here, we can use callback functions.</p>
+<p>A callback function is a function passed into another function as an argument. The purpose of it is to inform a class Sync/Async if some work in other class is down.</p>
+<p>In java, we can implement calbaks by interface. Here is the steps:</p>
+<ol>
+<li>Define methods in an interface that we want to invoke after callback.</li>
+<li>Define a class that implements callback methods of the above interface.</li>
+<li>Define a reference in other classes to register the callback interface.</li>
+<li>Use the reference to invoke callback method.</li>
+</ol>
+<p>###Synch vs. Asynch</p>
+<p>Most functions we use is synchronous functions. It means a thread is executed after another thread. Threads are executed in order. It is safe and easy understand, however, it is slow because we don’t need to always wait all threads. Some of them are independent. Therefore, we can use asynchronous functions.</p>
+<p>An asynchronous call do not block the program from the code execution. It means we can have several threads working together. Here is an example of asynchrouous method:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">// what you want to do in asynch</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;).start();</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/29/Enable-Localization/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Amy Zhu">
+      <meta itemprop="description" content="Daily problems, daily solutions.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AmyZhu's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/29/Enable-Localization/" itemprop="url">
+                  Enable Localization
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-06-29 09:55:28" itemprop="dateCreated datePublished" datetime="2018-06-29T09:55:28-04:00">2018-06-29</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-07-23 10:17:03" itemprop="dateModified" datetime="2018-07-23T10:17:03-04:00">2018-07-23</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>When we have customized strings in an Andriod App, where are you store them? Some people choose to assign strings directly in the code. However, cosidering a good desgin patern, Andriod separates code and resources. Most of good Android developer put strings in <code>strings.xml</code> which is located under <strong>res &gt; values</strong>. This is because we can easily manipulates and customize values.</p>
+<p>One of the benefits that is intuitionally affects an Andriod App is we can enable localizations. Localization means you can have multiple languages of your App based on the language users setted up. For example, if you implements your App in English, but your user is a French. You can translates values in <code>strings.xml</code> in French version, so that when user open your App, they can understand your App because the language of your App will be French.</p>
+<p>###How to Enable Localization?<br>It is easy, just follow the following steps:</p>
+<ol>
+<li>Select <strong>res &gt; values</strong>.</li>
+<li>Right-click the strings.xml file and select Open Translations Editor.</li>
+</ol>
+<p>Then traslations editor will displays the key and value pairs from the <code>strings.xml</code>, you can add any languages you want by click the small add button. It will generate a new row that you can put the new language values your want to translate.</p>
+<p>Actually, traslations editor is just a GUI table for you to manipulates values, sometimes, if your App is big, Android Studio might be slow to change values. Then you can go to the language specific <code>strings.xml</code>, for example, you will find <code>strings.xml(ch)</code> after your first time add value in translations editor. Go there, and change values in those new files.</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/28/Read-and-Store-Json-Files-in-Internal-Storage/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Amy Zhu">
+      <meta itemprop="description" content="Daily problems, daily solutions.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AmyZhu's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/28/Read-and-Store-Json-Files-in-Internal-Storage/" itemprop="url">
+                  Read and Store Json Files in Internal Storage
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-06-28 09:55:47" itemprop="dateCreated datePublished" datetime="2018-06-28T09:55:47-04:00">2018-06-28</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-07-23 10:17:03" itemprop="dateModified" datetime="2018-07-23T10:17:03-04:00">2018-07-23</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Understanding the storages in an Android device, you can easily check or transfer files in both directions: your app and the device. For example, if your app have a licence file, and you want to check the permission, you can store licence file in Android device for further updating and changing.</p>
+<p>###Storages in an Android Device</p>
+<p>To work with your device’s file system, do the following:</p>
+<ol>
+<li>Open the device file browser by clicking <strong>View &gt; Tool Windows &gt; Device File Explorer</strong>.</li>
+<li>Select a device from the drop-down list.</li>
+</ol>
+<p>There two useful storages you can store your data:</p>
+<ul>
+<li>one is the internal storage, which is located at: <code>data/data/app_name/</code></li>
+<li>another one is the external user storage, which is located at: <code>sdcard/</code></li>
+</ul>
+<p>###Examples for Creating files</p>
+<p>Here is a sample code that creates a file in the internal storage:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">createFile</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        File checkFile = <span class="keyword">new</span> file(context.getApplicationInfo().dataDir + <span class="string">"/new_directory_name/"</span>);</span><br><span class="line">        <span class="keyword">if</span>(!checkFile.exists()) &#123;</span><br><span class="line">            checkFile.mkdir();</span><br><span class="line">        &#125;</span><br><span class="line">        FileWriter file = <span class="keyword">new</span> FileWriter(checkFile.getAbsolutePath() + <span class="string">"/filename"</span>);</span><br><span class="line">        file.write(<span class="string">"what you want to write in internal storage"</span>);</span><br><span class="line">        file.flush();</span><br><span class="line">        file.close();</span><br><span class="line">    &#125; <span class="keyword">catch</span>(IOException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/27/Decode-an-Android-App-from-APK/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Amy Zhu">
+      <meta itemprop="description" content="Daily problems, daily solutions.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AmyZhu's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/27/Decode-an-Android-App-from-APK/" itemprop="url">
+                  Decode an Android App from APK
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-06-27 09:57:04" itemprop="dateCreated datePublished" datetime="2018-06-27T09:57:04-04:00">2018-06-27</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-07-23 10:17:03" itemprop="dateModified" datetime="2018-07-23T10:17:03-04:00">2018-07-23</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>If an Android App not doing encryption or obfuscation, an APK (Android application package) is easily be decoded. A reverse engineer can see its source codes and XML files.</p>
+<p>Here is the procedure how to decoding .apk files to get source files.</p>
+<ol>
+<li>Go to project, Build -&gt; Build APK(s). After .apk file is generated, click “locate” to the path of the file.</li>
+<li>Create a new folder, let’s call it “decode”.</li>
+<li>Copy .apk file into decode folder. Rename the extension of it to .zip and save it. Now you can see classes.dex file in this directory.</li>
+<li>Extract .zip file in decode folder.</li>
+<li>Download <a href="https://sourceforge.net/projects/dex2jar/files/latest/download" target="_blank" rel="noopener">dex2jar</a> and extract it in decode directory.</li>
+<li>Copy classes.dex and paste it besides dex2jar.jar, which is inside dex2jar directory.</li>
+<li>Open command prompt and go to dex2jar directory, call <code>d2j-dex2jar classes.dex</code> to pass in calsses.dex into d2j-dex2jar and execute it to get classes.dex.dex2jar.</li>
+<li>Download <a href="http://jd.benow.ca/" target="_blank" rel="noopener">jd-gui</a>. For Windows, download jd-gui-windows-X.X.X.zip.</li>
+<li>Open jd-gui, and open classes.dex.dex2jar file.</li>
+</ol>
+<p>Now you are able to see all source files from .apk file.</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/27/Apply-Optimizer-for-Java-Bytecode-to-Gain-Security/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Amy Zhu">
+      <meta itemprop="description" content="Daily problems, daily solutions.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AmyZhu's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/27/Apply-Optimizer-for-Java-Bytecode-to-Gain-Security/" itemprop="url">
+                  Apply Optimizer for Java Bytecode to Gain Security
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-06-27 09:56:44" itemprop="dateCreated datePublished" datetime="2018-06-27T09:56:44-04:00">2018-06-27</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-07-23 10:17:03" itemprop="dateModified" datetime="2018-07-23T10:17:03-04:00">2018-07-23</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Based on the article I wrote: Decode Android Project from APK, we know that revise engineers can easily decode codes and get your source files. there are a number of possible vulnerabilities for unprotected mobile applications, such as insertion of malware, intellectual property theft, priacy and data theft. Therefore, we can use ProGuard or DexGuard to protect. This is a way to apply multiple obfuscation and encryption to make our source codes unreadable.</p>
+<p>###How to apply Dexguard?</p>
+<ol>
+<li>Download Dexguard file from website.</li>
+<li>Add <code>dexguard.dir=/Users/../../../tools/Dexguard/DexGuard-X.X.X</code> in local.properties. Add your local position where you downloaded and put the Dexguard.</li>
+<li>Add <code>apply plugin &#39;dexguard&#39;</code> in library build.gradle to enable Dexguard. It will find local.properties’ link to execute the dexguard.</li>
+<li>Add <code>consumerProguardFiles &#39;proguard-rules.pro&#39;</code> and <code>proguardFile &#39;dexguard-project.txt&#39;</code> in the buildType you want to generate the obfuscation.<ul>
+<li>Look at the above, we can see the dexguard rules is edited in dexguard-project.txt. This is the main place we manage obfuscation. If you don’t have dexguard-project.txt yet, create one under the main directory of your module.</li>
+</ul>
+</li>
+<li>Now you are able to generate aar file for library we want to obfuscate. Open gradle. Find the module’s assemble task. If you choose a buildType, run the specific assemble type. For example, I choose debug type, double click <code>Library: assembleDebug</code> in the build.</li>
+</ol>
+<p>###If you face any problems, it might be:</p>
+<ol>
+<li>clean up build. It is the same way you run the assemble. For example, find <code>Library: clean</code> under build gradle.</li>
+<li>Dexguard terminates whenever there is a warning or error. Use –stacktrace or –debug to get more info of what is happening. If there are many warnings. You can add <code>dontwarn com.package.**</code> in dexguard-project.txt to avoid warnings.</li>
+</ol>
+<p>If you generate successfully, you will get a .aar file under build/output/aar. This is the library export file. If you are generating an app, you can also see the .jar file under build/output.</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/27/Maunally-Import-a-Library-in-an-Android-Project/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Amy Zhu">
+      <meta itemprop="description" content="Daily problems, daily solutions.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AmyZhu's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/27/Maunally-Import-a-Library-in-an-Android-Project/" itemprop="url">
+                  Maunally Import a Library in an Android Project
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-06-27 09:56:15" itemprop="dateCreated datePublished" datetime="2018-06-27T09:56:15-04:00">2018-06-27</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-07-23 10:17:03" itemprop="dateModified" datetime="2018-07-23T10:17:03-04:00">2018-07-23</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Sometimes we use third-party library, or we implements a module and want it to be a part of our main code’s library. In both scenarios, we can import a library as a module.</p>
+<p>###How to import a library in Android Studio?</p>
+<ol>
+<li><strong>File &gt; New &gt; Import modlue &gt; add the library path</strong>.</li>
+<li>Change library module gradle:<ol>
+<li>Change <code>“apply plugin: ‘com.android.application’”</code> to <code>“apply plugin: ‘com.android.library’”</code></li>
+<li>Remove applicationId.</li>
+</ol>
+</li>
+<li>Change dependency from “compile” to “implementation”</li>
+<li><strong>File &gt; Project Structure &gt; app &gt; Dependencies</strong>, add module library.</li>
+<li>Downgrade gradle version in project gradle to “2.3.3” or “2.3.2”</li>
+<li>Put/Change “buildToolsVersion “27.0.1” and “useLibrary ‘org.apache.http.legacy’” in app and carto library module.</li>
+</ol>
+<p>###UnsatisfiedLinkError happens?</p>
+<p>This is because no .so file in the app to let the app know there is a new library added. There are several steps involved to add up .so file.</p>
+<ol>
+<li>Go to <strong>Project</strong> view.</li>
+<li>Copy library directory, move it under <strong>app &gt; libs</strong>. Now you are able to see .so files.</li>
+<li>Copy <strong>jni</strong> directory under <strong>app &gt; src &gt; main</strong>.</li>
+<li>Change name of this directory from <strong>jni</strong> to <strong>jniLibs</strong>.</li>
+<li>Delete no longer using library directory in <strong>app &gt; libs</strong>.</li>
+</ol>
+<p>Now .so file exists in the app in a correct directory.<br>Then open mainAcitivity add those lines in the class:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> &#123;         </span><br><span class="line">    System.loadLibrary(<span class="string">"library"</span>); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>###How to Run?</p>
+<p>Since we added a library as a module, therefore, our compile will ask us to edit configuration. To avoid that, go back to MainActivity and run MainActivity instead.</p>
+<p>###Import library by .aar file</p>
+<p>It is much more easy than import a library by moudle. Some library provide .aar file, we can simply import it by those following steps:</p>
+<ol>
+<li><p>add <code>flatDir {dirs &#39;libs&#39; }</code> in the project level build.gradle under <code>allprojects { repositories { ... } }</code> level.</p>
+</li>
+<li><p>copy .aar file that you want to import under the app’s libs directory.</p>
+</li>
+<li><p>add <code>implementation(name: &#39;XXX&#39;, ext: &#39;aar&#39;)</code> in the app level build.gradle under dependencies level.</p>
+</li>
+</ol>
 
           
         
@@ -414,6 +2073,10 @@
   </section>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+  </nav>
+
 
 
           </div>
@@ -454,7 +2117,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">1</span>
+                    <span class="site-state-item-count">11</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>

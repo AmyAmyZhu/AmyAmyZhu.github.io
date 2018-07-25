@@ -111,7 +111,7 @@
   <meta name="description" content="Daily problems, daily solutions.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="AmyZhu&#39;s Blog">
-<meta property="og:url" content="http://yoursite.com/archives/2018/07/index.html">
+<meta property="og:url" content="http://yoursite.com/page/2/index.html">
 <meta property="og:site_name" content="AmyZhu&#39;s Blog">
 <meta property="og:description" content="Daily problems, daily solutions.">
 <meta property="og:locale" content="default">
@@ -126,7 +126,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/archives/2018/07/"/>
+  <link rel="canonical" href="http://yoursite.com/page/2/"/>
 
 
 
@@ -136,7 +136,7 @@
   };
 </script>
 
-  <title>Archive | AmyZhu's Blog</title>
+  <title>AmyZhu's Blog</title>
   
 
 
@@ -183,7 +183,8 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left 
+  page-home">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -228,7 +229,7 @@
         
         
           
-          <li class="menu-item menu-item-archives menu-item-active">
+          <li class="menu-item menu-item-archives">
     <a href="/archives/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
   </li>
@@ -240,19 +241,6 @@
 
   
     
-
-    
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
 
   
 
@@ -277,224 +265,183 @@
           
           <div id="content" class="content">
             
+  <section id="posts" class="posts-expand">
+    
+      
+
+  
 
   
   
   
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/27/How-to-publish-your-Android-App/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Amy Zhu">
+      <meta itemprop="description" content="Daily problems, daily solutions.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AmyZhu's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/27/How-to-publish-your-Android-App/" itemprop="url">
+                  How to publish your Android App?
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-06-27 09:55:30" itemprop="dateCreated datePublished" datetime="2018-06-27T09:55:30-04:00">2018-06-27</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-07-23 10:17:03" itemprop="dateModified" datetime="2018-07-23T10:17:03-04:00">2018-07-23</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-      <span class="archive-page-counter">
-        
-        
+      
+
+      
         
           
-        
-        Um..! 11 posts in total. Keep on posting.
-      </span>
-      
+            <p>###Steps:</p>
+<ol>
+<li>Make sure the current version is great.</li>
+<li>Change version number for all gradles.</li>
+<li>Generate signed APK<ul>
+<li><strong>File &gt; Project Structure</strong>, deal with Signing and Build Types</li>
+<li><strong>Build &gt; Generate Signed APK</strong></li>
+</ul>
+</li>
+<li>Wrap APK and mapping file to a binary directory. Make sure everything is consistent.</li>
+<li>Add tags<ul>
+<li>git tag -a X.X.X -m “some commit”</li>
+<li>git push origin X.X.X</li>
+<li>more info: <a href="https://git-scm.com/book/en/v2/Git-Basics-Tagging" target="_blank" rel="noopener">https://git-scm.com/book/en/v2/Git-Basics-Tagging</a></li>
+</ul>
+</li>
+<li>Go to Google Play, app releases to release.</li>
+</ol>
 
-      
-
-        
-        
-        
-
-        
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2018">2018</h1>
-          </div>
         
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/07/22/wait-and-notify-in-Java/" itemprop="url">
-              
-                <span itemprop="name">wait() and notify() in Java</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-07-22T09:54:56-04:00"
-              content="2018-07-22" >
-          07-22
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/07/19/Use-Artifactory-to-Upload-SDKs/" itemprop="url">
-              
-                <span itemprop="name">Use Artifactory to Upload SDKs</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-07-19T09:59:31-04:00"
-              content="2018-07-19" >
-          07-19
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/07/19/Testing-SDKs-by-External-Storage/" itemprop="url">
-              
-                <span itemprop="name">Testing SDKs by External Storage</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-07-19T09:54:22-04:00"
-              content="2018-07-19" >
-          07-19
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/07/13/Apply-Dexguard-for-Modules/" itemprop="url">
-              
-                <span itemprop="name">Apply Dexguard for Modules</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-07-13T09:54:40-04:00"
-              content="2018-07-13" >
-          07-13
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/07/03/Synch-Asynch-Callback-in-Java/" itemprop="url">
-              
-                <span itemprop="name">Synch/Asynch Callback in Java</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-07-03T09:55:17-04:00"
-              content="2018-07-03" >
-          07-03
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
     </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
   </div>
   
   
   
+  </article>
+
+
+    
+  </section>
 
   
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+  </nav>
 
 
 
