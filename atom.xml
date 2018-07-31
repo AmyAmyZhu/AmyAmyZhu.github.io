@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-07-31T18:40:02.561Z</updated>
+  <updated>2018-07-31T18:40:27.321Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://yoursite.com/2018/07/31/Unity-3D-Camera/"/>
     <id>http://yoursite.com/2018/07/31/Unity-3D-Camera/</id>
     <published>2018-07-31T17:44:49.000Z</published>
-    <updated>2018-07-31T18:40:02.561Z</updated>
+    <updated>2018-07-31T18:40:27.321Z</updated>
     
     <content type="html"><![CDATA[<p>I am just starting building up an interesting isometric game. As an Unity3D beginner, I want to collbrate some important components information while I am learning. This blog listed most frequent used elements in Unity3D camera.</p><h3 id="Objection"><a href="#Objection" class="headerlink" title="Objection:"></a>Objection:</h3><pre><code>- perspective: Camera will render objects with perspective intact. It will look into both visible and invisible objects in 3D.- orthographic: Camera will render objects uniformly, with no sense of perspective. It will look into only visible objects. The camera itself is like a plane. If you want to build 2.5D game, or isometric game, you can set camera orthographic.</code></pre><h3 id="Culling-Mask"><a href="#Culling-Mask" class="headerlink" title="Culling Mask:"></a>Culling Mask:</h3><p>Choose which layers of objects you want to be visible. This includes or omits layers of objects to be rendered by the Camera.</p><h3 id="Depth"><a href="#Depth" class="headerlink" title="Depth:"></a>Depth:</h3><p>If Camera’s depth is larger, it will be rendered karger. When there are multiple Cameras in one Scene, only the Camera with largest depth will be visible. However, if Viewport Rect of the Camera with largest depth cannot cover all screen, then the Camera with low depth still can be visible and is rendered.</p><h3 id="Clear-Flags"><a href="#Clear-Flags" class="headerlink" title="Clear Flags:"></a>Clear Flags:</h3><p>In place camera is not capaturing, it will apear blank. If the camera is moving, it is possible we will see two pictures in the same time. Therefore, we need to clear flags. We can set up blackground to avoid blank happen.</p><h3 id="Clipping-Planes"><a href="#Clipping-Planes" class="headerlink" title="Clipping Planes:"></a>Clipping Planes:</h3><p>Only between near (close to camera) and far (far away from camera) can be rendered.</p>]]></content>
     
@@ -208,19 +208,19 @@
   </entry>
   
   <entry>
-    <title>Decode an Android App from APK</title>
-    <link href="http://yoursite.com/2018/06/27/Decode-an-Android-App-from-APK/"/>
-    <id>http://yoursite.com/2018/06/27/Decode-an-Android-App-from-APK/</id>
+    <title>Apply Optimizer for Java Bytecode to Gain Security</title>
+    <link href="http://yoursite.com/2018/06/27/Apply-Optimizer-for-Java-Bytecode-to-Gain-Security/"/>
+    <id>http://yoursite.com/2018/06/27/Apply-Optimizer-for-Java-Bytecode-to-Gain-Security/</id>
     <published>2018-06-28T02:04:53.000Z</published>
-    <updated>2018-07-31T18:13:42.125Z</updated>
+    <updated>2018-07-31T18:13:42.138Z</updated>
     
-    <content type="html"><![CDATA[<p>If an Android App not doing encryption or obfuscation, an APK (Android application package) is easily be decoded. A reverse engineer can see its source codes and XML files.</p><p>Here is the procedure how to decoding .apk files to get source files.</p><ol><li>Go to project, Build -&gt; Build APK(s). After .apk file is generated, click “locate” to the path of the file.</li><li>Create a new folder, let’s call it “decode”.</li><li>Copy .apk file into decode folder. Rename the extension of it to .zip and save it. Now you can see classes.dex file in this directory.</li><li>Extract .zip file in decode folder.</li><li>Download <a href="https://sourceforge.net/projects/dex2jar/files/latest/download" target="_blank" rel="noopener">dex2jar</a> and extract it in decode directory.</li><li>Copy classes.dex and paste it besides dex2jar.jar, which is inside dex2jar directory.</li><li>Open command prompt and go to dex2jar directory, call <code>d2j-dex2jar classes.dex</code> to pass in calsses.dex into d2j-dex2jar and execute it to get classes.dex.dex2jar.</li><li>Download <a href="http://jd.benow.ca/" target="_blank" rel="noopener">jd-gui</a>. For Windows, download jd-gui-windows-X.X.X.zip.</li><li>Open jd-gui, and open classes.dex.dex2jar file.</li></ol><p>Now you are able to see all source files from .apk file.</p>]]></content>
+    <content type="html"><![CDATA[<p>Based on the article I wrote: Decode Android Project from APK, we know that revise engineers can easily decode codes and get your source files. there are a number of possible vulnerabilities for unprotected mobile applications, such as insertion of malware, intellectual property theft, priacy and data theft. Therefore, we can use ProGuard or DexGuard to protect. This is a way to apply multiple obfuscation and encryption to make our source codes unreadable.</p><p>###How to apply Dexguard?</p><ol><li>Download Dexguard file from website.</li><li>Add <code>dexguard.dir=/Users/../../../tools/Dexguard/DexGuard-X.X.X</code> in local.properties. Add your local position where you downloaded and put the Dexguard.</li><li>Add <code>apply plugin &#39;dexguard&#39;</code> in library build.gradle to enable Dexguard. It will find local.properties’ link to execute the dexguard.</li><li>Add <code>consumerProguardFiles &#39;proguard-rules.pro&#39;</code> and <code>proguardFile &#39;dexguard-project.txt&#39;</code> in the buildType you want to generate the obfuscation.<ul><li>Look at the above, we can see the dexguard rules is edited in dexguard-project.txt. This is the main place we manage obfuscation. If you don’t have dexguard-project.txt yet, create one under the main directory of your module.</li></ul></li><li>Now you are able to generate aar file for library we want to obfuscate. Open gradle. Find the module’s assemble task. If you choose a buildType, run the specific assemble type. For example, I choose debug type, double click <code>Library: assembleDebug</code> in the build.</li></ol><p>###If you face any problems, it might be:</p><ol><li>clean up build. It is the same way you run the assemble. For example, find <code>Library: clean</code> under build gradle.</li><li>Dexguard terminates whenever there is a warning or error. Use –stacktrace or –debug to get more info of what is happening. If there are many warnings. You can add <code>dontwarn com.package.**</code> in dexguard-project.txt to avoid warnings.</li></ol><p>If you generate successfully, you will get a .aar file under build/output/aar. This is the library export file. If you are generating an app, you can also see the .jar file under build/output.</p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;p&gt;If an Android App not doing encryption or obfuscation, an APK (Android application package) is easily be decoded. A reverse engineer can 
+        &lt;p&gt;Based on the article I wrote: Decode Android Project from APK, we know that revise engineers can easily decode codes and get your source 
       
     
     </summary>
@@ -254,19 +254,19 @@
   </entry>
   
   <entry>
-    <title>Apply Optimizer for Java Bytecode to Gain Security</title>
-    <link href="http://yoursite.com/2018/06/27/Apply-Optimizer-for-Java-Bytecode-to-Gain-Security/"/>
-    <id>http://yoursite.com/2018/06/27/Apply-Optimizer-for-Java-Bytecode-to-Gain-Security/</id>
+    <title>Decode an Android App from APK</title>
+    <link href="http://yoursite.com/2018/06/27/Decode-an-Android-App-from-APK/"/>
+    <id>http://yoursite.com/2018/06/27/Decode-an-Android-App-from-APK/</id>
     <published>2018-06-28T02:04:53.000Z</published>
-    <updated>2018-07-31T18:13:42.138Z</updated>
+    <updated>2018-07-31T18:13:42.125Z</updated>
     
-    <content type="html"><![CDATA[<p>Based on the article I wrote: Decode Android Project from APK, we know that revise engineers can easily decode codes and get your source files. there are a number of possible vulnerabilities for unprotected mobile applications, such as insertion of malware, intellectual property theft, priacy and data theft. Therefore, we can use ProGuard or DexGuard to protect. This is a way to apply multiple obfuscation and encryption to make our source codes unreadable.</p><p>###How to apply Dexguard?</p><ol><li>Download Dexguard file from website.</li><li>Add <code>dexguard.dir=/Users/../../../tools/Dexguard/DexGuard-X.X.X</code> in local.properties. Add your local position where you downloaded and put the Dexguard.</li><li>Add <code>apply plugin &#39;dexguard&#39;</code> in library build.gradle to enable Dexguard. It will find local.properties’ link to execute the dexguard.</li><li>Add <code>consumerProguardFiles &#39;proguard-rules.pro&#39;</code> and <code>proguardFile &#39;dexguard-project.txt&#39;</code> in the buildType you want to generate the obfuscation.<ul><li>Look at the above, we can see the dexguard rules is edited in dexguard-project.txt. This is the main place we manage obfuscation. If you don’t have dexguard-project.txt yet, create one under the main directory of your module.</li></ul></li><li>Now you are able to generate aar file for library we want to obfuscate. Open gradle. Find the module’s assemble task. If you choose a buildType, run the specific assemble type. For example, I choose debug type, double click <code>Library: assembleDebug</code> in the build.</li></ol><p>###If you face any problems, it might be:</p><ol><li>clean up build. It is the same way you run the assemble. For example, find <code>Library: clean</code> under build gradle.</li><li>Dexguard terminates whenever there is a warning or error. Use –stacktrace or –debug to get more info of what is happening. If there are many warnings. You can add <code>dontwarn com.package.**</code> in dexguard-project.txt to avoid warnings.</li></ol><p>If you generate successfully, you will get a .aar file under build/output/aar. This is the library export file. If you are generating an app, you can also see the .jar file under build/output.</p>]]></content>
+    <content type="html"><![CDATA[<p>If an Android App not doing encryption or obfuscation, an APK (Android application package) is easily be decoded. A reverse engineer can see its source codes and XML files.</p><p>Here is the procedure how to decoding .apk files to get source files.</p><ol><li>Go to project, Build -&gt; Build APK(s). After .apk file is generated, click “locate” to the path of the file.</li><li>Create a new folder, let’s call it “decode”.</li><li>Copy .apk file into decode folder. Rename the extension of it to .zip and save it. Now you can see classes.dex file in this directory.</li><li>Extract .zip file in decode folder.</li><li>Download <a href="https://sourceforge.net/projects/dex2jar/files/latest/download" target="_blank" rel="noopener">dex2jar</a> and extract it in decode directory.</li><li>Copy classes.dex and paste it besides dex2jar.jar, which is inside dex2jar directory.</li><li>Open command prompt and go to dex2jar directory, call <code>d2j-dex2jar classes.dex</code> to pass in calsses.dex into d2j-dex2jar and execute it to get classes.dex.dex2jar.</li><li>Download <a href="http://jd.benow.ca/" target="_blank" rel="noopener">jd-gui</a>. For Windows, download jd-gui-windows-X.X.X.zip.</li><li>Open jd-gui, and open classes.dex.dex2jar file.</li></ol><p>Now you are able to see all source files from .apk file.</p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;p&gt;Based on the article I wrote: Decode Android Project from APK, we know that revise engineers can easily decode codes and get your source 
+        &lt;p&gt;If an Android App not doing encryption or obfuscation, an APK (Android application package) is easily be decoded. A reverse engineer can 
       
     
     </summary>
