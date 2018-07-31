@@ -108,17 +108,17 @@
 
 
 
-  <meta name="description" content="###Steps:  Make sure the current version is great. Change version number for all gradles. Generate signed APK File &amp;gt; Project Structure, deal with Signing and Build Types Build &amp;gt; Generate Signed">
+  <meta name="description" content="Remember in article synch/Asynch Callback in Java I wrote, multithreading in Java is important and can improve performance. We can use callbacks to notify some threads finish executing. What if we don">
 <meta property="og:type" content="article">
-<meta property="og:title" content="How to publish your Android App?">
-<meta property="og:url" content="http://yoursite.com/2018/06/27/How-to-publish-your-Android-App/index.html">
+<meta property="og:title" content="wait() and notify() in Java">
+<meta property="og:url" content="http://yoursite.com/2018/07/03/wait-and-notify-in-Java/index.html">
 <meta property="og:site_name" content="AmyZhu&#39;s Blog">
-<meta property="og:description" content="###Steps:  Make sure the current version is great. Change version number for all gradles. Generate signed APK File &amp;gt; Project Structure, deal with Signing and Build Types Build &amp;gt; Generate Signed">
+<meta property="og:description" content="Remember in article synch/Asynch Callback in Java I wrote, multithreading in Java is important and can improve performance. We can use callbacks to notify some threads finish executing. What if we don">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-31T18:13:42.052Z">
+<meta property="og:updated_time" content="2018-07-31T18:13:42.084Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="How to publish your Android App?">
-<meta name="twitter:description" content="###Steps:  Make sure the current version is great. Change version number for all gradles. Generate signed APK File &amp;gt; Project Structure, deal with Signing and Build Types Build &amp;gt; Generate Signed">
+<meta name="twitter:title" content="wait() and notify() in Java">
+<meta name="twitter:description" content="Remember in article synch/Asynch Callback in Java I wrote, multithreading in Java is important and can improve performance. We can use callbacks to notify some threads finish executing. What if we don">
 
 
 
@@ -127,7 +127,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/06/27/How-to-publish-your-Android-App/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/07/03/wait-and-notify-in-Java/"/>
 
 
 
@@ -137,7 +137,7 @@
   };
 </script>
 
-  <title>How to publish your Android App? | AmyZhu's Blog</title>
+  <title>wait() and notify() in Java | AmyZhu's Blog</title>
   
 
 
@@ -282,7 +282,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/27/How-to-publish-your-Android-App/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/03/wait-and-notify-in-Java/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Amy Zhu">
@@ -299,7 +299,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">How to publish your Android App?
+          <h1 class="post-title" itemprop="name headline">wait() and notify() in Java
               
             
           </h1>
@@ -324,7 +324,7 @@
                 
               
 
-              <time title="Created: 2018-06-27 22:04:53" itemprop="dateCreated datePublished" datetime="2018-06-27T22:04:53-04:00">2018-06-27</time>
+              <time title="Created: 2018-07-03 10:30:00" itemprop="dateCreated datePublished" datetime="2018-07-03T10:30:00-04:00">2018-07-03</time>
             
 
             
@@ -374,23 +374,22 @@
       
 
       
-        <p>###Steps:</p>
+        <p>Remember in article synch/Asynch Callback in Java I wrote, multithreading in Java is important and can improve performance. We can use callbacks to notify some threads finish executing. What if we don’t need to pass arguments, but we still want to implements multithreads falixable? Another simple way to let a thread wait and wake up is to use <strong>Object.wait()</strong> and <strong>Object.notify()</strong>.</p>
+<p>Keep in mind that:</p>
+<ul>
+<li><strong>Object.wait()</strong> means suspend a thread.</li>
+<li><strong>Object.notify()</strong> means wake a thread up.</li>
+</ul>
+<p>###Logic</p>
+<p>To use <strong>wait()</strong> and <strong>notify()</strong>, we need to create an object to control execuations. This is similary to a lock. We use the common object to lock execuation steps.</p>
+<p>Here is the sample code that keep waiting if the condition is not satisfied:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">synchronized</span> (object) &#123;</span><br><span class="line">    <span class="keyword">while</span> (!condition) &#123;</span><br><span class="line">        object.wait();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// do something:</span></span><br><span class="line">    <span class="comment">// those things will wait </span></span><br><span class="line">    <span class="comment">// until other place calls notify</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Use the following code in other places to notify the above wait code:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">synchronized</span> (object) &#123;</span><br><span class="line">    object.notify();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Keep in mind, there are two places need to be paid attention:</p>
 <ol>
-<li>Make sure the current version is great.</li>
-<li>Change version number for all gradles.</li>
-<li>Generate signed APK<ul>
-<li><strong>File &gt; Project Structure</strong>, deal with Signing and Build Types</li>
-<li><strong>Build &gt; Generate Signed APK</strong></li>
-</ul>
-</li>
-<li>Wrap APK and mapping file to a binary directory. Make sure everything is consistent.</li>
-<li>Add tags<ul>
-<li>git tag -a X.X.X -m “some commit”</li>
-<li>git push origin X.X.X</li>
-<li>more info: <a href="https://git-scm.com/book/en/v2/Git-Basics-Tagging" target="_blank" rel="noopener">https://git-scm.com/book/en/v2/Git-Basics-Tagging</a></li>
-</ul>
-</li>
-<li>Go to Google Play, app releases to release.</li>
+<li>use <strong>synchronized()</strong> to keep <strong>wait()</strong> and <strong>notify()</strong> under the same thread.</li>
+<li>use while loop instead of if loop to keep waiting and traking notifying.</li>
 </ol>
 
       
@@ -419,8 +418,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/06/27/Apply-Optimizer-for-Java-Bytecode-to-Gain-Security/" rel="next" title="Apply Optimizer for Java Bytecode to Gain Security">
-                <i class="fa fa-chevron-left"></i> Apply Optimizer for Java Bytecode to Gain Security
+              <a href="/2018/07/03/Synch-Asynch-Callback-in-Java/" rel="next" title="Synch/Asynch Callback in Java">
+                <i class="fa fa-chevron-left"></i> Synch/Asynch Callback in Java
               </a>
             
           </div>
@@ -429,8 +428,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/06/27/Decode-an-Android-App-from-APK/" rel="prev" title="Decode an Android App from APK">
-                Decode an Android App from APK <i class="fa fa-chevron-right"></i>
+              <a href="/2018/07/13/Apply-Dexguard-for-Modules/" rel="prev" title="Apply Dexguard for Modules">
+                Apply Dexguard for Modules <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
