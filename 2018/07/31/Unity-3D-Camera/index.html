@@ -115,13 +115,11 @@
 <meta property="og:site_name" content="AmyZhu&#39;s Blog">
 <meta property="og:description" content="I am just starting building up an interesting isometric game. As an Unity3D beginner, I want to collbrate some important components information while I am learning. This blog listed most frequent used">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-31T18:40:27.321Z">
+<meta property="og:updated_time" content="2018-07-31T18:58:05.811Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Unity 3D Camera">
 <meta name="twitter:description" content="I am just starting building up an interesting isometric game. As an Unity3D beginner, I want to collbrate some important components information while I am learning. This blog listed most frequent used">
 
-
-  
 
 
   <link rel="alternate" href="/atom.xml" title="AmyZhu's Blog" type="application/atom+xml" />
@@ -326,7 +324,7 @@
                 
               
 
-              <time title="Created: 2018-07-31 13:44:49 / Modified: 14:40:27" itemprop="dateCreated datePublished" datetime="2018-07-31T13:44:49-04:00">2018-07-31</time>
+              <time title="Created: 2018-07-31 13:44:49 / Modified: 14:58:05" itemprop="dateCreated datePublished" datetime="2018-07-31T13:44:49-04:00">2018-07-31</time>
             
 
             
@@ -365,9 +363,13 @@
 
       
         <p>I am just starting building up an interesting isometric game. As an Unity3D beginner, I want to collbrate some important components information while I am learning. This blog listed most frequent used elements in Unity3D camera.</p>
-<h3 id="Objection"><a href="#Objection" class="headerlink" title="Objection:"></a>Objection:</h3><pre><code>- perspective: Camera will render objects with perspective intact. It will look into both visible and invisible objects in 3D.
-- orthographic: Camera will render objects uniformly, with no sense of perspective. It will look into only visible objects. The camera itself is like a plane. If you want to build 2.5D game, or isometric game, you can set camera orthographic.
-</code></pre><h3 id="Culling-Mask"><a href="#Culling-Mask" class="headerlink" title="Culling Mask:"></a>Culling Mask:</h3><p>Choose which layers of objects you want to be visible. This includes or omits layers of objects to be rendered by the Camera.</p>
+<h3 id="Objection"><a href="#Objection" class="headerlink" title="Objection:"></a>Objection:</h3><ul>
+<li><p>perspective: Camera will render objects with perspective intact. It will look into both visible and invisible objects in 3D.</p>
+</li>
+<li><p>orthographic: Camera will render objects uniformly, with no sense of perspective. It will look into only visible objects. The camera itself is like a plane. If you want to build 2.5D game, or isometric game, you can set camera orthographic.</p>
+</li>
+</ul>
+<h3 id="Culling-Mask"><a href="#Culling-Mask" class="headerlink" title="Culling Mask:"></a>Culling Mask:</h3><p>Choose which layers of objects you want to be visible. This includes or omits layers of objects to be rendered by the Camera.</p>
 <h3 id="Depth"><a href="#Depth" class="headerlink" title="Depth:"></a>Depth:</h3><p>If Camera’s depth is larger, it will be rendered karger. When there are multiple Cameras in one Scene, only the Camera with largest depth will be visible. However, if Viewport Rect of the Camera with largest depth cannot cover all screen, then the Camera with low depth still can be visible and is rendered.</p>
 <h3 id="Clear-Flags"><a href="#Clear-Flags" class="headerlink" title="Clear Flags:"></a>Clear Flags:</h3><p>In place camera is not capaturing, it will apear blank. If the camera is moving, it is possible we will see two pictures in the same time. Therefore, we need to clear flags. We can set up blackground to avoid blank happen.</p>
 <h3 id="Clipping-Planes"><a href="#Clipping-Planes" class="headerlink" title="Clipping Planes:"></a>Clipping Planes:</h3><p>Only between near (close to camera) and far (far away from camera) can be rendered.</p>
@@ -407,6 +409,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/09/18/Build-Proguard-For-Release-Takes-Too-Long/" rel="prev" title="Build Proguard For Release Takes Too Long">
+                Build Proguard For Release Takes Too Long <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -476,7 +482,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-count">13</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -484,6 +490,19 @@
 
               
 
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                    <span class="site-state-item-count">1</span>
+                    <span class="site-state-item-name">tags</span>
+                  
+                </div>
               
             </nav>
           

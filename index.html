@@ -282,6 +282,148 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/18/Build-Proguard-For-Release-Takes-Too-Long/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Amy Zhu">
+      <meta itemprop="description" content="Daily problems, daily solutions.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AmyZhu's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/18/Build-Proguard-For-Release-Takes-Too-Long/" itemprop="url">
+                  Build Proguard For Release Takes Too Long
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-09-18 08:52:10 / Modified: 08:59:11" itemprop="dateCreated datePublished" datetime="2018-09-18T08:52:10-04:00">2018-09-18</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Recently when I enabled Proguard in my program like the following:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">release &#123;</span><br><span class="line">    minifyEnabled true</span><br><span class="line">    shrinkResources true</span><br><span class="line">    proguardFiles getDefaultProguardFile(&apos;proguard-android.txt&apos;), &apos;proguard-rules.pro&apos;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>I faced the problem that it tooks like for ever for the process of <code>transformClassesAndResourcesWithProguardForRelease</code>. This problem happens when you have multiple libraries need to be Proguard/Dexguard. Add the line <code>multiDexEnabled true</code> in to your gradle <code>defaultConfig</code> will fix this problem.</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/31/Unity-3D-Camera/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -328,7 +470,7 @@
                 
               
 
-              <time title="Created: 2018-07-31 13:44:49 / Modified: 14:40:27" itemprop="dateCreated datePublished" datetime="2018-07-31T13:44:49-04:00">2018-07-31</time>
+              <time title="Created: 2018-07-31 13:44:49 / Modified: 14:58:05" itemprop="dateCreated datePublished" datetime="2018-07-31T13:44:49-04:00">2018-07-31</time>
             
 
             
@@ -369,9 +511,13 @@
         
           
             <p>I am just starting building up an interesting isometric game. As an Unity3D beginner, I want to collbrate some important components information while I am learning. This blog listed most frequent used elements in Unity3D camera.</p>
-<h3 id="Objection"><a href="#Objection" class="headerlink" title="Objection:"></a>Objection:</h3><pre><code>- perspective: Camera will render objects with perspective intact. It will look into both visible and invisible objects in 3D.
-- orthographic: Camera will render objects uniformly, with no sense of perspective. It will look into only visible objects. The camera itself is like a plane. If you want to build 2.5D game, or isometric game, you can set camera orthographic.
-</code></pre><h3 id="Culling-Mask"><a href="#Culling-Mask" class="headerlink" title="Culling Mask:"></a>Culling Mask:</h3><p>Choose which layers of objects you want to be visible. This includes or omits layers of objects to be rendered by the Camera.</p>
+<h3 id="Objection"><a href="#Objection" class="headerlink" title="Objection:"></a>Objection:</h3><ul>
+<li><p>perspective: Camera will render objects with perspective intact. It will look into both visible and invisible objects in 3D.</p>
+</li>
+<li><p>orthographic: Camera will render objects uniformly, with no sense of perspective. It will look into only visible objects. The camera itself is like a plane. If you want to build 2.5D game, or isometric game, you can set camera orthographic.</p>
+</li>
+</ul>
+<h3 id="Culling-Mask"><a href="#Culling-Mask" class="headerlink" title="Culling Mask:"></a>Culling Mask:</h3><p>Choose which layers of objects you want to be visible. This includes or omits layers of objects to be rendered by the Camera.</p>
 <h3 id="Depth"><a href="#Depth" class="headerlink" title="Depth:"></a>Depth:</h3><p>If Camera’s depth is larger, it will be rendered karger. When there are multiple Cameras in one Scene, only the Camera with largest depth will be visible. However, if Viewport Rect of the Camera with largest depth cannot cover all screen, then the Camera with low depth still can be visible and is rendered.</p>
 <h3 id="Clear-Flags"><a href="#Clear-Flags" class="headerlink" title="Clear Flags:"></a>Clear Flags:</h3><p>In place camera is not capaturing, it will apear blank. If the camera is moving, it is possible we will see two pictures in the same time. Therefore, we need to clear flags. We can set up blackground to avoid blank happen.</p>
 <h3 id="Clipping-Planes"><a href="#Clipping-Planes" class="headerlink" title="Clipping Planes:"></a>Clipping Planes:</h3><p>Only between near (close to camera) and far (far away from camera) can be rendered.</p>
@@ -1710,194 +1856,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/27/Maunally-Import-a-Library-in-an-Android-Project/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Amy Zhu">
-      <meta itemprop="description" content="Daily problems, daily solutions.">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="AmyZhu's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/27/Maunally-Import-a-Library-in-an-Android-Project/" itemprop="url">
-                  Maunally Import a Library in an Android Project
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-06-27 22:04:53" itemprop="dateCreated datePublished" datetime="2018-06-27T22:04:53-04:00">2018-06-27</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2018-07-31 14:13:42" itemprop="dateModified" datetime="2018-07-31T14:13:42-04:00">2018-07-31</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Sometimes we use third-party library, or we implements a module and want it to be a part of our main code’s library. In both scenarios, we can import a library as a module.</p>
-<p>###How to import a library in Android Studio?</p>
-<ol>
-<li><strong>File &gt; New &gt; Import modlue &gt; add the library path</strong>.</li>
-<li>Change library module gradle:<ol>
-<li>Change <code>“apply plugin: ‘com.android.application’”</code> to <code>“apply plugin: ‘com.android.library’”</code></li>
-<li>Remove applicationId.</li>
-</ol>
-</li>
-<li>Change dependency from “compile” to “implementation”</li>
-<li><strong>File &gt; Project Structure &gt; app &gt; Dependencies</strong>, add module library.</li>
-<li>Downgrade gradle version in project gradle to “2.3.3” or “2.3.2”</li>
-<li>Put/Change “buildToolsVersion “27.0.1” and “useLibrary ‘org.apache.http.legacy’” in app and carto library module.</li>
-</ol>
-<p>###UnsatisfiedLinkError happens?</p>
-<p>This is because no .so file in the app to let the app know there is a new library added. There are several steps involved to add up .so file.</p>
-<ol>
-<li>Go to <strong>Project</strong> view.</li>
-<li>Copy library directory, move it under <strong>app &gt; libs</strong>. Now you are able to see .so files.</li>
-<li>Copy <strong>jni</strong> directory under <strong>app &gt; src &gt; main</strong>.</li>
-<li>Change name of this directory from <strong>jni</strong> to <strong>jniLibs</strong>.</li>
-<li>Delete no longer using library directory in <strong>app &gt; libs</strong>.</li>
-</ol>
-<p>Now .so file exists in the app in a correct directory.<br>Then open mainAcitivity add those lines in the class:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> &#123;         </span><br><span class="line">    System.loadLibrary(<span class="string">"library"</span>); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>###How to Run?</p>
-<p>Since we added a library as a module, therefore, our compile will ask us to edit configuration. To avoid that, go back to MainActivity and run MainActivity instead.</p>
-<p>###Import library by .aar file</p>
-<p>It is much more easy than import a library by moudle. Some library provide .aar file, we can simply import it by those following steps:</p>
-<ol>
-<li><p>add <code>flatDir {dirs &#39;libs&#39; }</code> in the project level build.gradle under <code>allprojects { repositories { ... } }</code> level.</p>
-</li>
-<li><p>copy .aar file that you want to import under the app’s libs directory.</p>
-</li>
-<li><p>add <code>implementation(name: &#39;XXX&#39;, ext: &#39;aar&#39;)</code> in the app level build.gradle under dependencies level.</p>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/27/Apply-Optimizer-for-Java-Bytecode-to-Gain-Security/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2099,7 +2057,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-count">13</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -2107,6 +2065,19 @@
 
               
 
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                    <span class="site-state-item-count">1</span>
+                    <span class="site-state-item-name">tags</span>
+                  
+                </div>
               
             </nav>
           
