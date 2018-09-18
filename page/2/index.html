@@ -214,6 +214,65 @@
             <div class="postShorten-header">
                 <h1 class="postShorten-title">
                     
+                        <a class="link-unstyled" href="/2018/06/27/How-to-publish-your-Android-App/">
+                            How to publish your Android App?
+                        </a>
+                    
+                </h1>
+                <div class="postShorten-meta">
+    <time datetime="2018-06-27T22:04:53-04:00">
+	
+		    Jun 27, 2018
+    	
+    </time>
+    
+        <span>in </span>
+        
+    <a class="category-link" href="/categories/Android/">Android</a>
+
+
+    
+</div>
+
+            </div>
+            
+                <div class="postShorten-excerpt">
+                    <h3 id="Steps"><a href="#Steps" class="headerlink" title="Steps:"></a>Steps:</h3><ol>
+<li>Make sure the current version is great.</li>
+<li>Change version number for all gradles.</li>
+<li>Generate signed APK<ul>
+<li><strong>File &gt; Project Structure</strong>, deal with Signing and Build Types</li>
+<li><strong>Build &gt; Generate Signed APK</strong></li>
+</ul>
+</li>
+<li>Wrap APK and mapping file to a binary directory. Make sure everything is consistent.</li>
+<li>Add tags<ul>
+<li>git tag -a X.X.X -m “some commit”</li>
+<li>git push origin X.X.X</li>
+<li>more info: <a href="https://git-scm.com/book/en/v2/Git-Basics-Tagging" target="_blank" rel="noopener">https://git-scm.com/book/en/v2/Git-Basics-Tagging</a></li>
+</ul>
+</li>
+<li>Go to Google Play, app releases to release.</li>
+</ol>
+                    
+                        <a href="/2018/06/27/How-to-publish-your-Android-App/" class="postShorten-excerpt_link link">
+                            Continue reading
+                        </a>
+                        
+                    
+                </div>
+            
+        </div>
+        
+    </article>
+    
+    
+    <article class="postShorten postShorten--thumbnailimg-right">
+        <div class="postShorten-wrap">
+            
+            <div class="postShorten-header">
+                <h1 class="postShorten-title">
+                    
                         <a class="link-unstyled" href="/2018/06/27/Decode-an-Android-App-from-APK/">
                             Decode an Android App from APK
                         </a>
@@ -248,61 +307,6 @@
 </ol>
                     
                         <a href="/2018/06/27/Decode-an-Android-App-from-APK/" class="postShorten-excerpt_link link">
-                            Continue reading
-                        </a>
-                        
-                    
-                </div>
-            
-        </div>
-        
-    </article>
-    
-    
-    <article class="postShorten postShorten--thumbnailimg-right">
-        <div class="postShorten-wrap">
-            
-            <div class="postShorten-header">
-                <h1 class="postShorten-title">
-                    
-                        <a class="link-unstyled" href="/2018/06/27/Maunally-Import-a-Library-in-an-Android-Project/">
-                            Maunally Import a Library in an Android Project
-                        </a>
-                    
-                </h1>
-                <div class="postShorten-meta">
-    <time datetime="2018-06-27T22:04:53-04:00">
-	
-		    Jun 27, 2018
-    	
-    </time>
-    
-        <span>in </span>
-        
-    <a class="category-link" href="/categories/Android/">Android</a>
-
-
-    
-</div>
-
-            </div>
-            
-                <div class="postShorten-excerpt">
-                    <p>Sometimes we use third-party library, or we implements a module and want it to be a part of our main code’s library. In both scenarios, we can import a library as a module.</p>
-<h3 id="How-to-import-a-library-in-Android-Studio"><a href="#How-to-import-a-library-in-Android-Studio" class="headerlink" title="How to import a library in Android Studio?"></a>How to import a library in Android Studio?</h3><ol>
-<li><strong>File &gt; New &gt; Import modlue &gt; add the library path</strong>.</li>
-<li>Change library module gradle:<ol>
-<li>Change <code>“apply plugin: ‘com.android.application’”</code> to <code>“apply plugin: ‘com.android.library’”</code></li>
-<li>Remove applicationId.</li>
-</ol>
-</li>
-<li>Change dependency from “compile” to “implementation”</li>
-<li><strong>File &gt; Project Structure &gt; app &gt; Dependencies</strong>, add module library.</li>
-<li>Downgrade gradle version in project gradle to “2.3.3” or “2.3.2”</li>
-<li>Put/Change “buildToolsVersion “27.0.1” and “useLibrary ‘org.apache.http.legacy’” in app and carto library module.</li>
-</ol>
-                    
-                        <a href="/2018/06/27/Maunally-Import-a-Library-in-an-Android-Project/" class="postShorten-excerpt_link link">
                             Continue reading
                         </a>
                         
@@ -384,8 +388,8 @@
             <div class="postShorten-header">
                 <h1 class="postShorten-title">
                     
-                        <a class="link-unstyled" href="/2018/06/27/How-to-publish-your-Android-App/">
-                            How to publish your Android App?
+                        <a class="link-unstyled" href="/2018/06/27/Maunally-Import-a-Library-in-an-Android-Project/">
+                            Maunally Import a Library in an Android Project
                         </a>
                     
                 </h1>
@@ -407,25 +411,21 @@
             </div>
             
                 <div class="postShorten-excerpt">
-                    <h3 id="Steps"><a href="#Steps" class="headerlink" title="Steps:"></a>Steps:</h3><ol>
-<li>Make sure the current version is great.</li>
-<li>Change version number for all gradles.</li>
-<li>Generate signed APK<ul>
-<li><strong>File &gt; Project Structure</strong>, deal with Signing and Build Types</li>
-<li><strong>Build &gt; Generate Signed APK</strong></li>
-</ul>
+                    <p>Sometimes we use third-party library, or we implements a module and want it to be a part of our main code’s library. In both scenarios, we can import a library as a module.</p>
+<h3 id="How-to-import-a-library-in-Android-Studio"><a href="#How-to-import-a-library-in-Android-Studio" class="headerlink" title="How to import a library in Android Studio?"></a>How to import a library in Android Studio?</h3><ol>
+<li><strong>File &gt; New &gt; Import modlue &gt; add the library path</strong>.</li>
+<li>Change library module gradle:<ol>
+<li>Change <code>“apply plugin: ‘com.android.application’”</code> to <code>“apply plugin: ‘com.android.library’”</code></li>
+<li>Remove applicationId.</li>
+</ol>
 </li>
-<li>Wrap APK and mapping file to a binary directory. Make sure everything is consistent.</li>
-<li>Add tags<ul>
-<li>git tag -a X.X.X -m “some commit”</li>
-<li>git push origin X.X.X</li>
-<li>more info: <a href="https://git-scm.com/book/en/v2/Git-Basics-Tagging" target="_blank" rel="noopener">https://git-scm.com/book/en/v2/Git-Basics-Tagging</a></li>
-</ul>
-</li>
-<li>Go to Google Play, app releases to release.</li>
+<li>Change dependency from “compile” to “implementation”</li>
+<li><strong>File &gt; Project Structure &gt; app &gt; Dependencies</strong>, add module library.</li>
+<li>Downgrade gradle version in project gradle to “2.3.3” or “2.3.2”</li>
+<li>Put/Change “buildToolsVersion “27.0.1” and “useLibrary ‘org.apache.http.legacy’” in app and carto library module.</li>
 </ol>
                     
-                        <a href="/2018/06/27/How-to-publish-your-Android-App/" class="postShorten-excerpt_link link">
+                        <a href="/2018/06/27/Maunally-Import-a-Library-in-an-Android-Project/" class="postShorten-excerpt_link link">
                             Continue reading
                         </a>
                         
