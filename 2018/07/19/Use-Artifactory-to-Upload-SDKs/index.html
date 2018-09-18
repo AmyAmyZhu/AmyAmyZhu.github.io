@@ -1,390 +1,254 @@
+
 <!DOCTYPE html>
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-<html class="theme-next mist use-motion" lang="">
+<html lang="en">
+    
 <head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
-<meta name="theme-color" content="#222">
-
-
-
-
-
-
-
-
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
-
-
-
-
-
-
-
-
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Mist',
-    version: '6.3.0',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: false,
-    fastclick: false,
-    lazyload: false,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
-
-
-  
-
-
-
-
-  <meta name="description" content="When you build up an Android library, but not sure if it works properly. When a company has multiple modules and want to allow their employees access and use module easily. Aritifactory is one tool th">
-<meta property="og:type" content="article">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="AmyZhu&#39;s Blog">
+    <title>Use Artifactory to Upload SDKs - AmyZhu&#39;s Blog</title>
+    <meta name="author" content="Amy Zhu">
+    
+    
+        <link rel="icon" href="http://yoursite.com/assets/images/icon.png">
+    
+    
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+    
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Amy Zhu","sameAs":["https://github.com/AmyAmyZhu","https://www.linkedin.com/in/zefang-zhu-6a9259113/","zhuzefang12@gmail.com"],"image":"icon.png"},"articleBody":"When you build up an Android library, but not sure if it works properly. When a company has multiple modules and want to allow their employees access and use module easily. Aritifactory is one tool that is useful for speeding up development cycles. You can publish your modules or libraries into Artifactory repositories, and only let people in localhost to use them.\nHow to install and setup Artifactory?I am using Linux environment to build up Artifactory. Therefore, I will only talk how to install it in Linux system. If you don’t have Linux system, you can use virtual machine (Virtual Box) or host a Linux system in clouding system (AWS).\n\nAfter you have Linux environment, please check if you have Java installed. If yes, check java -version to make sure it is at least SDK 8. If you don’t have java, downloaded and install it.\nThen simply download Artifactory and unzip it.\nThen you can run Artifactory by the following code:\n1$ARTIFACTORY_HOME/bin/artifactoryctl start\nAfter that, you can check in your browser to see if Artifactory is setted up or not. The url is http://SERVER_DOMAIN:8081/artifactory. Now you are able to build up repositories and setup permissions if you are Admin.\nIf you want to build a repositories for Android APKs/AARs file, you can click on the user’s button and choose quick setup, then you can setup a Gradle repository for Android Libraries.\nHow to upload APKs/AARs into ArtifactoryIn your Library Gradle file, add the following lines:\n123456789101112131415161718192021222324252627282930313233apply plugin: 'com.jfrog.artifactory'apply plugin: 'maven-publish'def packageName = 'com.package.company'def libraryVersion = '1.0.0'publishing &#123;    publications &#123;        aar(MavenPublication) &#123;            groupId packageName            version libraryVersion            artifactId project.getName()            artifact(\"$buildDir/outputs/aar/$&#123;project.getName()&#125;-release.aar\";        &#125;    &#125;&#125;artifactory &#123;    contextUrl = \"http://SERVER_DOMAIN:8081/artifactory\"    publish &#123;        repository &#123;            repoKey = 'gradle-release-local'            username = 'YourUserName'            password = 'YourPassWord'        &#125;        defaults &#123;            publications('aar')            publishArtifacts = true            properties = ['qa.level': 'basic', 'dev.team': 'core']            publishPom = true        &#125;    &#125;&#125;\nNow when you check Gradle artifactoryPublish you can publish your AARs to your Artifactory repository. However, the dependencies in your gradle file is not included. It means when your client uses your modules, they still need to add other libraries you included in your library. Therefore, you can add dependencies in your pom file.\nyour pom file can be defaultly generated by generatePomFileForAarPublication by gradle. Then you can edit it in your build-&gt;publications-&gt;aar folder. Here is a sample to add a dependency. For example, translate gradle dependency:\n1compile 'com.android.support:support-v4:25.4.0'\nIn pom file, it should be:\n12345678&lt;dependencies&gt;    &lt;dependency&gt;        &lt;groupId&gt;com.android.support&lt;/groupId&gt;        &lt;artifactId&gt;support-v4&lt;/artifactId&gt;        &lt;version&gt;25.4.0&lt;/version&gt;        &lt;scope&gt;compile&lt;/scope&gt;    &lt;/dependency&gt;&lt;/dependencies&gt;\nIf you are not allowed to upload your edited pom file, you can go to your artifactory repository and check setting Suppress POM Consistency Checks to be true.\nNow you are able to upload your AAR files and your dependencies in pom files into your localhost Artifactory.\n###How to use Libraries in Artifactory?\nIn your App, if you want to use modules already uploaded in Artifactory, you need to connect to your repository url and tell your credentials. Add those lines in to your project gradle file:\n12345678910111213allprojects &#123;    repositories &#123;        google()        jcenter()        maven &#123;            url \"http://SERVER_DOMAIN:8081/artifactory/gradle-release-local\"            credentials &#123;                username = 'YourUserName'                password = 'YourPassWord'            &#125;        &#125;    &#125;&#125;\nThen you can simple import libraries in your app gradle files by adding up dependencies like:\n1implementation 'com.package.company:libraryname:1.0.0'\nThat is it. You now can use Methods and Classes open in your Libraries. If it is not successful, clean cache, and rebuild your project.\n","dateCreated":"2018-07-19T10:07:39-04:00","dateModified":"2018-09-18T16:44:46-04:00","datePublished":"2018-07-19T10:07:39-04:00","description":"When you build up an Android library, but not sure if it works properly. When a company has multiple modules and want to allow their employees access and use module easily. Aritifactory is one tool that is useful for speeding up development cycles. You can publish your modules or libraries into Artifactory repositories, and only let people in localhost to use them.\nHow to install and setup Artifactory?I am using Linux environment to build up Artifactory. Therefore, I will only talk how to install it in Linux system. If you don’t have Linux system, you can use virtual machine (Virtual Box) or host a Linux system in clouding system (AWS).","headline":"Use Artifactory to Upload SDKs","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://yoursite.com/2018/07/19/Use-Artifactory-to-Upload-SDKs/"},"publisher":{"@type":"Organization","name":"Amy Zhu","sameAs":["https://github.com/AmyAmyZhu","https://www.linkedin.com/in/zefang-zhu-6a9259113/","zhuzefang12@gmail.com"],"image":"icon.png","logo":{"@type":"ImageObject","url":"icon.png"}},"url":"http://yoursite.com/2018/07/19/Use-Artifactory-to-Upload-SDKs/","keywords":"Android, Artifactory"}</script>
+    <meta name="description" content="When you build up an Android library, but not sure if it works properly. When a company has multiple modules and want to allow their employees access and use module easily. Aritifactory is one tool th">
+<meta name="keywords" content="Android,Artifactory">
+<meta property="og:type" content="blog">
 <meta property="og:title" content="Use Artifactory to Upload SDKs">
 <meta property="og:url" content="http://yoursite.com/2018/07/19/Use-Artifactory-to-Upload-SDKs/index.html">
 <meta property="og:site_name" content="AmyZhu&#39;s Blog">
 <meta property="og:description" content="When you build up an Android library, but not sure if it works properly. When a company has multiple modules and want to allow their employees access and use module easily. Aritifactory is one tool th">
-<meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-31T18:13:42.018Z">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-09-18T20:44:46.782Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Use Artifactory to Upload SDKs">
 <meta name="twitter:description" content="When you build up an Android library, but not sure if it works properly. When a company has multiple modules and want to allow their employees access and use module easily. Aritifactory is one tool th">
+    
+    
+        
+    
+    
+        <meta property="og:image" content="http://yoursite.com/assets/images/icon.png"/>
+    
+    
+    
+    
+    <!--STYLES-->
+    <link rel="stylesheet" href="/assets/css/style-du2xmrqdqrl2ollgeiw050kpl6l4nbyz7bumjuurjgsxyopifvukebxc9lqe.min.css">
+    <!--STYLES END-->
+    
 
-
-
-  <link rel="alternate" href="/atom.xml" title="AmyZhu's Blog" type="application/atom+xml" />
-
-
-
-
-  <link rel="canonical" href="http://yoursite.com/2018/07/19/Use-Artifactory-to-Upload-SDKs/"/>
-
-
-
-<script type="text/javascript" id="page.configurations">
-  CONFIG.page = {
-    sidebar: "",
-  };
-</script>
-
-  <title>Use Artifactory to Upload SDKs | AmyZhu's Blog</title>
-  
-
-
-
-
-
-
-
-
-
-  <noscript>
-  <style type="text/css">
-    .use-motion .motion-element,
-    .use-motion .brand,
-    .use-motion .menu-item,
-    .sidebar-inner,
-    .use-motion .post-block,
-    .use-motion .pagination,
-    .use-motion .comments,
-    .use-motion .post-header,
-    .use-motion .post-body,
-    .use-motion .collection-title { opacity: initial; }
-
-    .use-motion .logo,
-    .use-motion .site-title,
-    .use-motion .site-subtitle {
-      opacity: initial;
-      top: initial;
-    }
-
-    .use-motion {
-      .logo-line-before i { left: initial; }
-      .logo-line-after i { right: initial; }
-    }
-  </style>
-</noscript>
-
+    
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+    <body>
+        <div id="blog">
+            <!-- Define author's picture -->
 
-  
-  
+
     
-  
-
-  <div class="container sidebar-position-left page-post-detail">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
+        
+            
+        
     
 
-    <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">AmyZhu's Blog</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
+<header id="header" data-behavior="4">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <div class="header-title">
+        <a class="header-title-link" href="/ ">AmyZhu&#39;s Blog</a>
     </div>
     
-  </div>
-
-  <div class="site-nav-toggle">
-    <button aria-label="Toggle navigation bar">
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
-  </div>
-</div>
-
-
-
-<nav class="site-nav">
-  
-    <ul id="menu" class="menu">
-      
+        
+            <a  class="header-right-picture "
+                href="#about">
         
         
+            <img class="header-picture" src="/assets/images/icon.png" alt="Author&#39;s picture"/>
         
-          
-          <li class="menu-item menu-item-home">
-    <a href="/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
-  </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-archives">
-    <a href="/archives/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
-  </li>
+        </a>
+    
+</header>
 
-      
-      
-    </ul>
-  
+            <!-- Define author's picture -->
 
-  
+
+
+        
     
 
-  
-
-  
+<nav id="sidebar" data-behavior="4">
+    <div class="sidebar-container">
+        
+            <div class="sidebar-profile">
+                <a href="/#about">
+                    <img class="sidebar-profile-picture" src="/assets/images/icon.png" alt="Author&#39;s picture"/>
+                </a>
+                <h4 class="sidebar-profile-name">Amy Zhu</h4>
+                
+                    <h5 class="sidebar-profile-bio"><p>学而不思则罔，思而不学则殆。</p>
+</h5>
+                
+            </div>
+        
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/ "
+                            
+                            title="Home"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-home" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Home</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/all-categories"
+                            
+                            title="Categories"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Categories</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/all-tags"
+                            
+                            title="Tags"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-tags" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Tags</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/all-archives"
+                            
+                            title="Archives"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Archives</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="#about"
+                            
+                            title="About"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-question" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">About</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link " href="https://github.com/AmyAmyZhu" target="_blank" rel="noopener" title="GitHub">
+                    
+                        <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">GitHub</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link " href="https://www.linkedin.com/in/zefang-zhu-6a9259113/" target="_blank" rel="noopener" title="LinkedIn">
+                    
+                        <i class="sidebar-button-icon fab fa-linkedin" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">LinkedIn</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/zhuzefang12@gmail.com"
+                            title="E-mail"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-envelope" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">E-mail</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+    </div>
 </nav>
 
-
-
-  
-
-
-
-</div>
-    </header>
-
-    
-
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
-          <div id="content" class="content">
             
-
-  <div id="posts" class="posts-expand">
+            <div id="main" data-behavior="4"
+                 class="
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post">
     
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/19/Use-Artifactory-to-Upload-SDKs/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Amy Zhu">
-      <meta itemprop="description" content="Daily problems, daily solutions.">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="AmyZhu's Blog">
-    </span>
-
     
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">Use Artifactory to Upload SDKs
-              
-            
-          </h1>
-        
-
+        <div class="post-header main-content-wrap text-left">
+    
+        <h1 class="post-title">
+            Use Artifactory to Upload SDKs
+        </h1>
+    
+    
         <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-07-19 10:07:39" itemprop="dateCreated datePublished" datetime="2018-07-19T10:07:39-04:00">2018-07-19</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2018-07-31 14:13:42" itemprop="dateModified" datetime="2018-07-31T14:13:42-04:00">2018-07-31</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
+    <time datetime="2018-07-19T10:07:39-04:00">
+	
+		    Jul 19, 2018
+    	
+    </time>
     
+        <span>in </span>
+        
+    <a class="category-link" href="/categories/Android-Artifactory/">Android - Artifactory</a>
+
 
     
-    
-    
-    <div class="post-body" itemprop="articleBody">
+</div>
 
-      
-      
+    
+</div>
 
-      
-        <p>When you build up an Android library, but not sure if it works properly. When a company has multiple modules and want to allow their employees access and use module easily. Aritifactory is one tool that is useful for speeding up development cycles. You can publish your modules or libraries into Artifactory repositories, and only let people in localhost to use them.</p>
-<p>###How to install and setup Artifactory?</p>
-<p>I am using Linux environment to build up Artifactory. Therefore, I will only talk how to install it in Linux system. If you don’t have Linux system, you can use virtual machine (Virtual Box) or host a Linux system in clouding system (AWS).</p>
+    
+    <div class="post-content markdown">
+        <div class="main-content-wrap">
+            <p>When you build up an Android library, but not sure if it works properly. When a company has multiple modules and want to allow their employees access and use module easily. Aritifactory is one tool that is useful for speeding up development cycles. You can publish your modules or libraries into Artifactory repositories, and only let people in localhost to use them.</p>
+<h3 id="How-to-install-and-setup-Artifactory"><a href="#How-to-install-and-setup-Artifactory" class="headerlink" title="How to install and setup Artifactory?"></a>How to install and setup Artifactory?</h3><p>I am using Linux environment to build up Artifactory. Therefore, I will only talk how to install it in Linux system. If you don’t have Linux system, you can use virtual machine (Virtual Box) or host a Linux system in clouding system (AWS).</p>
+<a id="more"></a>
 <p>After you have Linux environment, please check if you have Java installed. If yes, check <strong>java -version</strong> to make sure it is at least SDK 8. If you don’t have java, downloaded and install it.</p>
 <p>Then simply download Artifactory and unzip it.</p>
 <p>Then you can run Artifactory by the following code:</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ARTIFACTORY_HOME/bin/artifactoryctl start</span><br></pre></td></tr></table></figure>
 <p>After that, you can check in your browser to see if Artifactory is setted up or not. The url is <a href="http://SERVER_DOMAIN:8081/artifactory" target="_blank" rel="noopener">http://SERVER_DOMAIN:8081/artifactory</a>. Now you are able to build up repositories and setup permissions if you are Admin.</p>
 <p>If you want to build a repositories for Android APKs/AARs file, you can click on the user’s button and choose quick setup, then you can setup a Gradle repository for Android Libraries.</p>
-<p>###How to upload APKs/AARs into Artifactory</p>
-<p>In your Library Gradle file, add the following lines:</p>
+<h3 id="How-to-upload-APKs-AARs-into-Artifactory"><a href="#How-to-upload-APKs-AARs-into-Artifactory" class="headerlink" title="How to upload APKs/AARs into Artifactory"></a>How to upload APKs/AARs into Artifactory</h3><p>In your Library Gradle file, add the following lines:</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">apply plugin: <span class="string">'com.jfrog.artifactory'</span></span><br><span class="line">apply plugin: <span class="string">'maven-publish'</span></span><br><span class="line"></span><br><span class="line">def packageName = <span class="string">'com.package.company'</span></span><br><span class="line">def libraryVersion = <span class="string">'1.0.0'</span></span><br><span class="line"></span><br><span class="line">publishing &#123;</span><br><span class="line">    publications &#123;</span><br><span class="line">        aar(MavenPublication) &#123;</span><br><span class="line">            groupId packageName</span><br><span class="line">            version libraryVersion</span><br><span class="line">            artifactId project.getName()</span><br><span class="line">            artifact(<span class="string">"$buildDir/outputs/aar/$&#123;project.getName()&#125;-release.aar"</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">artifactory &#123;</span><br><span class="line">    contextUrl = <span class="string">"http://SERVER_DOMAIN:8081/artifactory"</span></span><br><span class="line">    publish &#123;</span><br><span class="line">        repository &#123;</span><br><span class="line">            repoKey = <span class="string">'gradle-release-local'</span></span><br><span class="line">            username = <span class="string">'YourUserName'</span></span><br><span class="line">            password = <span class="string">'YourPassWord'</span></span><br><span class="line">        &#125;</span><br><span class="line">        defaults &#123;</span><br><span class="line">            publications(<span class="string">'aar'</span>)</span><br><span class="line">            publishArtifacts = <span class="keyword">true</span></span><br><span class="line">            properties = [<span class="string">'qa.level'</span>: <span class="string">'basic'</span>, <span class="string">'dev.team'</span>: <span class="string">'core'</span>]</span><br><span class="line">            publishPom = <span class="keyword">true</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>Now when you check Gradle artifactoryPublish you can publish your AARs to your Artifactory repository. However, the dependencies in your gradle file is not included. It means when your client uses your modules, they still need to add other libraries you included in your library. Therefore, you can add dependencies in your pom file.</p>
 <p>your pom file can be defaultly generated by generatePomFileForAarPublication by gradle. Then you can edit it in your <strong>build-&gt;publications-&gt;aar</strong> folder. Here is a sample to add a dependency. For example, translate gradle dependency:</p>
@@ -400,338 +264,184 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">implementation <span class="string">'com.package.company:libraryname:1.0.0'</span></span><br></pre></td></tr></table></figure>
 <p>That is it. You now can use Methods and Classes open in your Libraries. If it is not successful, clean cache, and rebuild your project.</p>
 
-      
+            
+
+        </div>
     </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2018/07/19/Testing-SDKs-by-External-Storage/" rel="next" title="Testing SDKs by External Storage">
-                <i class="fa fa-chevron-left"></i> Testing SDKs by External Storage
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/07/31/Unity-3D-Camera/" rel="prev" title="Unity 3D Camera">
-                Unity 3D Camera <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-  </div>
-
-
-          </div>
-          
-
-  
-
-
-
-        </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
         
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
-    
-    <div class="sidebar-inner">
-
-      
-
-      
-
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
-        <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-            
-              <p class="site-author-name" itemprop="name">Amy Zhu</p>
-              <p class="site-description motion-element" itemprop="description">Daily problems, daily solutions.</p>
-          </div>
-
-          
-            <nav class="site-state motion-element">
-              
-                <div class="site-state-item site-state-posts">
+            <div class="post-footer-tags">
+                <span class="text-color-light text-small">TAGGED IN</span><br/>
                 
-                  <a href="/archives/">
-                
-                    <span class="site-state-item-count">13</span>
-                    <span class="site-state-item-name">posts</span>
-                  </a>
-                </div>
-              
+    <a class="tag tag--primary tag--small t-link" href="/tags/Android/">Android</a> <a class="tag tag--primary tag--small t-link" href="/tags/Artifactory/">Artifactory</a>
 
-              
-
-              
-                
-                
-                <div class="site-state-item site-state-tags">
-                  
-                    
-                    
-                      
-                    
-                    <span class="site-state-item-count">1</span>
-                    <span class="site-state-item-name">tags</span>
-                  
-                </div>
-              
-            </nav>
-          
-
-          
-            <div class="feed-link motion-element">
-              <a href="/atom.xml" rel="alternate">
-                <i class="fa fa-rss"></i>
-                RSS
-              </a>
             </div>
-          
-
-          
-
-          
-          
-
-          
-          
-
-          
-            
-          
-          
-
-        </div>
-      </section>
-
-      
-
-      
-
-    </div>
-  </aside>
-
-
         
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
-  <span class="with-love" id="animate">
-    <i class="fa fa-user"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">Amy Zhu</span>
-
-  
-
-  
+        
+            <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2018/07/31/Unity-3D-Camera/" data-tooltip="Unity 3D Camera" aria-label="PREVIOUS: Unity 3D Camera">
+                
+                    <i class="fa fa-angle-left" aria-hidden="true"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2018/07/19/Testing-SDKs-by-External-Storage/" data-tooltip="Testing SDKs by External Storage" aria-label="NEXT: Testing SDKs by External Storage">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
 </div>
 
 
-
-
-  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.7.1</div>
-
-
-
-  <span class="post-meta-divider">|</span>
-
-
-
-  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Mist</a> v6.3.0</div>
+        
+        
+            
+        
+    </div>
+</article>
 
 
 
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2018 Amy Zhu. All Rights Reserved.
+    </span>
+</footer>
 
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2018/07/31/Unity-3D-Camera/" data-tooltip="Unity 3D Camera" aria-label="PREVIOUS: Unity 3D Camera">
+                
+                    <i class="fa fa-angle-left" aria-hidden="true"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2018/07/19/Testing-SDKs-by-External-Storage/" data-tooltip="Testing SDKs by External Storage" aria-label="NEXT: Testing SDKs by External Storage">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+    <i id="btn-close-shareoptions" class="fa fa-times"></i>
+    <ul class="share-options">
+        
+    </ul>
+</div>
+
+            
+        </div>
         
 
 
+    
+        
+    
 
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-times"></i>
+        </div>
+        
+            <img id="about-card-picture" src="/assets/images/icon.png" alt="Author&#39;s picture"/>
+        
+            <h4 id="about-card-name">Amy Zhu</h4>
+        
+            <div id="about-card-bio"><p>学而不思则罔，思而不学则殆。</p>
+</div>
+        
+        
+            <div id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br/>
+                <p>Mapsted Software Engineer</p>
 
-
-
-
+            </div>
+        
+        
+            <div id="about-card-location">
+                <i class="fa fa-map-marker-alt"></i>
+                <br/>
+                Toronto, ON
+            </div>
+        
+    </div>
+</div>
 
         
-      </div>
-    </footer>
-
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
         
-      </div>
-    
+<div id="cover" style="background-image:url('/assets/images/cover-v1.2.0.jpg');"></div>
+        <!--SCRIPTS-->
+<script src="/assets/js/script-vufjrm3fmbuttogo1hxuu0w9w0sesk5iyysjuguc2hdhufot9szxg8twijry.min.js"></script>
+<!--SCRIPTS END-->
 
     
-	
-    
 
-    
-  </div>
 
-  
 
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
-
-
-
-  
-  
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
-
-
-
-  
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-  
-
-  
-
-  
-
-  
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-</body>
+    </body>
 </html>
