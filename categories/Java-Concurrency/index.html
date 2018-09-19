@@ -289,12 +289,6 @@
                     <h3 id="Callback-Function"><a href="#Callback-Function" class="headerlink" title="Callback Function"></a>Callback Function</h3><p>Image a senario, you have several threads executed at the same time, how can you know some threads are already finished? Maybe you want to execuate a thread after another thread, then how can you control the flow? Here, we can use callback functions.</p>
 <p>A callback function is a function passed into another function as an argument. The purpose of it is to inform a class Sync/Async if some work in other class is down.</p>
 <p>In java, we can implement calbaks by interface. Here is the steps:</p>
-<ol>
-<li>Define methods in an interface that we want to invoke after callback.</li>
-<li>Define a class that implements callback methods of the above interface.</li>
-<li>Define a reference in other classes to register the callback interface.</li>
-<li>Use the reference to invoke callback method.</li>
-</ol>
                     
                         <a href="/2018/07/03/Synch-Asynch-Callback-in-Java/" class="postShorten-excerpt_link link">
                             Continue reading

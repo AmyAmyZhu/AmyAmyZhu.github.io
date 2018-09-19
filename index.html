@@ -558,12 +558,6 @@
                     <h3 id="Callback-Function"><a href="#Callback-Function" class="headerlink" title="Callback Function"></a>Callback Function</h3><p>Image a senario, you have several threads executed at the same time, how can you know some threads are already finished? Maybe you want to execuate a thread after another thread, then how can you control the flow? Here, we can use callback functions.</p>
 <p>A callback function is a function passed into another function as an argument. The purpose of it is to inform a class Sync/Async if some work in other class is down.</p>
 <p>In java, we can implement calbaks by interface. Here is the steps:</p>
-<ol>
-<li>Define methods in an interface that we want to invoke after callback.</li>
-<li>Define a class that implements callback methods of the above interface.</li>
-<li>Define a reference in other classes to register the callback interface.</li>
-<li>Use the reference to invoke callback method.</li>
-</ol>
                     
                         <a href="/2018/07/03/Synch-Asynch-Callback-in-Java/" class="postShorten-excerpt_link link">
                             Continue reading
@@ -607,7 +601,6 @@
             
                 <div class="postShorten-excerpt">
                     <p>When we have customized strings in an Andriod App, where are you store them? Some people choose to assign strings directly in the code. However, cosidering a good desgin patern, Andriod separates code and resources. Most of good Android developer put strings in <code>strings.xml</code> which is located under <strong>res &gt; values</strong>. This is because we can easily manipulates and customize values.</p>
-<p>One of the benefits that is intuitionally affects an Andriod App is we can enable localizations. Localization means you can have multiple languages of your App based on the language users setted up. For example, if you implements your App in English, but your user is a French. You can translates values in <code>strings.xml</code> in French version, so that when user open your App, they can understand your App because the language of your App will be French.</p>
                     
                         <a href="/2018/06/29/Enable-Localization/" class="postShorten-excerpt_link link">
                             Continue reading
@@ -651,17 +644,6 @@
             
                 <div class="postShorten-excerpt">
                     <p>Understanding the storages in an Android device, you can easily check or transfer files in both directions: your app and the device. For example, if your app have a licence file, and you want to check the permission, you can store licence file in Android device for further updating and changing.</p>
-<p>###Storages in an Android Device</p>
-<p>To work with your device’s file system, do the following:</p>
-<ol>
-<li>Open the device file browser by clicking <strong>View &gt; Tool Windows &gt; Device File Explorer</strong>.</li>
-<li>Select a device from the drop-down list.</li>
-</ol>
-<p>There two useful storages you can store your data:</p>
-<ul>
-<li>one is the internal storage, which is located at: <code>data/data/app_name/</code></li>
-<li>another one is the external user storage, which is located at: <code>sdcard/</code></li>
-</ul>
                     
                         <a href="/2018/06/28/Read-and-Store-Json-Files-in-Internal-Storage/" class="postShorten-excerpt_link link">
                             Continue reading

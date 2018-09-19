@@ -1,5 +1,5 @@
 createdAt: "2018-07-23T14:17:03.758Z"
-updatedAt: "2018-09-18T20:41:21.270Z"
+updatedAt: "2018-09-19T13:01:55.776Z"
 content: '''
   title: Maunally Import a Library in an Android Project
   date: 2018-06-27 22:04:53
@@ -17,12 +17,14 @@ content: '''
   2. Change library module gradle:
       1. Change `“apply plugin: ‘com.android.application’”` to `“apply plugin: ‘com.android.library’”`
       2. Remove applicationId.
+  
+  <!-- more -->
+  
   3. Change dependency from “compile” to “implementation”
   4. __File > Project Structure > app > Dependencies__, add module library.
   5. Downgrade gradle version in project gradle to “2.3.3” or “2.3.2”
   6. Put/Change “buildToolsVersion “27.0.1” and “useLibrary ‘org.apache.http.legacy’” in app and carto library module.
   
-  <!-- more -->
   
   ### UnsatisfiedLinkError happens?
   

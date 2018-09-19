@@ -1,5 +1,5 @@
 createdAt: "2018-07-23T14:17:03.758Z"
-updatedAt: "2018-09-18T20:36:08.969Z"
+updatedAt: "2018-09-19T12:50:15.378Z"
 content: '''
   title: Synch/Asynch Callback in Java
   date: 2018-07-03 08:53:08
@@ -18,12 +18,12 @@ content: '''
   
   In java, we can implement calbaks by interface. Here is the steps:
   
+  <!-- more -->
+  
   1. Define methods in an interface that we want to invoke after callback.
   2. Define a class that implements callback methods of the above interface.
   3. Define a reference in other classes to register the callback interface.
   4. Use the reference to invoke callback method.
-  
-  <!-- more -->
   
   ### Synch vs. Asynch
   
