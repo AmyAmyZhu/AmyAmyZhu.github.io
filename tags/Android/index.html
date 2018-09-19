@@ -229,7 +229,7 @@
     
         <span>in </span>
         
-    <a class="category-link" href="/categories/Android-Errors/">Android - Errors</a>
+    <a class="category-link" href="/categories/Android/">Android</a>, <a class="category-link" href="/categories/Android/Errors/">Errors</a>
 
 
     
@@ -242,6 +242,51 @@
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Problems found loading plugins:</span><br><span class="line">Plugin "Google Analytics Uploader" was not loaded: required plugin "Android Support" is disabled.</span><br><span class="line">Plugin "SDK Updater" was not loaded: required plugin "Android Support" is disabled.</span><br><span class="line">Plugin "Android NDK Support" was not loaded: required plugin "Android Support" is disabled.</span><br><span class="line">Plugin "Google App Indexing" was not loaded: required plugin "Android Support" is disabled.</span><br><span class="line">Plugin "Google Cloud Tools For Android Studio" was not loaded: required plugin "Android Support" is disabled.</span><br><span class="line">Plugin "Google Cloud Testing" was not loaded: required plugin "Android Support" is disabled.</span><br><span class="line">Plugin "Google Services" was not loaded: required plugin "Android Support" is disabled.</span><br></pre></td></tr></table></figure>
                     
                         <a href="/2018/09/18/Android-Support-Disabled-Error/" class="postShorten-excerpt_link link">
+                            Continue reading
+                        </a>
+                        
+                    
+                </div>
+            
+        </div>
+        
+    </article>
+    
+    
+    <article class="postShorten postShorten--thumbnailimg-right">
+        <div class="postShorten-wrap">
+            
+            <div class="postShorten-header">
+                <h1 class="postShorten-title">
+                    
+                        <a class="link-unstyled" href="/2018/09/18/Build-Proguard-For-Release-Takes-Too-Long/">
+                            Build Proguard For Release Takes Too Long
+                        </a>
+                    
+                </h1>
+                <div class="postShorten-meta">
+    <time datetime="2018-09-18T08:52:10-04:00">
+	
+		    Sep 18, 2018
+    	
+    </time>
+    
+        <span>in </span>
+        
+    <a class="category-link" href="/categories/Android/">Android</a>, <a class="category-link" href="/categories/Android/Errors/">Errors</a>
+
+
+    
+</div>
+
+            </div>
+            
+                <div class="postShorten-excerpt">
+                    <p>Recently when I enabled Proguard in my program like the following:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">release &#123;</span><br><span class="line">    minifyEnabled true</span><br><span class="line">    shrinkResources true</span><br><span class="line">    proguardFiles getDefaultProguardFile(&apos;proguard-android.txt&apos;), &apos;proguard-rules.pro&apos;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>I faced the problem that it tooks like for ever for the process of <code>transformClassesAndResourcesWithProguardForRelease</code>. This problem happens when you have multiple libraries need to be Proguard/Dexguard. Add the line <code>multiDexEnabled true</code> in to your gradle <code>defaultConfig</code> will fix this problem.</p>
+                    
+                        <a href="/2018/09/18/Build-Proguard-For-Release-Takes-Too-Long/" class="postShorten-excerpt_link link">
                             Continue reading
                         </a>
                         
@@ -273,7 +318,7 @@
     
         <span>in </span>
         
-    <a class="category-link" href="/categories/Android-Artifactory/">Android - Artifactory</a>
+    <a class="category-link" href="/categories/Android/">Android</a>, <a class="category-link" href="/categories/Android/Artifactory/">Artifactory</a>
 
 
     
@@ -317,7 +362,7 @@
     
         <span>in </span>
         
-    <a class="category-link" href="/categories/Android/">Android</a>
+    <a class="category-link" href="/categories/Android/">Android</a>, <a class="category-link" href="/categories/Android/SDK/">SDK</a>
 
 
     
@@ -330,6 +375,50 @@
 <p>I finally find out one solution. I still feel like it is not the best. However, right now, I have no better solution. If you can solve this problem, please leave your comment and method here, it will help me out a lot.</p>
                     
                         <a href="/2018/07/19/Testing-SDKs-by-External-Storage/" class="postShorten-excerpt_link link">
+                            Continue reading
+                        </a>
+                        
+                    
+                </div>
+            
+        </div>
+        
+    </article>
+    
+    
+    <article class="postShorten postShorten--thumbnailimg-right">
+        <div class="postShorten-wrap">
+            
+            <div class="postShorten-header">
+                <h1 class="postShorten-title">
+                    
+                        <a class="link-unstyled" href="/2018/07/13/Apply-Dexguard-for-Modules/">
+                            Apply Dexguard for Modules
+                        </a>
+                    
+                </h1>
+                <div class="postShorten-meta">
+    <time datetime="2018-07-13T09:58:09-04:00">
+	
+		    Jul 13, 2018
+    	
+    </time>
+    
+        <span>in </span>
+        
+    <a class="category-link" href="/categories/Android/">Android</a>, <a class="category-link" href="/categories/Android/Proguard-Dexguard/">Proguard/Dexguard</a>
+
+
+    
+</div>
+
+            </div>
+            
+                <div class="postShorten-excerpt">
+                    <h3 id="How-to-apply-Proguard-Dexguard"><a href="#How-to-apply-Proguard-Dexguard" class="headerlink" title="How to apply Proguard/Dexguard"></a>How to apply Proguard/Dexguard</h3><p>Proguard/Dexguard shrink and obsfucate resources and codes by scanning and looping up the dependencies. It will do everything it thinks necessary. To apply proguard, simple change <strong>minifyEnabled</strong> in the module/app you want to apply to be true. Android will apply for Proguard automatically.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">buildTypes &#123;</span><br><span class="line">    release &#123;</span><br><span class="line">        minifyEnabled <span class="keyword">true</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+                    
+                        <a href="/2018/07/13/Apply-Dexguard-for-Modules/" class="postShorten-excerpt_link link">
                             Continue reading
                         </a>
                         
@@ -390,6 +479,148 @@
             <div class="postShorten-header">
                 <h1 class="postShorten-title">
                     
+                        <a class="link-unstyled" href="/2018/06/27/Decode-an-Android-App-from-APK/">
+                            Decode an Android App from APK
+                        </a>
+                    
+                </h1>
+                <div class="postShorten-meta">
+    <time datetime="2018-06-27T22:04:53-04:00">
+	
+		    Jun 27, 2018
+    	
+    </time>
+    
+        <span>in </span>
+        
+    <a class="category-link" href="/categories/Android/">Android</a>, <a class="category-link" href="/categories/Android/Proguard-Dexguard/">Proguard/Dexguard</a>
+
+
+    
+</div>
+
+            </div>
+            
+                <div class="postShorten-excerpt">
+                    <p>If an Android App not doing encryption or obfuscation, an APK (Android application package) is easily be decoded. A reverse engineer can see its source codes and XML files.</p>
+<p>Here is the procedure how to decoding .apk files to get source files.</p>
+<ol>
+<li>Go to project, Build -&gt; Build APK(s). After .apk file is generated, click “locate” to the path of the file.</li>
+<li>Create a new folder, let’s call it “decode”.</li>
+</ol>
+                    
+                        <a href="/2018/06/27/Decode-an-Android-App-from-APK/" class="postShorten-excerpt_link link">
+                            Continue reading
+                        </a>
+                        
+                    
+                </div>
+            
+        </div>
+        
+    </article>
+    
+    
+    <article class="postShorten postShorten--thumbnailimg-right">
+        <div class="postShorten-wrap">
+            
+            <div class="postShorten-header">
+                <h1 class="postShorten-title">
+                    
+                        <a class="link-unstyled" href="/2018/06/27/Apply-Optimizer-for-Java-Bytecode-to-Gain-Security/">
+                            Apply Optimizer for Java Bytecode to Gain Security
+                        </a>
+                    
+                </h1>
+                <div class="postShorten-meta">
+    <time datetime="2018-06-27T22:04:53-04:00">
+	
+		    Jun 27, 2018
+    	
+    </time>
+    
+        <span>in </span>
+        
+    <a class="category-link" href="/categories/Android/">Android</a>, <a class="category-link" href="/categories/Android/Proguard-Dexguard/">Proguard/Dexguard</a>
+
+
+    
+</div>
+
+            </div>
+            
+                <div class="postShorten-excerpt">
+                    <p>Based on the article I wrote: Decode Android Project from APK, we know that revise engineers can easily decode codes and get your source files. there are a number of possible vulnerabilities for unprotected mobile applications, such as insertion of malware, intellectual property theft, priacy and data theft. Therefore, we can use ProGuard or DexGuard to protect. This is a way to apply multiple obfuscation and encryption to make our source codes unreadable.</p>
+                    
+                        <a href="/2018/06/27/Apply-Optimizer-for-Java-Bytecode-to-Gain-Security/" class="postShorten-excerpt_link link">
+                            Continue reading
+                        </a>
+                        
+                    
+                </div>
+            
+        </div>
+        
+    </article>
+    
+    
+    <article class="postShorten postShorten--thumbnailimg-right">
+        <div class="postShorten-wrap">
+            
+            <div class="postShorten-header">
+                <h1 class="postShorten-title">
+                    
+                        <a class="link-unstyled" href="/2018/06/27/Maunally-Import-a-Library-in-an-Android-Project/">
+                            Maunally Import a Library in an Android Project
+                        </a>
+                    
+                </h1>
+                <div class="postShorten-meta">
+    <time datetime="2018-06-27T22:04:53-04:00">
+	
+		    Jun 27, 2018
+    	
+    </time>
+    
+        <span>in </span>
+        
+    <a class="category-link" href="/categories/Android/">Android</a>, <a class="category-link" href="/categories/Android/SDK/">SDK</a>
+
+
+    
+</div>
+
+            </div>
+            
+                <div class="postShorten-excerpt">
+                    <p>Sometimes we use third-party library, or we implements a module and want it to be a part of our main code’s library. In both scenarios, we can import a library as a module.</p>
+<h3 id="How-to-import-a-library-in-Android-Studio"><a href="#How-to-import-a-library-in-Android-Studio" class="headerlink" title="How to import a library in Android Studio?"></a>How to import a library in Android Studio?</h3><ol>
+<li><strong>File &gt; New &gt; Import modlue &gt; add the library path</strong>.</li>
+<li>Change library module gradle:<ol>
+<li>Change <code>“apply plugin: ‘com.android.application’”</code> to <code>“apply plugin: ‘com.android.library’”</code></li>
+<li>Remove applicationId.</li>
+</ol>
+</li>
+</ol>
+                    
+                        <a href="/2018/06/27/Maunally-Import-a-Library-in-an-Android-Project/" class="postShorten-excerpt_link link">
+                            Continue reading
+                        </a>
+                        
+                    
+                </div>
+            
+        </div>
+        
+    </article>
+    
+    
+    <article class="postShorten postShorten--thumbnailimg-right">
+        <div class="postShorten-wrap">
+            
+            <div class="postShorten-header">
+                <h1 class="postShorten-title">
+                    
                         <a class="link-unstyled" href="/2018/06/27/How-to-publish-your-Android-App/">
                             How to publish your Android App?
                         </a>
@@ -424,57 +655,6 @@
 </ol>
                     
                         <a href="/2018/06/27/How-to-publish-your-Android-App/" class="postShorten-excerpt_link link">
-                            Continue reading
-                        </a>
-                        
-                    
-                </div>
-            
-        </div>
-        
-    </article>
-    
-    
-    <article class="postShorten postShorten--thumbnailimg-right">
-        <div class="postShorten-wrap">
-            
-            <div class="postShorten-header">
-                <h1 class="postShorten-title">
-                    
-                        <a class="link-unstyled" href="/2018/06/27/Maunally-Import-a-Library-in-an-Android-Project/">
-                            Maunally Import a Library in an Android Project
-                        </a>
-                    
-                </h1>
-                <div class="postShorten-meta">
-    <time datetime="2018-06-27T22:04:53-04:00">
-	
-		    Jun 27, 2018
-    	
-    </time>
-    
-        <span>in </span>
-        
-    <a class="category-link" href="/categories/Android/">Android</a>
-
-
-    
-</div>
-
-            </div>
-            
-                <div class="postShorten-excerpt">
-                    <p>Sometimes we use third-party library, or we implements a module and want it to be a part of our main code’s library. In both scenarios, we can import a library as a module.</p>
-<h3 id="How-to-import-a-library-in-Android-Studio"><a href="#How-to-import-a-library-in-Android-Studio" class="headerlink" title="How to import a library in Android Studio?"></a>How to import a library in Android Studio?</h3><ol>
-<li><strong>File &gt; New &gt; Import modlue &gt; add the library path</strong>.</li>
-<li>Change library module gradle:<ol>
-<li>Change <code>“apply plugin: ‘com.android.application’”</code> to <code>“apply plugin: ‘com.android.library’”</code></li>
-<li>Remove applicationId.</li>
-</ol>
-</li>
-</ol>
-                    
-                        <a href="/2018/06/27/Maunally-Import-a-Library-in-an-Android-Project/" class="postShorten-excerpt_link link">
                             Continue reading
                         </a>
                         

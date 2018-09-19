@@ -1,11 +1,10 @@
 createdAt: "2018-07-23T14:17:03.759Z"
-updatedAt: "2018-09-18T20:44:34.664Z"
+updatedAt: "2018-09-19T16:32:33.332Z"
 content: '''
   title: Use Artifactory to Upload SDKs
   date: 2018-07-19 10:07:39
   categories:
-  - Android
-    - Artifactory
+  - [Android, Artifactory]
   tags:
   - Android
   - Artifactory

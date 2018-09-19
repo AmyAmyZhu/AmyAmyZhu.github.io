@@ -1,11 +1,12 @@
 createdAt: "2018-07-23T14:17:03.756Z"
-updatedAt: "2018-09-19T13:01:11.842Z"
+updatedAt: "2018-09-19T13:59:15.784Z"
 content: '''
   title: Apply Dexguard for Modules
   date: 2018-07-13 09:58:09
   categories:
-  - Proguard/Dexguard
+  - [Android, Proguard/Dexguard]
   tags:
+  - Android
   - Proguard/Dexguard
   ---
   
@@ -93,10 +94,11 @@ content: '''
   It is default. If you don’t specify a keep directive of any kind, then Proguard is going to both shrink (remove unused code) and obfuscate (rename things) both classes and class members.
   
   2. -keep
+  
   |           | Classes     | Members  |
   |-----------|-------------| ---------|
-  | shrink    | no         | no      |
-  | obfuscate | no         | no      |
+  | shrink    | no          | no       |
+  | obfuscate | no          | no       |
   
   Keep means opposite of no rules. No shrinking, no obfuscation; not for classes, not for members. __-keepclasseswithmembers__ is same as __-keep__.
   

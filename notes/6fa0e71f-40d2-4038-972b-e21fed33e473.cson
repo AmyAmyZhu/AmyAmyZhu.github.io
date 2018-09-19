@@ -1,14 +1,14 @@
 createdAt: "2018-09-18T12:52:10.908Z"
-updatedAt: "2018-09-18T20:39:37.733Z"
+updatedAt: "2018-09-19T14:23:04.897Z"
 content: '''
   title: Build Proguard For Release Takes Too Long
   date: 2018-09-18 08:52:10
   categories:
-  - Proguard/Dexguard
-    - Errors
+  - [Android, Errors]
   tags:
   - Proguard/Dexguard
   - Errors
+  - Android
   ---
   
   Recently when I enabled Proguard in my program like the following:
@@ -31,6 +31,7 @@ type: "MARKDOWN_NOTE"
 tags: [
   "Errors"
   "Proguard/Dexguard"
+  "Android"
 ]
 isStarred: false
 isTrashed: false

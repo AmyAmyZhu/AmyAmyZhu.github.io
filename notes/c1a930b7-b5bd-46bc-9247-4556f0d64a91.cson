@@ -1,13 +1,13 @@
 createdAt: "2018-07-23T14:17:03.758Z"
-updatedAt: "2018-09-19T12:50:15.378Z"
+updatedAt: "2018-09-19T14:00:48.879Z"
 content: '''
   title: Synch/Asynch Callback in Java
   date: 2018-07-03 08:53:08
   categories:
-  - Java
-    - Concurrency
+  - [Java, Concurrency]
   tags:
   - Java
+  - Concurrency
   ---
   
   ### Callback Function

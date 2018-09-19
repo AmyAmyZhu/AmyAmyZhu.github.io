@@ -1,11 +1,12 @@
 createdAt: "2018-07-23T14:17:03.756Z"
-updatedAt: "2018-09-19T13:01:20.652Z"
+updatedAt: "2018-09-19T14:00:28.443Z"
 content: '''
   title: Apply Optimizer for Java Bytecode to Gain Security
   date: 2018-06-27 22:04:53
   categories:
-  - Proguard/Dexguard
+  - [Android, Proguard/Dexguard]
   tags:
+  - Android
   - Proguard/Dexguard
   ---
   

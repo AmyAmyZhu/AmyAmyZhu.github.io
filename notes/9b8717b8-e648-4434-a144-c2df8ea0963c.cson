@@ -1,12 +1,13 @@
 createdAt: "2018-07-23T14:17:03.758Z"
-updatedAt: "2018-09-19T13:01:55.776Z"
+updatedAt: "2018-09-19T14:24:00.712Z"
 content: '''
   title: Maunally Import a Library in an Android Project
   date: 2018-06-27 22:04:53
   categories:
-  - Android
+  - [Android, SDK]
   tags:
   - Android
+  - SDK
   ---
   
   Sometimes we use third-party library, or we implements a module and want it to be a part of our main code’s library. In both scenarios, we can import a library as a module.

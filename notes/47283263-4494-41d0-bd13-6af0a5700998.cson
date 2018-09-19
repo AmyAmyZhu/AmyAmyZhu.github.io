@@ -1,12 +1,13 @@
 createdAt: "2018-07-23T14:17:03.758Z"
-updatedAt: "2018-09-18T20:42:06.132Z"
+updatedAt: "2018-09-19T14:02:19.948Z"
 content: '''
   title: Testing SDKs by External Storage
   date: 2018-07-19 10:07:06
   categories:
-  - Android
+  - [Android, SDK]
   tags:
   - Android
+  - SDK
   ---
   
   After I built up release version of APKs/AARs files and push SDK to Artifactory for exposing Android libraries for developing and testing (I will write an article explaining what is Artifactory), I find out it is still hard to testing. I don’t know what is wrong with my SDKs after I imported to a new App since there is no log for realease version and I cannot use debug mode.

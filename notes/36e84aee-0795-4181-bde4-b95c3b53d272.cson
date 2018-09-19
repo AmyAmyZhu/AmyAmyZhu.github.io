@@ -1,11 +1,12 @@
 createdAt: "2018-07-23T14:17:03.757Z"
-updatedAt: "2018-09-19T13:00:36.401Z"
+updatedAt: "2018-09-19T14:01:34.609Z"
 content: '''
   title: Decode an Android App from APK
   date: 2018-06-27 22:04:53
   categories:
-  - Proguard/Dexguard
+  - [Android, Proguard/Dexguard]
   tags:
+  - Android
   - Proguard/Dexguard
   ---
   

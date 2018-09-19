@@ -12,7 +12,9 @@
       
       <categories>
           
-          <category> Android - Errors </category>
+          <category> Android </category>
+          
+          <category> Errors </category>
           
       </categories>
       
@@ -37,16 +39,20 @@
       
       <categories>
           
-          <category> Proguard/Dexguard - Errors </category>
+          <category> Android </category>
+          
+          <category> Errors </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> Proguard/Dexguard </tag>
+            <tag> Android </tag>
             
             <tag> Errors </tag>
+            
+            <tag> Proguard/Dexguard </tag>
             
         </tags>
       
@@ -85,7 +91,9 @@
       
       <categories>
           
-          <category> Android - Artifactory </category>
+          <category> Android </category>
+          
+          <category> Artifactory </category>
           
       </categories>
       
@@ -112,12 +120,16 @@
           
           <category> Android </category>
           
+          <category> SDK </category>
+          
       </categories>
       
       
         <tags>
             
             <tag> Android </tag>
+            
+            <tag> SDK </tag>
             
         </tags>
       
@@ -128,10 +140,12 @@
       <link href="/2018/07/13/Apply-Dexguard-for-Modules/"/>
       <url>/2018/07/13/Apply-Dexguard-for-Modules/</url>
       
-        <content type="html"><![CDATA[<h3 id="How-to-apply-Proguard-Dexguard"><a href="#How-to-apply-Proguard-Dexguard" class="headerlink" title="How to apply Proguard/Dexguard"></a>How to apply Proguard/Dexguard</h3><p>Proguard/Dexguard shrink and obsfucate resources and codes by scanning and looping up the dependencies. It will do everything it thinks necessary. To apply proguard, simple change <strong>minifyEnabled</strong> in the module/app you want to apply to be true. Android will apply for Proguard automatically.</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">buildTypes &#123;</span><br><span class="line">    release &#123;</span><br><span class="line">        minifyEnabled <span class="keyword">true</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><a id="more"></a><p>Make sure you are in the correct building type when you use Proguard/Dexguard. You can check <strong>Build Variants</strong> to see it you are in the correct building type or not.</p><p>For applying Dexguard, you need to first buy licence of dexguard, and then put the licence file under your App library. You also need to change file <strong>gradle.properties</strong> which sepcify where you put the Dexguard licence. For example:</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemProp.dexguard.licence=./app/libs/</span><br></pre></td></tr></table></figure><p>Then your app knows where to find and verify your Dexguard licence. It is not only suitable for Dexguard licence, but also other Applications/Library licences.</p><p>To apply Dexguard, first add a line in your app/module gradle file that says:</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apply plugin: <span class="string">'dexguard'</span></span><br></pre></td></tr></table></figure><p>Next you don’t need to change <strong>minifyEnabled</strong> to be true. Create a new txt file under your app files. You can call it <strong>dexguard-project.txt</strong>. Add Proguard/Dexguard rules in this file. Then go back to gradle file, add this line to tell your app where you put Dexguard rules:</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">buildTypes &#123;</span><br><span class="line">    release &#123;</span><br><span class="line">        minifyEnabled <span class="keyword">false</span></span><br><span class="line">        proguardFile <span class="string">'dexguard-project.txt'</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="Apply-Dexguard-for-Android-Libraries"><a href="#Apply-Dexguard-for-Android-Libraries" class="headerlink" title="Apply Dexguard for Android Libraries"></a>Apply Dexguard for Android Libraries</h3><p>If you want to build up an Android library and you want to ship to SDK version to others. It is extremely important you Proguard/Dexguard your SDK, otherwise reverse engineers can see how you implement your library. It is a little bit different when you apply Proguard/Dexguard.</p><p>There are four main rules for Proguard/Dexguard to protect your Apps:</p><ul><li>obfuscate: rename things, make revise engineer cannot understand your codes. They might find out multiple classes and methods are called, for example, a, therefore, they cannot find the relationship and dependencies of classes.</li><li>preverify: pre-proguard your app. No need for Android Apps.</li><li>shrink: remove unused resources. It will make your APKs/AARs small and efficient.</li><li>optimize: optimize your code, reduce dependencies of your code.</li></ul><p>If you don’t know how to make your module to be library or you don’t know if your module is a library or not. Check if you have this line in your gradle file:</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apply plugin: <span class="string">'com.android.library'</span></span><br></pre></td></tr></table></figure><p>Not only you still need <strong>proguardFile</strong> line, but also please add <strong>cosumerProguardFiles</strong> to tell Dexguard this is a library.</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">buildTypes &#123;</span><br><span class="line">    release &#123;</span><br><span class="line">        minifyEnabled <span class="keyword">false</span></span><br><span class="line">        proguardFile <span class="string">'dexguard-project.txt'</span></span><br><span class="line">        cosumerProguardFiles <span class="string">'dexguard-project.txt'</span></span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="Key-methods-in-Dexguard"><a href="#Key-methods-in-Dexguard" class="headerlink" title="Key methods in Dexguard"></a>Key methods in Dexguard</h3><p>Now we know how to apply Proguard/Dexguard, but how to apply Dexguard rules and how to use them? I am going to illustrate four import keep rules in Proguard/Dexguard.</p><ol><li>No rule</li></ol><table><thead><tr><th></th><th>Classes</th><th>Members</th></tr></thead><tbody><tr><td>shrink</td><td>yes</td><td>yes</td></tr><tr><td>obfuscate</td><td>yes</td><td>yes</td></tr></tbody></table><p>It is default. If you don’t specify a keep directive of any kind, then Proguard is going to both shrink (remove unused code) and obfuscate (rename things) both classes and class members.</p><ol start="2"><li>-keep<br>|           | Classes     | Members  |<br>|———–|————-| ———|<br>| shrink    | no         | no      |<br>| obfuscate | no         | no      |</li></ol><p>Keep means opposite of no rules. No shrinking, no obfuscation; not for classes, not for members. <strong>-keepclasseswithmembers</strong> is same as <strong>-keep</strong>.</p><ol start="3"><li>-keepclassmembers</li></ol><table><thead><tr><th></th><th>Classes</th><th>Members</th></tr></thead><tbody><tr><td>shrink</td><td>yes</td><td>no</td></tr><tr><td>obfuscate</td><td>yes</td><td>no</td></tr></tbody></table><p>This protects only the members of the class from shrinking and obfuscation.</p><ol start="4"><li>-keepnames</li></ol><table><thead><tr><th></th><th>Classes</th><th>Members</th></tr></thead><tbody><tr><td>shrink</td><td>yes</td><td>yes</td></tr><tr><td>obfuscate</td><td>no</td><td>no</td></tr></tbody></table><p>This only allows shrinking for classes and members, but not obfuscation. <strong>-keepclasseswithmembernames</strong> act the same as <strong>-keepnames</strong>.</p><ol start="5"><li>keepclassmembernames</li></ol><table><thead><tr><th></th><th>Classes</th><th>Members</th></tr></thead><tbody><tr><td>shrink</td><td>yes</td><td>yes</td></tr><tr><td>obfuscate</td><td>yes</td><td>no</td></tr></tbody></table><p>This just not obfuscate members.</p><ol start="6"><li>Others<ul><li>For Android, I faced a problem when I want to apply Proguard/Dexguard to a library which contains jni .so files. Remember to add <strong>-keepresources</strong> to such source files, otherwise, the name and contant will be obsfucate. Also, add <strong>-dontpreverrify</strong> at the beginning of your Proguard/Dexguard rules of your Android Application. The reason you’d better to do that is because <strong>-dontpreverify</strong> prevent pre-proguard your APKs/AARs. There is no need to do so for Android and it will save time.</li></ul></li></ol><h3 id="Examples"><a href="#Examples" class="headerlink" title="Examples"></a>Examples</h3><p>Keep Constructor/Methods of a class:</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-keep, allowshrinking, allowoptimization <span class="class"><span class="keyword">class</span> <span class="title">com</span>.<span class="title">package</span>.<span class="title">company</span>.<span class="title">class</span> </span>&#123;</span><br><span class="line">    &lt;init&gt;(...);</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">iAmAMethod</span><span class="params">(<span class="keyword">int</span>)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+        <content type="html"><![CDATA[<h3 id="How-to-apply-Proguard-Dexguard"><a href="#How-to-apply-Proguard-Dexguard" class="headerlink" title="How to apply Proguard/Dexguard"></a>How to apply Proguard/Dexguard</h3><p>Proguard/Dexguard shrink and obsfucate resources and codes by scanning and looping up the dependencies. It will do everything it thinks necessary. To apply proguard, simple change <strong>minifyEnabled</strong> in the module/app you want to apply to be true. Android will apply for Proguard automatically.</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">buildTypes &#123;</span><br><span class="line">    release &#123;</span><br><span class="line">        minifyEnabled <span class="keyword">true</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><a id="more"></a><p>Make sure you are in the correct building type when you use Proguard/Dexguard. You can check <strong>Build Variants</strong> to see it you are in the correct building type or not.</p><p>For applying Dexguard, you need to first buy licence of dexguard, and then put the licence file under your App library. You also need to change file <strong>gradle.properties</strong> which sepcify where you put the Dexguard licence. For example:</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemProp.dexguard.licence=./app/libs/</span><br></pre></td></tr></table></figure><p>Then your app knows where to find and verify your Dexguard licence. It is not only suitable for Dexguard licence, but also other Applications/Library licences.</p><p>To apply Dexguard, first add a line in your app/module gradle file that says:</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apply plugin: <span class="string">'dexguard'</span></span><br></pre></td></tr></table></figure><p>Next you don’t need to change <strong>minifyEnabled</strong> to be true. Create a new txt file under your app files. You can call it <strong>dexguard-project.txt</strong>. Add Proguard/Dexguard rules in this file. Then go back to gradle file, add this line to tell your app where you put Dexguard rules:</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">buildTypes &#123;</span><br><span class="line">    release &#123;</span><br><span class="line">        minifyEnabled <span class="keyword">false</span></span><br><span class="line">        proguardFile <span class="string">'dexguard-project.txt'</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="Apply-Dexguard-for-Android-Libraries"><a href="#Apply-Dexguard-for-Android-Libraries" class="headerlink" title="Apply Dexguard for Android Libraries"></a>Apply Dexguard for Android Libraries</h3><p>If you want to build up an Android library and you want to ship to SDK version to others. It is extremely important you Proguard/Dexguard your SDK, otherwise reverse engineers can see how you implement your library. It is a little bit different when you apply Proguard/Dexguard.</p><p>There are four main rules for Proguard/Dexguard to protect your Apps:</p><ul><li>obfuscate: rename things, make revise engineer cannot understand your codes. They might find out multiple classes and methods are called, for example, a, therefore, they cannot find the relationship and dependencies of classes.</li><li>preverify: pre-proguard your app. No need for Android Apps.</li><li>shrink: remove unused resources. It will make your APKs/AARs small and efficient.</li><li>optimize: optimize your code, reduce dependencies of your code.</li></ul><p>If you don’t know how to make your module to be library or you don’t know if your module is a library or not. Check if you have this line in your gradle file:</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apply plugin: <span class="string">'com.android.library'</span></span><br></pre></td></tr></table></figure><p>Not only you still need <strong>proguardFile</strong> line, but also please add <strong>cosumerProguardFiles</strong> to tell Dexguard this is a library.</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">buildTypes &#123;</span><br><span class="line">    release &#123;</span><br><span class="line">        minifyEnabled <span class="keyword">false</span></span><br><span class="line">        proguardFile <span class="string">'dexguard-project.txt'</span></span><br><span class="line">        cosumerProguardFiles <span class="string">'dexguard-project.txt'</span></span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="Key-methods-in-Dexguard"><a href="#Key-methods-in-Dexguard" class="headerlink" title="Key methods in Dexguard"></a>Key methods in Dexguard</h3><p>Now we know how to apply Proguard/Dexguard, but how to apply Dexguard rules and how to use them? I am going to illustrate four import keep rules in Proguard/Dexguard.</p><ol><li>No rule</li></ol><table><thead><tr><th></th><th>Classes</th><th>Members</th></tr></thead><tbody><tr><td>shrink</td><td>yes</td><td>yes</td></tr><tr><td>obfuscate</td><td>yes</td><td>yes</td></tr></tbody></table><p>It is default. If you don’t specify a keep directive of any kind, then Proguard is going to both shrink (remove unused code) and obfuscate (rename things) both classes and class members.</p><ol start="2"><li>-keep</li></ol><table><thead><tr><th></th><th>Classes</th><th>Members</th></tr></thead><tbody><tr><td>shrink</td><td>no</td><td>no</td></tr><tr><td>obfuscate</td><td>no</td><td>no</td></tr></tbody></table><p>Keep means opposite of no rules. No shrinking, no obfuscation; not for classes, not for members. <strong>-keepclasseswithmembers</strong> is same as <strong>-keep</strong>.</p><ol start="3"><li>-keepclassmembers</li></ol><table><thead><tr><th></th><th>Classes</th><th>Members</th></tr></thead><tbody><tr><td>shrink</td><td>yes</td><td>no</td></tr><tr><td>obfuscate</td><td>yes</td><td>no</td></tr></tbody></table><p>This protects only the members of the class from shrinking and obfuscation.</p><ol start="4"><li>-keepnames</li></ol><table><thead><tr><th></th><th>Classes</th><th>Members</th></tr></thead><tbody><tr><td>shrink</td><td>yes</td><td>yes</td></tr><tr><td>obfuscate</td><td>no</td><td>no</td></tr></tbody></table><p>This only allows shrinking for classes and members, but not obfuscation. <strong>-keepclasseswithmembernames</strong> act the same as <strong>-keepnames</strong>.</p><ol start="5"><li>keepclassmembernames</li></ol><table><thead><tr><th></th><th>Classes</th><th>Members</th></tr></thead><tbody><tr><td>shrink</td><td>yes</td><td>yes</td></tr><tr><td>obfuscate</td><td>yes</td><td>no</td></tr></tbody></table><p>This just not obfuscate members.</p><ol start="6"><li>Others<ul><li>For Android, I faced a problem when I want to apply Proguard/Dexguard to a library which contains jni .so files. Remember to add <strong>-keepresources</strong> to such source files, otherwise, the name and contant will be obsfucate. Also, add <strong>-dontpreverrify</strong> at the beginning of your Proguard/Dexguard rules of your Android Application. The reason you’d better to do that is because <strong>-dontpreverify</strong> prevent pre-proguard your APKs/AARs. There is no need to do so for Android and it will save time.</li></ul></li></ol><h3 id="Examples"><a href="#Examples" class="headerlink" title="Examples"></a>Examples</h3><p>Keep Constructor/Methods of a class:</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-keep, allowshrinking, allowoptimization <span class="class"><span class="keyword">class</span> <span class="title">com</span>.<span class="title">package</span>.<span class="title">company</span>.<span class="title">class</span> </span>&#123;</span><br><span class="line">    &lt;init&gt;(...);</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">iAmAMethod</span><span class="params">(<span class="keyword">int</span>)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
       
       
       <categories>
+          
+          <category> Android </category>
           
           <category> Proguard/Dexguard </category>
           
@@ -139,6 +153,8 @@
       
       
         <tags>
+            
+            <tag> Android </tag>
             
             <tag> Proguard/Dexguard </tag>
             
@@ -156,7 +172,9 @@
       
       <categories>
           
-          <category> Java - Concurrency </category>
+          <category> Java </category>
+          
+          <category> Concurrency </category>
           
       </categories>
       
@@ -181,7 +199,9 @@
       
       <categories>
           
-          <category> Java - Concurrency </category>
+          <category> Java </category>
+          
+          <category> Concurrency </category>
           
       </categories>
       
@@ -189,6 +209,8 @@
         <tags>
             
             <tag> Java </tag>
+            
+            <tag> Concurrency </tag>
             
         </tags>
       
@@ -250,6 +272,8 @@
       
       <categories>
           
+          <category> Android </category>
+          
           <category> Proguard/Dexguard </category>
           
       </categories>
@@ -257,7 +281,36 @@
       
         <tags>
             
+            <tag> Android </tag>
+            
             <tag> Proguard/Dexguard </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>Maunally Import a Library in an Android Project</title>
+      <link href="/2018/06/27/Maunally-Import-a-Library-in-an-Android-Project/"/>
+      <url>/2018/06/27/Maunally-Import-a-Library-in-an-Android-Project/</url>
+      
+        <content type="html"><![CDATA[<p>Sometimes we use third-party library, or we implements a module and want it to be a part of our main code’s library. In both scenarios, we can import a library as a module.</p><h3 id="How-to-import-a-library-in-Android-Studio"><a href="#How-to-import-a-library-in-Android-Studio" class="headerlink" title="How to import a library in Android Studio?"></a>How to import a library in Android Studio?</h3><ol><li><strong>File &gt; New &gt; Import modlue &gt; add the library path</strong>.</li><li>Change library module gradle:<ol><li>Change <code>“apply plugin: ‘com.android.application’”</code> to <code>“apply plugin: ‘com.android.library’”</code></li><li>Remove applicationId.</li></ol></li></ol><a id="more"></a><ol start="3"><li>Change dependency from “compile” to “implementation”</li><li><strong>File &gt; Project Structure &gt; app &gt; Dependencies</strong>, add module library.</li><li>Downgrade gradle version in project gradle to “2.3.3” or “2.3.2”</li><li>Put/Change “buildToolsVersion “27.0.1” and “useLibrary ‘org.apache.http.legacy’” in app and carto library module.</li></ol><h3 id="UnsatisfiedLinkError-happens"><a href="#UnsatisfiedLinkError-happens" class="headerlink" title="UnsatisfiedLinkError happens?"></a>UnsatisfiedLinkError happens?</h3><p>This is because no .so file in the app to let the app know there is a new library added. There are several steps involved to add up .so file.</p><ol><li>Go to <strong>Project</strong> view.</li><li>Copy library directory, move it under <strong>app &gt; libs</strong>. Now you are able to see .so files.</li><li>Copy <strong>jni</strong> directory under <strong>app &gt; src &gt; main</strong>.</li><li>Change name of this directory from <strong>jni</strong> to <strong>jniLibs</strong>.</li><li>Delete no longer using library directory in <strong>app &gt; libs</strong>.</li></ol><p>Now .so file exists in the app in a correct directory.<br>Then open mainAcitivity add those lines in the class:</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> &#123;         </span><br><span class="line">    System.loadLibrary(<span class="string">"library"</span>); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="How-to-Run"><a href="#How-to-Run" class="headerlink" title="How to Run?"></a>How to Run?</h3><p>Since we added a library as a module, therefore, our compile will ask us to edit configuration. To avoid that, go back to MainActivity and run MainActivity instead.</p><p>###Import library by .aar file</p><p>It is much more easy than import a library by moudle. Some library provide .aar file, we can simply import it by those following steps:</p><ol><li><p>add <code>flatDir {dirs &#39;libs&#39; }</code> in the project level build.gradle under <code>allprojects { repositories { ... } }</code> level.</p></li><li><p>copy .aar file that you want to import under the app’s libs directory.</p></li><li><p>add <code>implementation(name: &#39;XXX&#39;, ext: &#39;aar&#39;)</code> in the app level build.gradle under dependencies level.</p></li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> Android </category>
+          
+          <category> SDK </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Android </tag>
+            
+            <tag> SDK </tag>
             
         </tags>
       
@@ -273,12 +326,16 @@
       
       <categories>
           
+          <category> Android </category>
+          
           <category> Proguard/Dexguard </category>
           
       </categories>
       
       
         <tags>
+            
+            <tag> Android </tag>
             
             <tag> Proguard/Dexguard </tag>
             
@@ -292,29 +349,6 @@
       <url>/2018/06/27/How-to-publish-your-Android-App/</url>
       
         <content type="html"><![CDATA[<h3 id="Steps"><a href="#Steps" class="headerlink" title="Steps:"></a>Steps:</h3><ol><li>Make sure the current version is great.</li><li>Change version number for all gradles.</li><li>Generate signed APK<ul><li><strong>File &gt; Project Structure</strong>, deal with Signing and Build Types</li><li><strong>Build &gt; Generate Signed APK</strong></li></ul></li></ol><a id="more"></a><ol start="4"><li>Wrap APK and mapping file to a binary directory. Make sure everything is consistent.</li><li>Add tags<ul><li>git tag -a X.X.X -m “some commit”</li><li>git push origin X.X.X</li><li>more info: <a href="https://git-scm.com/book/en/v2/Git-Basics-Tagging" target="_blank" rel="noopener">https://git-scm.com/book/en/v2/Git-Basics-Tagging</a></li></ul></li><li>Go to Google Play, app releases to release.</li></ol>]]></content>
-      
-      
-      <categories>
-          
-          <category> Android </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Android </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    <entry>
-      <title>Maunally Import a Library in an Android Project</title>
-      <link href="/2018/06/27/Maunally-Import-a-Library-in-an-Android-Project/"/>
-      <url>/2018/06/27/Maunally-Import-a-Library-in-an-Android-Project/</url>
-      
-        <content type="html"><![CDATA[<p>Sometimes we use third-party library, or we implements a module and want it to be a part of our main code’s library. In both scenarios, we can import a library as a module.</p><h3 id="How-to-import-a-library-in-Android-Studio"><a href="#How-to-import-a-library-in-Android-Studio" class="headerlink" title="How to import a library in Android Studio?"></a>How to import a library in Android Studio?</h3><ol><li><strong>File &gt; New &gt; Import modlue &gt; add the library path</strong>.</li><li>Change library module gradle:<ol><li>Change <code>“apply plugin: ‘com.android.application’”</code> to <code>“apply plugin: ‘com.android.library’”</code></li><li>Remove applicationId.</li></ol></li></ol><a id="more"></a><ol start="3"><li>Change dependency from “compile” to “implementation”</li><li><strong>File &gt; Project Structure &gt; app &gt; Dependencies</strong>, add module library.</li><li>Downgrade gradle version in project gradle to “2.3.3” or “2.3.2”</li><li>Put/Change “buildToolsVersion “27.0.1” and “useLibrary ‘org.apache.http.legacy’” in app and carto library module.</li></ol><h3 id="UnsatisfiedLinkError-happens"><a href="#UnsatisfiedLinkError-happens" class="headerlink" title="UnsatisfiedLinkError happens?"></a>UnsatisfiedLinkError happens?</h3><p>This is because no .so file in the app to let the app know there is a new library added. There are several steps involved to add up .so file.</p><ol><li>Go to <strong>Project</strong> view.</li><li>Copy library directory, move it under <strong>app &gt; libs</strong>. Now you are able to see .so files.</li><li>Copy <strong>jni</strong> directory under <strong>app &gt; src &gt; main</strong>.</li><li>Change name of this directory from <strong>jni</strong> to <strong>jniLibs</strong>.</li><li>Delete no longer using library directory in <strong>app &gt; libs</strong>.</li></ol><p>Now .so file exists in the app in a correct directory.<br>Then open mainAcitivity add those lines in the class:</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> &#123;         </span><br><span class="line">    System.loadLibrary(<span class="string">"library"</span>); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="How-to-Run"><a href="#How-to-Run" class="headerlink" title="How to Run?"></a>How to Run?</h3><p>Since we added a library as a module, therefore, our compile will ask us to edit configuration. To avoid that, go back to MainActivity and run MainActivity instead.</p><p>###Import library by .aar file</p><p>It is much more easy than import a library by moudle. Some library provide .aar file, we can simply import it by those following steps:</p><ol><li><p>add <code>flatDir {dirs &#39;libs&#39; }</code> in the project level build.gradle under <code>allprojects { repositories { ... } }</code> level.</p></li><li><p>copy .aar file that you want to import under the app’s libs directory.</p></li><li><p>add <code>implementation(name: &#39;XXX&#39;, ext: &#39;aar&#39;)</code> in the app level build.gradle under dependencies level.</p></li></ol>]]></content>
       
       
       <categories>
