@@ -1,5 +1,5 @@
 createdAt: "2018-07-23T14:17:03.759Z"
-updatedAt: "2018-09-19T16:32:33.332Z"
+updatedAt: "2018-09-19T19:36:06.962Z"
 content: '''
   title: Use Artifactory to Upload SDKs
   date: 2018-07-19 10:07:39
@@ -8,6 +8,7 @@ content: '''
   tags:
   - Android
   - Artifactory
+  - SDK
   ---
   
   When you build up an Android library, but not sure if it works properly. When a company has multiple modules and want to allow their employees access and use module easily. Aritifactory is one tool that is useful for speeding up development cycles. You can publish your modules or libraries into Artifactory repositories, and only let people in localhost to use them.
@@ -127,6 +128,10 @@ content: '''
 folder: "677c6f5c3ec3b2b88bb9"
 title: "title: Use Artifactory to Upload SDKs"
 type: "MARKDOWN_NOTE"
-tags: []
+tags: [
+  "Artifactory"
+  "Android"
+  "SDK"
+]
 isStarred: false
 isTrashed: false

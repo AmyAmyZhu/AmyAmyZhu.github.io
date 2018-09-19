@@ -1,0 +1,438 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="AmyZhu&#39;s Blog">
+    <title>Use MkDocs to Build-up Documentation Wiki - AmyZhu&#39;s Blog</title>
+    <meta name="author" content="Amy Zhu">
+    
+    
+        <link rel="icon" href="http://yoursite.com/assets/images/icon.png">
+    
+    
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+    
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Amy Zhu","sameAs":["https://github.com/AmyAmyZhu","https://www.linkedin.com/in/zefang-zhu-6a9259113/"],"image":"icon.png"},"articleBody":"MkDocs is a great documentation tool that can generate a beautiful Wiki website for your project. Here is the step to install and use it.\nEnsure Python and pip are installed on your system and check the versions of them are updated:\n\n12pip install --upgrade pythonpip install --upgrade pip\nIf you need to install pip for the first time, download get-pip.py. Then run the following command to install it:\n1python get-pip.py\nInstalling MkDocsInstall the mkdocs package using pip:\n1pip install mkdocs\nCreate new project if needed:\n1mkdocs new my-project\nThere’s a single configuration file named mkdocs.yml, and a folder named docs that will contain your documentation source files. Right now the docs folder just contains a single documentation page, named index.md.\nMkDocs comes with a built-in dev-server that lets you preview your documentation as you work on it. Make sure you’re in the same directory as the mkdocs.yml configuration file, and then start the server by running the mkdocs serve command:\n123456$ mkdocs serveINFO    -  Building documentation...INFO    -  Cleaning site directory[I 160402 15:50:43 server:271] Serving on http://127.0.0.1:8000[I 160402 15:50:43 handlers:58] Start watching changes[I 160402 15:50:43 handlers:60] Start detecting changes\nThemeTheme I choose is Material: https://squidfunk.github.io/mkdocs-material/getting-started/, you can search from MkDocs website or github to find a theme you like.\ninstalling Material is simple:\n1pip install mkdocs-material\nDon’t use git clone recommanded on the website. It is not working.\n\nAdd the following lines in mkdocs.yml:\n12theme:name: &apos;material&apos;\nCustomizationIn order to remove the footer of MkDocs, customize Material theme under the path: \\Library\\Python. Find the python version you use and go to site-packages, this is the place pip put Material theme after downloaded.\nUnder path material\\partials\\footer.html, delete the footer.\nYou can do other customization of theme Material in this folder as well.\nExtensionsExtensions currently I use are:\n\nAdmonition: is an extension included in the standard Markdown library that makes it possible to add block-styled side content to your documentation, for example summaries, notes, hints or warnings.\nCodeHilite: is an extension that adds syntax highlighting to code blocks and is included in the standard Markdown library. The highlighting process is executed during compilation of the Markdown file.\nPyMdown: Extensions is a collection of Markdown extensions that add some great features to the standard Markdown library. For this reason, the installation of this package is highly recommended as it’s well-integrated with the Material theme.\n\n","dateCreated":"2018-09-19T15:34:59-04:00","dateModified":"2018-09-19T15:47:24-04:00","datePublished":"2018-09-19T15:34:59-04:00","description":"MkDocs is a great documentation tool that can generate a beautiful Wiki website for your project. Here is the step to install and use it.\nEnsure Python and pip are installed on your system and check the versions of them are updated:","headline":"Use MkDocs to Build-up Documentation Wiki","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://yoursite.com/2018/09/19/Use-MkDocs-to-Build-up-Documentation-Wiki/"},"publisher":{"@type":"Organization","name":"Amy Zhu","sameAs":["https://github.com/AmyAmyZhu","https://www.linkedin.com/in/zefang-zhu-6a9259113/"],"image":"icon.png","logo":{"@type":"ImageObject","url":"icon.png"}},"url":"http://yoursite.com/2018/09/19/Use-MkDocs-to-Build-up-Documentation-Wiki/","keywords":"Markdown, Wiki, Documentation"}</script>
+    <meta name="description" content="MkDocs is a great documentation tool that can generate a beautiful Wiki website for your project. Here is the step to install and use it. Ensure Python and pip are installed on your system and check t">
+<meta name="keywords" content="Markdown,Wiki,Documentation">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="Use MkDocs to Build-up Documentation Wiki">
+<meta property="og:url" content="http://yoursite.com/2018/09/19/Use-MkDocs-to-Build-up-Documentation-Wiki/index.html">
+<meta property="og:site_name" content="AmyZhu&#39;s Blog">
+<meta property="og:description" content="MkDocs is a great documentation tool that can generate a beautiful Wiki website for your project. Here is the step to install and use it. Ensure Python and pip are installed on your system and check t">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-09-19T19:47:24.361Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Use MkDocs to Build-up Documentation Wiki">
+<meta name="twitter:description" content="MkDocs is a great documentation tool that can generate a beautiful Wiki website for your project. Here is the step to install and use it. Ensure Python and pip are installed on your system and check t">
+    
+    
+        
+    
+    
+        <meta property="og:image" content="http://yoursite.com/assets/images/icon.png"/>
+    
+    
+    
+    
+    <!--STYLES-->
+    <link rel="stylesheet" href="/assets/css/style-du2xmrqdqrl2ollgeiw050kpl6l4nbyz7bumjuurjgsxyopifvukebxc9lqe.min.css">
+    <!--STYLES END-->
+    
+
+    
+</head>
+
+    <body>
+        <div id="blog">
+            <!-- Define author's picture -->
+
+
+    
+        
+            
+        
+    
+
+<header id="header" data-behavior="4">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <div class="header-title">
+        <a class="header-title-link" href="/ ">AmyZhu&#39;s Blog</a>
+    </div>
+    
+        
+            <a  class="header-right-picture "
+                href="#about">
+        
+        
+            <img class="header-picture" src="/assets/images/icon.png" alt="Author&#39;s picture"/>
+        
+        </a>
+    
+</header>
+
+            <!-- Define author's picture -->
+
+
+
+        
+    
+
+<nav id="sidebar" data-behavior="4">
+    <div class="sidebar-container">
+        
+            <div class="sidebar-profile">
+                <a href="/#about">
+                    <img class="sidebar-profile-picture" src="/assets/images/icon.png" alt="Author&#39;s picture"/>
+                </a>
+                <h4 class="sidebar-profile-name">Amy Zhu</h4>
+                
+                    <h5 class="sidebar-profile-bio"><p>学而不思则罔，思而不学则殆。</p>
+</h5>
+                
+            </div>
+        
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/ "
+                            
+                            title="Home"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-home" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Home</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/all-categories"
+                            
+                            title="Categories"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Categories</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/all-tags"
+                            
+                            title="Tags"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-tags" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Tags</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/all-archives"
+                            
+                            title="Archives"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Archives</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="#about"
+                            
+                            title="About"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-question" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">About</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link " href="https://github.com/AmyAmyZhu" target="_blank" rel="noopener" title="GitHub">
+                    
+                        <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">GitHub</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link " href="https://www.linkedin.com/in/zefang-zhu-6a9259113/" target="_blank" rel="noopener" title="LinkedIn">
+                    
+                        <i class="sidebar-button-icon fab fa-linkedin" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">LinkedIn</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+    </div>
+</nav>
+
+            
+            <div id="main" data-behavior="4"
+                 class="
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post">
+    
+    
+        <div class="post-header main-content-wrap text-left">
+    
+        <h1 class="post-title">
+            Use MkDocs to Build-up Documentation Wiki
+        </h1>
+    
+    
+        <div class="post-meta">
+    <time datetime="2018-09-19T15:34:59-04:00">
+	
+		    Sep 19, 2018
+    	
+    </time>
+    
+        <span>in </span>
+        
+    <a class="category-link" href="/categories/Markdown/">Markdown</a>
+
+
+    
+</div>
+
+    
+</div>
+
+    
+    <div class="post-content markdown">
+        <div class="main-content-wrap">
+            <p>MkDocs is a great documentation tool that can generate a beautiful Wiki website for your project. Here is the step to install and use it.</p>
+<p>Ensure Python and pip are installed on your system and check the versions of them are updated:</p>
+<a id="more"></a>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip install --upgrade python</span><br><span class="line">pip install --upgrade pip</span><br></pre></td></tr></table></figure>
+<p>If you need to install pip for the first time, download get-pip.py. Then run the following command to install it:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python get-pip.py</span><br></pre></td></tr></table></figure>
+<h2 id="Installing-MkDocs"><a href="#Installing-MkDocs" class="headerlink" title="Installing MkDocs"></a>Installing MkDocs</h2><p>Install the mkdocs package using pip:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install mkdocs</span><br></pre></td></tr></table></figure>
+<p>Create new project if needed:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdocs new my-project</span><br></pre></td></tr></table></figure>
+<p>There’s a single configuration file named <code>mkdocs.yml</code>, and a folder named <code>docs</code> that will contain your documentation source files. Right now the <code>docs</code> folder just contains a single documentation page, named <code>index.md</code>.</p>
+<p>MkDocs comes with a built-in dev-server that lets you preview your documentation as you work on it. Make sure you’re in the same directory as the <code>mkdocs.yml</code> configuration file, and then start the server by running the <code>mkdocs serve</code> command:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ mkdocs serve</span><br><span class="line">INFO    -  Building documentation...</span><br><span class="line">INFO    -  Cleaning site directory</span><br><span class="line">[I 160402 15:50:43 server:271] Serving on http://127.0.0.1:8000</span><br><span class="line">[I 160402 15:50:43 handlers:58] Start watching changes</span><br><span class="line">[I 160402 15:50:43 handlers:60] Start detecting changes</span><br></pre></td></tr></table></figure>
+<h2 id="Theme"><a href="#Theme" class="headerlink" title="Theme"></a>Theme</h2><p>Theme I choose is Material: <a href="https://squidfunk.github.io/mkdocs-material/getting-started/" target="_blank" rel="noopener">https://squidfunk.github.io/mkdocs-material/getting-started/</a>, you can search from MkDocs website or github to find a theme you like.</p>
+<p>installing Material is simple:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install mkdocs-material</span><br></pre></td></tr></table></figure>
+<div class="alert danger no-icon"><p>Don’t use git clone recommanded on the website. It is not working.</p>
+</div>
+<p>Add the following lines in <code>mkdocs.yml</code>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">theme:</span><br><span class="line">name: &apos;material&apos;</span><br></pre></td></tr></table></figure>
+<h3 id="Customization"><a href="#Customization" class="headerlink" title="Customization"></a>Customization</h3><p>In order to remove the footer of MkDocs, customize Material theme under the path: <code>\Library\Python</code>. Find the python version you use and go to <code>site-packages</code>, this is the place pip put Material theme after downloaded.</p>
+<p>Under path <code>material\partials\footer.html</code>, delete the footer.</p>
+<p>You can do other customization of theme Material in this folder as well.</p>
+<h2 id="Extensions"><a href="#Extensions" class="headerlink" title="Extensions"></a>Extensions</h2><p>Extensions currently I use are:</p>
+<ol>
+<li><strong>Admonition</strong>: is an extension included in the standard Markdown library that makes it possible to add block-styled side content to your documentation, for example summaries, notes, hints or warnings.</li>
+<li><strong>CodeHilite</strong>: is an extension that adds syntax highlighting to code blocks and is included in the standard Markdown library. The highlighting process is executed during compilation of the Markdown file.</li>
+<li><strong>PyMdown</strong>: Extensions is a collection of Markdown extensions that add some great features to the standard Markdown library. For this reason, the installation of this package is highly recommended as it’s well-integrated with the Material theme.</li>
+</ol>
+
+            
+
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        
+            <div class="post-footer-tags">
+                <span class="text-color-light text-small">TAGGED IN</span><br/>
+                
+    <a class="tag tag--primary tag--small t-link" href="/tags/Documentation/">Documentation</a> <a class="tag tag--primary tag--small t-link" href="/tags/Markdown/">Markdown</a> <a class="tag tag--primary tag--small t-link" href="/tags/Wiki/">Wiki</a>
+
+            </div>
+        
+        
+            <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--disabled">
+                
+                    <i class="fa fa-angle-left" aria-hidden="true"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2018/09/18/Android-Support-Disabled-Error/" data-tooltip="Android Support Disabled Error" aria-label="NEXT: Android Support Disabled Error">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+        
+            
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2018 Amy Zhu. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--disabled">
+                
+                    <i class="fa fa-angle-left" aria-hidden="true"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2018/09/18/Android-Support-Disabled-Error/" data-tooltip="Android Support Disabled Error" aria-label="NEXT: Android Support Disabled Error">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+    <i id="btn-close-shareoptions" class="fa fa-times"></i>
+    <ul class="share-options">
+        
+    </ul>
+</div>
+
+            
+        </div>
+        
+
+
+    
+        
+    
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-times"></i>
+        </div>
+        
+            <img id="about-card-picture" src="/assets/images/icon.png" alt="Author&#39;s picture"/>
+        
+            <h4 id="about-card-name">Amy Zhu</h4>
+        
+            <div id="about-card-bio"><p>学而不思则罔，思而不学则殆。</p>
+</div>
+        
+        
+            <div id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br/>
+                <p>Mapsted Software Engineer</p>
+
+            </div>
+        
+        
+            <div id="about-card-location">
+                <i class="fa fa-map-marker-alt"></i>
+                <br/>
+                Toronto, ON
+            </div>
+        
+    </div>
+</div>
+
+        
+        
+<div id="cover" style="background-image:url('/assets/images/cover-v1.2.0.jpg');"></div>
+        <!--SCRIPTS-->
+<script src="/assets/js/script-vufjrm3fmbuttogo1hxuu0w9w0sesk5iyysjuguc2hdhufot9szxg8twijry.min.js"></script>
+<!--SCRIPTS END-->
+
+    
+
+
+
+    </body>
+</html>

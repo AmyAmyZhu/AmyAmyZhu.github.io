@@ -3,6 +3,33 @@
   
     
     <entry>
+      <title>Use MkDocs to Build-up Documentation Wiki</title>
+      <link href="/2018/09/19/Use-MkDocs-to-Build-up-Documentation-Wiki/"/>
+      <url>/2018/09/19/Use-MkDocs-to-Build-up-Documentation-Wiki/</url>
+      
+        <content type="html"><![CDATA[<p>MkDocs is a great documentation tool that can generate a beautiful Wiki website for your project. Here is the step to install and use it.</p><p>Ensure Python and pip are installed on your system and check the versions of them are updated:</p><a id="more"></a><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip install --upgrade python</span><br><span class="line">pip install --upgrade pip</span><br></pre></td></tr></table></figure><p>If you need to install pip for the first time, download get-pip.py. Then run the following command to install it:</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python get-pip.py</span><br></pre></td></tr></table></figure><h2 id="Installing-MkDocs"><a href="#Installing-MkDocs" class="headerlink" title="Installing MkDocs"></a>Installing MkDocs</h2><p>Install the mkdocs package using pip:</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install mkdocs</span><br></pre></td></tr></table></figure><p>Create new project if needed:</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdocs new my-project</span><br></pre></td></tr></table></figure><p>There’s a single configuration file named <code>mkdocs.yml</code>, and a folder named <code>docs</code> that will contain your documentation source files. Right now the <code>docs</code> folder just contains a single documentation page, named <code>index.md</code>.</p><p>MkDocs comes with a built-in dev-server that lets you preview your documentation as you work on it. Make sure you’re in the same directory as the <code>mkdocs.yml</code> configuration file, and then start the server by running the <code>mkdocs serve</code> command:</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ mkdocs serve</span><br><span class="line">INFO    -  Building documentation...</span><br><span class="line">INFO    -  Cleaning site directory</span><br><span class="line">[I 160402 15:50:43 server:271] Serving on http://127.0.0.1:8000</span><br><span class="line">[I 160402 15:50:43 handlers:58] Start watching changes</span><br><span class="line">[I 160402 15:50:43 handlers:60] Start detecting changes</span><br></pre></td></tr></table></figure><h2 id="Theme"><a href="#Theme" class="headerlink" title="Theme"></a>Theme</h2><p>Theme I choose is Material: <a href="https://squidfunk.github.io/mkdocs-material/getting-started/" target="_blank" rel="noopener">https://squidfunk.github.io/mkdocs-material/getting-started/</a>, you can search from MkDocs website or github to find a theme you like.</p><p>installing Material is simple:</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install mkdocs-material</span><br></pre></td></tr></table></figure><div class="alert danger no-icon"><p>Don’t use git clone recommanded on the website. It is not working.</p></div><p>Add the following lines in <code>mkdocs.yml</code>:</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">theme:</span><br><span class="line">name: &apos;material&apos;</span><br></pre></td></tr></table></figure><h3 id="Customization"><a href="#Customization" class="headerlink" title="Customization"></a>Customization</h3><p>In order to remove the footer of MkDocs, customize Material theme under the path: <code>\Library\Python</code>. Find the python version you use and go to <code>site-packages</code>, this is the place pip put Material theme after downloaded.</p><p>Under path <code>material\partials\footer.html</code>, delete the footer.</p><p>You can do other customization of theme Material in this folder as well.</p><h2 id="Extensions"><a href="#Extensions" class="headerlink" title="Extensions"></a>Extensions</h2><p>Extensions currently I use are:</p><ol><li><strong>Admonition</strong>: is an extension included in the standard Markdown library that makes it possible to add block-styled side content to your documentation, for example summaries, notes, hints or warnings.</li><li><strong>CodeHilite</strong>: is an extension that adds syntax highlighting to code blocks and is included in the standard Markdown library. The highlighting process is executed during compilation of the Markdown file.</li><li><strong>PyMdown</strong>: Extensions is a collection of Markdown extensions that add some great features to the standard Markdown library. For this reason, the installation of this package is highly recommended as it’s well-integrated with the Material theme.</li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> Markdown </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Markdown </tag>
+            
+            <tag> Wiki </tag>
+            
+            <tag> Documentation </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
       <title>Android Support Disabled Error</title>
       <link href="/2018/09/18/Android-Support-Disabled-Error/"/>
       <url>/2018/09/18/Android-Support-Disabled-Error/</url>
@@ -50,9 +77,9 @@
             
             <tag> Android </tag>
             
-            <tag> Proguard/Dexguard </tag>
-            
             <tag> Errors </tag>
+            
+            <tag> Proguard/Dexguard </tag>
             
         </tags>
       
@@ -290,29 +317,6 @@
     </entry>
     
     <entry>
-      <title>How to publish your Android App?</title>
-      <link href="/2018/06/27/How-to-publish-your-Android-App/"/>
-      <url>/2018/06/27/How-to-publish-your-Android-App/</url>
-      
-        <content type="html"><![CDATA[<h3 id="Steps"><a href="#Steps" class="headerlink" title="Steps:"></a>Steps:</h3><ol><li>Make sure the current version is great.</li><li>Change version number for all gradles.</li><li>Generate signed APK<ul><li><strong>File &gt; Project Structure</strong>, deal with Signing and Build Types</li><li><strong>Build &gt; Generate Signed APK</strong></li></ul></li></ol><a id="more"></a><ol start="4"><li>Wrap APK and mapping file to a binary directory. Make sure everything is consistent.</li><li>Add tags<ul><li>git tag -a X.X.X -m “some commit”</li><li>git push origin X.X.X</li><li>more info: <a href="https://git-scm.com/book/en/v2/Git-Basics-Tagging" target="_blank" rel="noopener">https://git-scm.com/book/en/v2/Git-Basics-Tagging</a></li></ul></li><li>Go to Google Play, app releases to release.</li></ol>]]></content>
-      
-      
-      <categories>
-          
-          <category> Android </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Android </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    <entry>
       <title>Decode an Android App from APK</title>
       <link href="/2018/06/27/Decode-an-Android-App-from-APK/"/>
       <url>/2018/06/27/Decode-an-Android-App-from-APK/</url>
@@ -334,6 +338,29 @@
             <tag> Android </tag>
             
             <tag> Proguard/Dexguard </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>How to publish your Android App?</title>
+      <link href="/2018/06/27/How-to-publish-your-Android-App/"/>
+      <url>/2018/06/27/How-to-publish-your-Android-App/</url>
+      
+        <content type="html"><![CDATA[<h3 id="Steps"><a href="#Steps" class="headerlink" title="Steps:"></a>Steps:</h3><ol><li>Make sure the current version is great.</li><li>Change version number for all gradles.</li><li>Generate signed APK<ul><li><strong>File &gt; Project Structure</strong>, deal with Signing and Build Types</li><li><strong>Build &gt; Generate Signed APK</strong></li></ul></li></ol><a id="more"></a><ol start="4"><li>Wrap APK and mapping file to a binary directory. Make sure everything is consistent.</li><li>Add tags<ul><li>git tag -a X.X.X -m “some commit”</li><li>git push origin X.X.X</li><li>more info: <a href="https://git-scm.com/book/en/v2/Git-Basics-Tagging" target="_blank" rel="noopener">https://git-scm.com/book/en/v2/Git-Basics-Tagging</a></li></ul></li><li>Go to Google Play, app releases to release.</li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> Android </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Android </tag>
             
         </tags>
       

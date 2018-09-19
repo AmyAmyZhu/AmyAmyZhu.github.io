@@ -1,5 +1,5 @@
 createdAt: "2018-07-23T14:17:03.757Z"
-updatedAt: "2018-09-19T13:00:05.447Z"
+updatedAt: "2018-09-19T19:38:33.389Z"
 content: '''
   title: How to publish your Android App?
   date: 2018-06-27 22:04:53
@@ -28,6 +28,8 @@ content: '''
 folder: "677c6f5c3ec3b2b88bb9"
 title: "title: How to publish your Android App?"
 type: "MARKDOWN_NOTE"
-tags: []
+tags: [
+  "Android"
+]
 isStarred: false
 isTrashed: false

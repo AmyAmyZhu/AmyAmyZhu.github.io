@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-09-19T14:04:00.130Z</updated>
+  <updated>2018-09-19T19:47:24.361Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Use MkDocs to Build-up Documentation Wiki</title>
+    <link href="http://yoursite.com/2018/09/19/Use-MkDocs-to-Build-up-Documentation-Wiki/"/>
+    <id>http://yoursite.com/2018/09/19/Use-MkDocs-to-Build-up-Documentation-Wiki/</id>
+    <published>2018-09-19T19:34:59.000Z</published>
+    <updated>2018-09-19T19:47:24.361Z</updated>
+    
+    <content type="html"><![CDATA[<p>MkDocs is a great documentation tool that can generate a beautiful Wiki website for your project. Here is the step to install and use it.</p><p>Ensure Python and pip are installed on your system and check the versions of them are updated:</p><a id="more"></a><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip install --upgrade python</span><br><span class="line">pip install --upgrade pip</span><br></pre></td></tr></table></figure><p>If you need to install pip for the first time, download get-pip.py. Then run the following command to install it:</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python get-pip.py</span><br></pre></td></tr></table></figure><h2 id="Installing-MkDocs"><a href="#Installing-MkDocs" class="headerlink" title="Installing MkDocs"></a>Installing MkDocs</h2><p>Install the mkdocs package using pip:</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install mkdocs</span><br></pre></td></tr></table></figure><p>Create new project if needed:</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdocs new my-project</span><br></pre></td></tr></table></figure><p>There’s a single configuration file named <code>mkdocs.yml</code>, and a folder named <code>docs</code> that will contain your documentation source files. Right now the <code>docs</code> folder just contains a single documentation page, named <code>index.md</code>.</p><p>MkDocs comes with a built-in dev-server that lets you preview your documentation as you work on it. Make sure you’re in the same directory as the <code>mkdocs.yml</code> configuration file, and then start the server by running the <code>mkdocs serve</code> command:</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ mkdocs serve</span><br><span class="line">INFO    -  Building documentation...</span><br><span class="line">INFO    -  Cleaning site directory</span><br><span class="line">[I 160402 15:50:43 server:271] Serving on http://127.0.0.1:8000</span><br><span class="line">[I 160402 15:50:43 handlers:58] Start watching changes</span><br><span class="line">[I 160402 15:50:43 handlers:60] Start detecting changes</span><br></pre></td></tr></table></figure><h2 id="Theme"><a href="#Theme" class="headerlink" title="Theme"></a>Theme</h2><p>Theme I choose is Material: <a href="https://squidfunk.github.io/mkdocs-material/getting-started/" target="_blank" rel="noopener">https://squidfunk.github.io/mkdocs-material/getting-started/</a>, you can search from MkDocs website or github to find a theme you like.</p><p>installing Material is simple:</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install mkdocs-material</span><br></pre></td></tr></table></figure><div class="alert danger no-icon"><p>Don’t use git clone recommanded on the website. It is not working.</p></div><p>Add the following lines in <code>mkdocs.yml</code>:</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">theme:</span><br><span class="line">name: &apos;material&apos;</span><br></pre></td></tr></table></figure><h3 id="Customization"><a href="#Customization" class="headerlink" title="Customization"></a>Customization</h3><p>In order to remove the footer of MkDocs, customize Material theme under the path: <code>\Library\Python</code>. Find the python version you use and go to <code>site-packages</code>, this is the place pip put Material theme after downloaded.</p><p>Under path <code>material\partials\footer.html</code>, delete the footer.</p><p>You can do other customization of theme Material in this folder as well.</p><h2 id="Extensions"><a href="#Extensions" class="headerlink" title="Extensions"></a>Extensions</h2><p>Extensions currently I use are:</p><ol><li><strong>Admonition</strong>: is an extension included in the standard Markdown library that makes it possible to add block-styled side content to your documentation, for example summaries, notes, hints or warnings.</li><li><strong>CodeHilite</strong>: is an extension that adds syntax highlighting to code blocks and is included in the standard Markdown library. The highlighting process is executed during compilation of the Markdown file.</li><li><strong>PyMdown</strong>: Extensions is a collection of Markdown extensions that add some great features to the standard Markdown library. For this reason, the installation of this package is highly recommended as it’s well-integrated with the Material theme.</li></ol>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;MkDocs is a great documentation tool that can generate a beautiful Wiki website for your project. Here is the step to install and use it.&lt;/p&gt;
+&lt;p&gt;Ensure Python and pip are installed on your system and check the versions of them are updated:&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Markdown" scheme="http://yoursite.com/categories/Markdown/"/>
+    
+    
+      <category term="Markdown" scheme="http://yoursite.com/tags/Markdown/"/>
+    
+      <category term="Wiki" scheme="http://yoursite.com/tags/Wiki/"/>
+    
+      <category term="Documentation" scheme="http://yoursite.com/tags/Documentation/"/>
+    
+  </entry>
   
   <entry>
     <title>Android Support Disabled Error</title>
@@ -67,9 +94,9 @@
     
       <category term="Android" scheme="http://yoursite.com/tags/Android/"/>
     
-      <category term="Proguard/Dexguard" scheme="http://yoursite.com/tags/Proguard-Dexguard/"/>
-    
       <category term="Errors" scheme="http://yoursite.com/tags/Errors/"/>
+    
+      <category term="Proguard/Dexguard" scheme="http://yoursite.com/tags/Proguard-Dexguard/"/>
     
   </entry>
   
@@ -160,7 +187,7 @@
     <link href="http://yoursite.com/2018/07/13/Apply-Dexguard-for-Modules/"/>
     <id>http://yoursite.com/2018/07/13/Apply-Dexguard-for-Modules/</id>
     <published>2018-07-13T13:58:09.000Z</published>
-    <updated>2018-09-19T13:59:25.311Z</updated>
+    <updated>2018-09-19T19:45:59.595Z</updated>
     
     <content type="html"><![CDATA[<h3 id="How-to-apply-Proguard-Dexguard"><a href="#How-to-apply-Proguard-Dexguard" class="headerlink" title="How to apply Proguard/Dexguard"></a>How to apply Proguard/Dexguard</h3><p>Proguard/Dexguard shrink and obsfucate resources and codes by scanning and looping up the dependencies. It will do everything it thinks necessary. To apply proguard, simple change <strong>minifyEnabled</strong> in the module/app you want to apply to be true. Android will apply for Proguard automatically.</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">buildTypes &#123;</span><br><span class="line">    release &#123;</span><br><span class="line">        minifyEnabled <span class="keyword">true</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><a id="more"></a><p>Make sure you are in the correct building type when you use Proguard/Dexguard. You can check <strong>Build Variants</strong> to see it you are in the correct building type or not.</p><p>For applying Dexguard, you need to first buy licence of dexguard, and then put the licence file under your App library. You also need to change file <strong>gradle.properties</strong> which sepcify where you put the Dexguard licence. For example:</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemProp.dexguard.licence=./app/libs/</span><br></pre></td></tr></table></figure><p>Then your app knows where to find and verify your Dexguard licence. It is not only suitable for Dexguard licence, but also other Applications/Library licences.</p><p>To apply Dexguard, first add a line in your app/module gradle file that says:</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apply plugin: <span class="string">'dexguard'</span></span><br></pre></td></tr></table></figure><p>Next you don’t need to change <strong>minifyEnabled</strong> to be true. Create a new txt file under your app files. You can call it <strong>dexguard-project.txt</strong>. Add Proguard/Dexguard rules in this file. Then go back to gradle file, add this line to tell your app where you put Dexguard rules:</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">buildTypes &#123;</span><br><span class="line">    release &#123;</span><br><span class="line">        minifyEnabled <span class="keyword">false</span></span><br><span class="line">        proguardFile <span class="string">'dexguard-project.txt'</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="Apply-Dexguard-for-Android-Libraries"><a href="#Apply-Dexguard-for-Android-Libraries" class="headerlink" title="Apply Dexguard for Android Libraries"></a>Apply Dexguard for Android Libraries</h3><p>If you want to build up an Android library and you want to ship to SDK version to others. It is extremely important you Proguard/Dexguard your SDK, otherwise reverse engineers can see how you implement your library. It is a little bit different when you apply Proguard/Dexguard.</p><p>There are four main rules for Proguard/Dexguard to protect your Apps:</p><ul><li>obfuscate: rename things, make revise engineer cannot understand your codes. They might find out multiple classes and methods are called, for example, a, therefore, they cannot find the relationship and dependencies of classes.</li><li>preverify: pre-proguard your app. No need for Android Apps.</li><li>shrink: remove unused resources. It will make your APKs/AARs small and efficient.</li><li>optimize: optimize your code, reduce dependencies of your code.</li></ul><p>If you don’t know how to make your module to be library or you don’t know if your module is a library or not. Check if you have this line in your gradle file:</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apply plugin: <span class="string">'com.android.library'</span></span><br></pre></td></tr></table></figure><p>Not only you still need <strong>proguardFile</strong> line, but also please add <strong>cosumerProguardFiles</strong> to tell Dexguard this is a library.</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">buildTypes &#123;</span><br><span class="line">    release &#123;</span><br><span class="line">        minifyEnabled <span class="keyword">false</span></span><br><span class="line">        proguardFile <span class="string">'dexguard-project.txt'</span></span><br><span class="line">        cosumerProguardFiles <span class="string">'dexguard-project.txt'</span></span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="Key-methods-in-Dexguard"><a href="#Key-methods-in-Dexguard" class="headerlink" title="Key methods in Dexguard"></a>Key methods in Dexguard</h3><p>Now we know how to apply Proguard/Dexguard, but how to apply Dexguard rules and how to use them? I am going to illustrate four import keep rules in Proguard/Dexguard.</p><ol><li>No rule</li></ol><table><thead><tr><th></th><th>Classes</th><th>Members</th></tr></thead><tbody><tr><td>shrink</td><td>yes</td><td>yes</td></tr><tr><td>obfuscate</td><td>yes</td><td>yes</td></tr></tbody></table><p>It is default. If you don’t specify a keep directive of any kind, then Proguard is going to both shrink (remove unused code) and obfuscate (rename things) both classes and class members.</p><ol start="2"><li>-keep</li></ol><table><thead><tr><th></th><th>Classes</th><th>Members</th></tr></thead><tbody><tr><td>shrink</td><td>no</td><td>no</td></tr><tr><td>obfuscate</td><td>no</td><td>no</td></tr></tbody></table><p>Keep means opposite of no rules. No shrinking, no obfuscation; not for classes, not for members. <strong>-keepclasseswithmembers</strong> is same as <strong>-keep</strong>.</p><ol start="3"><li>-keepclassmembers</li></ol><table><thead><tr><th></th><th>Classes</th><th>Members</th></tr></thead><tbody><tr><td>shrink</td><td>yes</td><td>no</td></tr><tr><td>obfuscate</td><td>yes</td><td>no</td></tr></tbody></table><p>This protects only the members of the class from shrinking and obfuscation.</p><ol start="4"><li>-keepnames</li></ol><table><thead><tr><th></th><th>Classes</th><th>Members</th></tr></thead><tbody><tr><td>shrink</td><td>yes</td><td>yes</td></tr><tr><td>obfuscate</td><td>no</td><td>no</td></tr></tbody></table><p>This only allows shrinking for classes and members, but not obfuscation. <strong>-keepclasseswithmembernames</strong> act the same as <strong>-keepnames</strong>.</p><ol start="5"><li>keepclassmembernames</li></ol><table><thead><tr><th></th><th>Classes</th><th>Members</th></tr></thead><tbody><tr><td>shrink</td><td>yes</td><td>yes</td></tr><tr><td>obfuscate</td><td>yes</td><td>no</td></tr></tbody></table><p>This just not obfuscate members.</p><ol start="6"><li>Others<ul><li>For Android, I faced a problem when I want to apply Proguard/Dexguard to a library which contains jni .so files. Remember to add <strong>-keepresources</strong> to such source files, otherwise, the name and contant will be obsfucate. Also, add <strong>-dontpreverrify</strong> at the beginning of your Proguard/Dexguard rules of your Android Application. The reason you’d better to do that is because <strong>-dontpreverify</strong> prevent pre-proguard your APKs/AARs. There is no need to do so for Android and it will save time.</li></ul></li></ol><h3 id="Examples"><a href="#Examples" class="headerlink" title="Examples"></a>Examples</h3><p>Keep Constructor/Methods of a class:</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-keep, allowshrinking, allowoptimization <span class="class"><span class="keyword">class</span> <span class="title">com</span>.<span class="title">package</span>.<span class="title">company</span>.<span class="title">class</span> </span>&#123;</span><br><span class="line">    &lt;init&gt;(...);</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">iAmAMethod</span><span class="params">(<span class="keyword">int</span>)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
     
@@ -320,36 +347,6 @@
   </entry>
   
   <entry>
-    <title>How to publish your Android App?</title>
-    <link href="http://yoursite.com/2018/06/27/How-to-publish-your-Android-App/"/>
-    <id>http://yoursite.com/2018/06/27/How-to-publish-your-Android-App/</id>
-    <published>2018-06-28T02:04:53.000Z</published>
-    <updated>2018-09-19T13:00:12.600Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="Steps"><a href="#Steps" class="headerlink" title="Steps:"></a>Steps:</h3><ol><li>Make sure the current version is great.</li><li>Change version number for all gradles.</li><li>Generate signed APK<ul><li><strong>File &gt; Project Structure</strong>, deal with Signing and Build Types</li><li><strong>Build &gt; Generate Signed APK</strong></li></ul></li></ol><a id="more"></a><ol start="4"><li>Wrap APK and mapping file to a binary directory. Make sure everything is consistent.</li><li>Add tags<ul><li>git tag -a X.X.X -m “some commit”</li><li>git push origin X.X.X</li><li>more info: <a href="https://git-scm.com/book/en/v2/Git-Basics-Tagging" target="_blank" rel="noopener">https://git-scm.com/book/en/v2/Git-Basics-Tagging</a></li></ul></li><li>Go to Google Play, app releases to release.</li></ol>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;Steps&quot;&gt;&lt;a href=&quot;#Steps&quot; class=&quot;headerlink&quot; title=&quot;Steps:&quot;&gt;&lt;/a&gt;Steps:&lt;/h3&gt;&lt;ol&gt;
-&lt;li&gt;Make sure the current version is great.&lt;/li&gt;
-&lt;li&gt;Change version number for all gradles.&lt;/li&gt;
-&lt;li&gt;Generate signed APK&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;File &amp;gt; Project Structure&lt;/strong&gt;, deal with Signing and Build Types&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Build &amp;gt; Generate Signed APK&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-    
-    </summary>
-    
-      <category term="Android" scheme="http://yoursite.com/categories/Android/"/>
-    
-    
-      <category term="Android" scheme="http://yoursite.com/tags/Android/"/>
-    
-  </entry>
-  
-  <entry>
     <title>Decode an Android App from APK</title>
     <link href="http://yoursite.com/2018/06/27/Decode-an-Android-App-from-APK/"/>
     <id>http://yoursite.com/2018/06/27/Decode-an-Android-App-from-APK/</id>
@@ -377,6 +374,36 @@
       <category term="Android" scheme="http://yoursite.com/tags/Android/"/>
     
       <category term="Proguard/Dexguard" scheme="http://yoursite.com/tags/Proguard-Dexguard/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>How to publish your Android App?</title>
+    <link href="http://yoursite.com/2018/06/27/How-to-publish-your-Android-App/"/>
+    <id>http://yoursite.com/2018/06/27/How-to-publish-your-Android-App/</id>
+    <published>2018-06-28T02:04:53.000Z</published>
+    <updated>2018-09-19T13:00:12.600Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="Steps"><a href="#Steps" class="headerlink" title="Steps:"></a>Steps:</h3><ol><li>Make sure the current version is great.</li><li>Change version number for all gradles.</li><li>Generate signed APK<ul><li><strong>File &gt; Project Structure</strong>, deal with Signing and Build Types</li><li><strong>Build &gt; Generate Signed APK</strong></li></ul></li></ol><a id="more"></a><ol start="4"><li>Wrap APK and mapping file to a binary directory. Make sure everything is consistent.</li><li>Add tags<ul><li>git tag -a X.X.X -m “some commit”</li><li>git push origin X.X.X</li><li>more info: <a href="https://git-scm.com/book/en/v2/Git-Basics-Tagging" target="_blank" rel="noopener">https://git-scm.com/book/en/v2/Git-Basics-Tagging</a></li></ul></li><li>Go to Google Play, app releases to release.</li></ol>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;Steps&quot;&gt;&lt;a href=&quot;#Steps&quot; class=&quot;headerlink&quot; title=&quot;Steps:&quot;&gt;&lt;/a&gt;Steps:&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;Make sure the current version is great.&lt;/li&gt;
+&lt;li&gt;Change version number for all gradles.&lt;/li&gt;
+&lt;li&gt;Generate signed APK&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;File &amp;gt; Project Structure&lt;/strong&gt;, deal with Signing and Build Types&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Build &amp;gt; Generate Signed APK&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+    
+    </summary>
+    
+      <category term="Android" scheme="http://yoursite.com/categories/Android/"/>
+    
+    
+      <category term="Android" scheme="http://yoursite.com/tags/Android/"/>
     
   </entry>
   

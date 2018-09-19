@@ -1,5 +1,5 @@
 createdAt: "2018-07-23T14:17:03.758Z"
-updatedAt: "2018-09-19T12:59:24.730Z"
+updatedAt: "2018-09-19T19:38:28.519Z"
 content: '''
   title: Read and Store Json Files in Internal Storage
   date: 2018-06-28 11:39:53
@@ -49,6 +49,8 @@ content: '''
 folder: "677c6f5c3ec3b2b88bb9"
 title: "title: Read and Store Json Files in Internal Storage"
 type: "MARKDOWN_NOTE"
-tags: []
+tags: [
+  "Java"
+]
 isStarred: false
 isTrashed: false
