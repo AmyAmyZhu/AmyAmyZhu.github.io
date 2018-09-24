@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2018/07/19/Testing-SDKs-by-External-Storage/</loc>
+    
+    <lastmod>2018-09-24T17:22:01.682Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2018/06/27/Maunally-Import-a-Library-in-an-Android-Project/</loc>
+    
+    <lastmod>2018-09-24T17:21:04.076Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2018/09/19/Use-MkDocs-to-Build-up-Documentation-Wiki/</loc>
     
     <lastmod>2018-09-19T19:47:24.361Z</lastmod>
@@ -12,20 +26,6 @@
     <loc>http://yoursite.com/2018/07/13/Apply-Dexguard-for-Modules/</loc>
     
     <lastmod>2018-09-19T19:45:59.595Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2018/07/19/Testing-SDKs-by-External-Storage/</loc>
-    
-    <lastmod>2018-09-19T16:33:42.743Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2018/06/27/Maunally-Import-a-Library-in-an-Android-Project/</loc>
-    
-    <lastmod>2018-09-19T16:33:26.277Z</lastmod>
     
   </url>
   

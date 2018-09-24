@@ -1,5 +1,5 @@
 createdAt: "2018-07-23T14:17:03.758Z"
-updatedAt: "2018-09-19T19:37:06.122Z"
+updatedAt: "2018-09-24T17:20:24.235Z"
 content: '''
   title: Maunally Import a Library in an Android Project
   date: 2018-06-27 22:04:53
@@ -50,7 +50,7 @@ content: '''
   
   Since we added a library as a module, therefore, our compile will ask us to edit configuration. To avoid that, go back to MainActivity and run MainActivity instead.
   
-  ###Import library by .aar file
+  ### Import library by .aar file
   
   It is much more easy than import a library by moudle. Some library provide .aar file, we can simply import it by those following steps:
   

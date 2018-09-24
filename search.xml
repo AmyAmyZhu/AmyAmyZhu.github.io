@@ -77,9 +77,9 @@
             
             <tag> Android </tag>
             
-            <tag> Proguard/Dexguard </tag>
-            
             <tag> Errors </tag>
+            
+            <tag> Proguard/Dexguard </tag>
             
         </tags>
       
@@ -140,7 +140,7 @@
       <link href="/2018/07/19/Testing-SDKs-by-External-Storage/"/>
       <url>/2018/07/19/Testing-SDKs-by-External-Storage/</url>
       
-        <content type="html"><![CDATA[<p>After I built up release version of APKs/AARs files and push SDK to Artifactory for exposing Android libraries for developing and testing (I will write an article explaining what is Artifactory), I find out it is still hard to testing. I don’t know what is wrong with my SDKs after I imported to a new App since there is no log for realease version and I cannot use debug mode.</p><p>I finally find out one solution. I still feel like it is not the best. However, right now, I have no better solution. If you can solve this problem, please leave your comment and method here, it will help me out a lot.</p><a id="more"></a><p>My solution is to write logs into External Storage of my device. Remeber the article I write to explain how to write information into a device, I use this method to help me see where is the problem.</p><p>First, in order to write into external storage, I need to ask the device to have permission that can <strong>WRITE_EXTERNAL_STORAGE</strong> in new App side. Here is the sample code:</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (ContextCompat.checkSelfPermission(<span class="keyword">this</span>, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) &#123;</span><br><span class="line">    <span class="keyword">if</span> (ActivityCompat.shouldShowRequestPermissionRationale(<span class="keyword">this</span>,  Manifest.permission.WRITE_EXTERNAL_STORAGE)) &#123;</span><br><span class="line"></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        ActivityCompat.requestPermissions(<span class="keyword">this</span>,</span><br><span class="line">            <span class="keyword">new</span> String[]&#123;Manifest.permission.WRITE_EXTERNAL_STORAGE&#125;,</span><br><span class="line">            MY_PERMISSIONS_REQUEST);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>You can use the above code to ask other permissions as well. It is useful.</p>]]></content>
+        <content type="html"><![CDATA[<p>After I built up release version of APKs/AARs files and push SDK to Artifactory for exposing Android libraries for developing and testing (I will write an article explaining what is Artifactory), I find out it is still hard to testing. I don’t know what is wrong with my SDKs after I imported to a new App since there is no log for realease version and I cannot use debug mode.</p><p>I finally find out one solution. I still feel like it is not the best. However, right now, I have no better solution. If you can solve this problem, please leave your comment and method here, it will help me out a lot.</p><a id="more"></a><p>My solution is to write logs into External Storage of my device. Remember the article I write to explain how to write information into a device, I use this method to help me see where is the problem.</p><p>First, in order to write into external storage, I need to ask the device to have permission that can <strong>WRITE_EXTERNAL_STORAGE</strong> in new App side. Here is the sample code:</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (ContextCompat.checkSelfPermission(<span class="keyword">this</span>, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) &#123;</span><br><span class="line">    <span class="keyword">if</span> (ActivityCompat.shouldShowRequestPermissionRationale(<span class="keyword">this</span>,  Manifest.permission.WRITE_EXTERNAL_STORAGE)) &#123;</span><br><span class="line"></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        ActivityCompat.requestPermissions(<span class="keyword">this</span>,</span><br><span class="line">            <span class="keyword">new</span> String[]&#123;Manifest.permission.WRITE_EXTERNAL_STORAGE&#125;,</span><br><span class="line">            MY_PERMISSIONS_REQUEST);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>You can use the above code to ask other permissions as well. It is useful.</p>]]></content>
       
       
       <categories>
@@ -290,16 +290,18 @@
     </entry>
     
     <entry>
-      <title>How to publish your Android App?</title>
-      <link href="/2018/06/27/How-to-publish-your-Android-App/"/>
-      <url>/2018/06/27/How-to-publish-your-Android-App/</url>
+      <title>Maunally Import a Library in an Android Project</title>
+      <link href="/2018/06/27/Maunally-Import-a-Library-in-an-Android-Project/"/>
+      <url>/2018/06/27/Maunally-Import-a-Library-in-an-Android-Project/</url>
       
-        <content type="html"><![CDATA[<h3 id="Steps"><a href="#Steps" class="headerlink" title="Steps:"></a>Steps:</h3><ol><li>Make sure the current version is great.</li><li>Change version number for all gradles.</li><li>Generate signed APK<ul><li><strong>File &gt; Project Structure</strong>, deal with Signing and Build Types</li><li><strong>Build &gt; Generate Signed APK</strong></li></ul></li></ol><a id="more"></a><ol start="4"><li>Wrap APK and mapping file to a binary directory. Make sure everything is consistent.</li><li>Add tags<ul><li>git tag -a X.X.X -m “some commit”</li><li>git push origin X.X.X</li><li>more info: <a href="https://git-scm.com/book/en/v2/Git-Basics-Tagging" target="_blank" rel="noopener">https://git-scm.com/book/en/v2/Git-Basics-Tagging</a></li></ul></li><li>Go to Google Play, app releases to release.</li></ol>]]></content>
+        <content type="html"><![CDATA[<p>Sometimes we use third-party library, or we implements a module and want it to be a part of our main code’s library. In both scenarios, we can import a library as a module.</p><h3 id="How-to-import-a-library-in-Android-Studio"><a href="#How-to-import-a-library-in-Android-Studio" class="headerlink" title="How to import a library in Android Studio?"></a>How to import a library in Android Studio?</h3><ol><li><strong>File &gt; New &gt; Import modlue &gt; add the library path</strong>.</li><li>Change library module gradle:<ol><li>Change <code>“apply plugin: ‘com.android.application’”</code> to <code>“apply plugin: ‘com.android.library’”</code></li><li>Remove applicationId.</li></ol></li></ol><a id="more"></a><ol start="3"><li>Change dependency from “compile” to “implementation”</li><li><strong>File &gt; Project Structure &gt; app &gt; Dependencies</strong>, add module library.</li><li>Downgrade gradle version in project gradle to “2.3.3” or “2.3.2”</li><li>Put/Change “buildToolsVersion “27.0.1” and “useLibrary ‘org.apache.http.legacy’” in app and carto library module.</li></ol><h3 id="UnsatisfiedLinkError-happens"><a href="#UnsatisfiedLinkError-happens" class="headerlink" title="UnsatisfiedLinkError happens?"></a>UnsatisfiedLinkError happens?</h3><p>This is because no .so file in the app to let the app know there is a new library added. There are several steps involved to add up .so file.</p><ol><li>Go to <strong>Project</strong> view.</li><li>Copy library directory, move it under <strong>app &gt; libs</strong>. Now you are able to see .so files.</li><li>Copy <strong>jni</strong> directory under <strong>app &gt; src &gt; main</strong>.</li><li>Change name of this directory from <strong>jni</strong> to <strong>jniLibs</strong>.</li><li>Delete no longer using library directory in <strong>app &gt; libs</strong>.</li></ol><p>Now .so file exists in the app in a correct directory.<br>Then open mainAcitivity add those lines in the class:</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> &#123;         </span><br><span class="line">    System.loadLibrary(<span class="string">"library"</span>); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="How-to-Run"><a href="#How-to-Run" class="headerlink" title="How to Run?"></a>How to Run?</h3><p>Since we added a library as a module, therefore, our compile will ask us to edit configuration. To avoid that, go back to MainActivity and run MainActivity instead.</p><h3 id="Import-library-by-aar-file"><a href="#Import-library-by-aar-file" class="headerlink" title="Import library by .aar file"></a>Import library by .aar file</h3><p>It is much more easy than import a library by moudle. Some library provide .aar file, we can simply import it by those following steps:</p><ol><li><p>add <code>flatDir {dirs &#39;libs&#39; }</code> in the project level build.gradle under <code>allprojects { repositories { ... } }</code> level.</p></li><li><p>copy .aar file that you want to import under the app’s libs directory.</p></li><li><p>add <code>implementation(name: &#39;XXX&#39;, ext: &#39;aar&#39;)</code> in the app level build.gradle under dependencies level.</p></li></ol>]]></content>
       
       
       <categories>
           
           <category> Android </category>
+          
+          <category> SDK </category>
           
       </categories>
       
@@ -307,6 +309,8 @@
         <tags>
             
             <tag> Android </tag>
+            
+            <tag> SDK </tag>
             
         </tags>
       
@@ -340,6 +344,29 @@
     </entry>
     
     <entry>
+      <title>How to publish your Android App?</title>
+      <link href="/2018/06/27/How-to-publish-your-Android-App/"/>
+      <url>/2018/06/27/How-to-publish-your-Android-App/</url>
+      
+        <content type="html"><![CDATA[<h3 id="Steps"><a href="#Steps" class="headerlink" title="Steps:"></a>Steps:</h3><ol><li>Make sure the current version is great.</li><li>Change version number for all gradles.</li><li>Generate signed APK<ul><li><strong>File &gt; Project Structure</strong>, deal with Signing and Build Types</li><li><strong>Build &gt; Generate Signed APK</strong></li></ul></li></ol><a id="more"></a><ol start="4"><li>Wrap APK and mapping file to a binary directory. Make sure everything is consistent.</li><li>Add tags<ul><li>git tag -a X.X.X -m “some commit”</li><li>git push origin X.X.X</li><li>more info: <a href="https://git-scm.com/book/en/v2/Git-Basics-Tagging" target="_blank" rel="noopener">https://git-scm.com/book/en/v2/Git-Basics-Tagging</a></li></ul></li><li>Go to Google Play, app releases to release.</li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> Android </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Android </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
       <title>Decode an Android App from APK</title>
       <link href="/2018/06/27/Decode-an-Android-App-from-APK/"/>
       <url>/2018/06/27/Decode-an-Android-App-from-APK/</url>
@@ -361,33 +388,6 @@
             <tag> Android </tag>
             
             <tag> Proguard/Dexguard </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    <entry>
-      <title>Maunally Import a Library in an Android Project</title>
-      <link href="/2018/06/27/Maunally-Import-a-Library-in-an-Android-Project/"/>
-      <url>/2018/06/27/Maunally-Import-a-Library-in-an-Android-Project/</url>
-      
-        <content type="html"><![CDATA[<p>Sometimes we use third-party library, or we implements a module and want it to be a part of our main code’s library. In both scenarios, we can import a library as a module.</p><h3 id="How-to-import-a-library-in-Android-Studio"><a href="#How-to-import-a-library-in-Android-Studio" class="headerlink" title="How to import a library in Android Studio?"></a>How to import a library in Android Studio?</h3><ol><li><strong>File &gt; New &gt; Import modlue &gt; add the library path</strong>.</li><li>Change library module gradle:<ol><li>Change <code>“apply plugin: ‘com.android.application’”</code> to <code>“apply plugin: ‘com.android.library’”</code></li><li>Remove applicationId.</li></ol></li></ol><a id="more"></a><ol start="3"><li>Change dependency from “compile” to “implementation”</li><li><strong>File &gt; Project Structure &gt; app &gt; Dependencies</strong>, add module library.</li><li>Downgrade gradle version in project gradle to “2.3.3” or “2.3.2”</li><li>Put/Change “buildToolsVersion “27.0.1” and “useLibrary ‘org.apache.http.legacy’” in app and carto library module.</li></ol><h3 id="UnsatisfiedLinkError-happens"><a href="#UnsatisfiedLinkError-happens" class="headerlink" title="UnsatisfiedLinkError happens?"></a>UnsatisfiedLinkError happens?</h3><p>This is because no .so file in the app to let the app know there is a new library added. There are several steps involved to add up .so file.</p><ol><li>Go to <strong>Project</strong> view.</li><li>Copy library directory, move it under <strong>app &gt; libs</strong>. Now you are able to see .so files.</li><li>Copy <strong>jni</strong> directory under <strong>app &gt; src &gt; main</strong>.</li><li>Change name of this directory from <strong>jni</strong> to <strong>jniLibs</strong>.</li><li>Delete no longer using library directory in <strong>app &gt; libs</strong>.</li></ol><p>Now .so file exists in the app in a correct directory.<br>Then open mainAcitivity add those lines in the class:</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> &#123;         </span><br><span class="line">    System.loadLibrary(<span class="string">"library"</span>); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="How-to-Run"><a href="#How-to-Run" class="headerlink" title="How to Run?"></a>How to Run?</h3><p>Since we added a library as a module, therefore, our compile will ask us to edit configuration. To avoid that, go back to MainActivity and run MainActivity instead.</p><p>###Import library by .aar file</p><p>It is much more easy than import a library by moudle. Some library provide .aar file, we can simply import it by those following steps:</p><ol><li><p>add <code>flatDir {dirs &#39;libs&#39; }</code> in the project level build.gradle under <code>allprojects { repositories { ... } }</code> level.</p></li><li><p>copy .aar file that you want to import under the app’s libs directory.</p></li><li><p>add <code>implementation(name: &#39;XXX&#39;, ext: &#39;aar&#39;)</code> in the app level build.gradle under dependencies level.</p></li></ol>]]></content>
-      
-      
-      <categories>
-          
-          <category> Android </category>
-          
-          <category> SDK </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Android </tag>
-            
-            <tag> SDK </tag>
             
         </tags>
       
