@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-10-15T15:02:34.968Z</updated>
+  <updated>2018-10-15T15:25:44.450Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Arrays.binarySearch() in java</title>
+    <link href="http://yoursite.com/2018/10/15/Arrays-binarySearch-in-java/"/>
+    <id>http://yoursite.com/2018/10/15/Arrays-binarySearch-in-java/</id>
+    <published>2018-10-15T15:04:42.000Z</published>
+    <updated>2018-10-15T15:25:44.450Z</updated>
+    
+    <content type="html"><![CDATA[<p>Comparing Arrays and LinkedList, we know it is easy for Array to access element(takes O(1)), but hard to insert or delete(takes O(n)), LinkedList is opposite, access element takes O(n), but deletion and insertion is easy(takes O(1)).</p><p>What about comparing elements and find a sepecfic elemnt in a sorted array?</p><p>Well, we can do linear search (O(n)). Loop through the elements in array and find out the value that is exact same as target value.</p><p>We can also use binary search: repeatedly dividing the search interval in harf to narrow down the search. Binary search only takes O(logn) time complexity.</p><a id="more"></a><p>Here is the sample code:</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">int binarySearch(int arr[], int l, int r, int x) &#123; </span><br><span class="line">        if (r &gt;= l) &#123; </span><br><span class="line">            int mid = l + (r - l)/2; </span><br><span class="line">            // If the element is present at the middle itself </span><br><span class="line">            if (arr[mid] == x) &#123;</span><br><span class="line">              return mid;</span><br><span class="line">            &#125;</span><br><span class="line">            // If element is smaller than mid, then  </span><br><span class="line">            // it can only be present in left subarray </span><br><span class="line">            if (arr[mid] &gt; x) &#123;</span><br><span class="line">               return binarySearch(arr, l, mid-1, x); </span><br><span class="line">               </span><br><span class="line">            // Else the element can only be present </span><br><span class="line">            // in right subarray </span><br><span class="line">            &#125; else &#123;</span><br><span class="line">              return binarySearch(arr, mid+1, r, x); </span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return -1; </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>Java Arrays collection provides <code>Arrays.binarySearch(arr, key)</code>. Then you don’t need to write a helper function for binary search. It is simple use and convenient.</p><p><strong>Parameters</strong>:<br>arr – the array to be searched<br>key – the value to be searched for</p><p><strong>Returns</strong>:<br>index of the search key, if it is contained in the array; otherwise, (-(insertion point) – 1). The insertion point is defined as the point at which the key would be inserted into the array: the index of the first element greater than the key, or a.length if all elements in the array are less than the specified key. Note that this guarantees that the return value will be &gt;= 0 if and only if the key is found.</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Comparing Arrays and LinkedList, we know it is easy for Array to access element(takes O(1)), but hard to insert or delete(takes O(n)), LinkedList is opposite, access element takes O(n), but deletion and insertion is easy(takes O(1)).&lt;/p&gt;
+&lt;p&gt;What about comparing elements and find a sepecfic elemnt in a sorted array?&lt;/p&gt;
+&lt;p&gt;Well, we can do linear search (O(n)). Loop through the elements in array and find out the value that is exact same as target value.&lt;/p&gt;
+&lt;p&gt;We can also use binary search: repeatedly dividing the search interval in harf to narrow down the search. Binary search only takes O(logn) time complexity.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Java" scheme="http://yoursite.com/categories/Java/"/>
+    
+      <category term="Concepts" scheme="http://yoursite.com/categories/Java/Concepts/"/>
+    
+    
+      <category term="Java" scheme="http://yoursite.com/tags/Java/"/>
+    
+      <category term="Concepts" scheme="http://yoursite.com/tags/Concepts/"/>
+    
+  </entry>
   
   <entry>
     <title>AtomicBoolean in Java Enhance Thread-safe</title>
@@ -342,32 +371,28 @@
   </entry>
   
   <entry>
-    <title>How to publish your Android App?</title>
-    <link href="http://yoursite.com/2018/06/27/How-to-publish-your-Android-App/"/>
-    <id>http://yoursite.com/2018/06/27/How-to-publish-your-Android-App/</id>
+    <title>Apply Optimizer for Java Bytecode to Gain Security</title>
+    <link href="http://yoursite.com/2018/06/27/Apply-Optimizer-for-Java-Bytecode-to-Gain-Security/"/>
+    <id>http://yoursite.com/2018/06/27/Apply-Optimizer-for-Java-Bytecode-to-Gain-Security/</id>
     <published>2018-06-28T02:04:53.000Z</published>
-    <updated>2018-09-19T13:00:12.600Z</updated>
+    <updated>2018-09-19T14:00:39.136Z</updated>
     
-    <content type="html"><![CDATA[<h3 id="Steps"><a href="#Steps" class="headerlink" title="Steps:"></a>Steps:</h3><ol><li>Make sure the current version is great.</li><li>Change version number for all gradles.</li><li>Generate signed APK<ul><li><strong>File &gt; Project Structure</strong>, deal with Signing and Build Types</li><li><strong>Build &gt; Generate Signed APK</strong></li></ul></li></ol><a id="more"></a><ol start="4"><li>Wrap APK and mapping file to a binary directory. Make sure everything is consistent.</li><li>Add tags<ul><li>git tag -a X.X.X -m “some commit”</li><li>git push origin X.X.X</li><li>more info: <a href="https://git-scm.com/book/en/v2/Git-Basics-Tagging" target="_blank" rel="noopener">https://git-scm.com/book/en/v2/Git-Basics-Tagging</a></li></ul></li><li>Go to Google Play, app releases to release.</li></ol>]]></content>
+    <content type="html"><![CDATA[<p>Based on the article I wrote: Decode Android Project from APK, we know that revise engineers can easily decode codes and get your source files. there are a number of possible vulnerabilities for unprotected mobile applications, such as insertion of malware, intellectual property theft, priacy and data theft. Therefore, we can use ProGuard or DexGuard to protect. This is a way to apply multiple obfuscation and encryption to make our source codes unreadable.</p><a id="more"></a><h3 id="How-to-apply-Dexguard"><a href="#How-to-apply-Dexguard" class="headerlink" title="How to apply Dexguard?"></a>How to apply Dexguard?</h3><ol><li>Download Dexguard file from website.</li><li>Add <code>dexguard.dir=/Users/../../../tools/Dexguard/DexGuard-X.X.X</code> in local.properties. Add your local position where you downloaded and put the Dexguard.</li><li>Add <code>apply plugin &#39;dexguard&#39;</code> in library build.gradle to enable Dexguard. It will find local.properties’ link to execute the dexguard.</li><li>Add <code>consumerProguardFiles &#39;proguard-rules.pro&#39;</code> and <code>proguardFile &#39;dexguard-project.txt&#39;</code> in the buildType you want to generate the obfuscation.<ul><li>Look at the above, we can see the dexguard rules is edited in dexguard-project.txt. This is the main place we manage obfuscation. If you don’t have dexguard-project.txt yet, create one under the main directory of your module.</li></ul></li><li>Now you are able to generate aar file for library we want to obfuscate. Open gradle. Find the module’s assemble task. If you choose a buildType, run the specific assemble type. For example, I choose debug type, double click <code>Library: assembleDebug</code> in the build.</li></ol><h3 id="If-you-face-any-problems-it-might-be"><a href="#If-you-face-any-problems-it-might-be" class="headerlink" title="If you face any problems, it might be:"></a>If you face any problems, it might be:</h3><ol><li>clean up build. It is the same way you run the assemble. For example, find <code>Library: clean</code> under build gradle.</li><li>Dexguard terminates whenever there is a warning or error. Use –stacktrace or –debug to get more info of what is happening. If there are many warnings. You can add <code>dontwarn com.package.**</code> in dexguard-project.txt to avoid warnings.</li></ol><p>If you generate successfully, you will get a .aar file under build/output/aar. This is the library export file. If you are generating an app, you can also see the .jar file under build/output.</p>]]></content>
     
     <summary type="html">
     
-      &lt;h3 id=&quot;Steps&quot;&gt;&lt;a href=&quot;#Steps&quot; class=&quot;headerlink&quot; title=&quot;Steps:&quot;&gt;&lt;/a&gt;Steps:&lt;/h3&gt;&lt;ol&gt;
-&lt;li&gt;Make sure the current version is great.&lt;/li&gt;
-&lt;li&gt;Change version number for all gradles.&lt;/li&gt;
-&lt;li&gt;Generate signed APK&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;File &amp;gt; Project Structure&lt;/strong&gt;, deal with Signing and Build Types&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Build &amp;gt; Generate Signed APK&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
+      &lt;p&gt;Based on the article I wrote: Decode Android Project from APK, we know that revise engineers can easily decode codes and get your source files. there are a number of possible vulnerabilities for unprotected mobile applications, such as insertion of malware, intellectual property theft, priacy and data theft. Therefore, we can use ProGuard or DexGuard to protect. This is a way to apply multiple obfuscation and encryption to make our source codes unreadable.&lt;/p&gt;
     
     </summary>
     
       <category term="Android" scheme="http://yoursite.com/categories/Android/"/>
     
+      <category term="Proguard/Dexguard" scheme="http://yoursite.com/categories/Android/Proguard-Dexguard/"/>
+    
     
       <category term="Android" scheme="http://yoursite.com/tags/Android/"/>
+    
+      <category term="Proguard/Dexguard" scheme="http://yoursite.com/tags/Proguard-Dexguard/"/>
     
   </entry>
   
@@ -388,32 +413,6 @@
 &lt;li&gt;Go to project, Build -&amp;gt; Build APK(s). After .apk file is generated, click “locate” to the path of the file.&lt;/li&gt;
 &lt;li&gt;Create a new folder, let’s call it “decode”.&lt;/li&gt;
 &lt;/ol&gt;
-    
-    </summary>
-    
-      <category term="Android" scheme="http://yoursite.com/categories/Android/"/>
-    
-      <category term="Proguard/Dexguard" scheme="http://yoursite.com/categories/Android/Proguard-Dexguard/"/>
-    
-    
-      <category term="Android" scheme="http://yoursite.com/tags/Android/"/>
-    
-      <category term="Proguard/Dexguard" scheme="http://yoursite.com/tags/Proguard-Dexguard/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Apply Optimizer for Java Bytecode to Gain Security</title>
-    <link href="http://yoursite.com/2018/06/27/Apply-Optimizer-for-Java-Bytecode-to-Gain-Security/"/>
-    <id>http://yoursite.com/2018/06/27/Apply-Optimizer-for-Java-Bytecode-to-Gain-Security/</id>
-    <published>2018-06-28T02:04:53.000Z</published>
-    <updated>2018-09-19T14:00:39.136Z</updated>
-    
-    <content type="html"><![CDATA[<p>Based on the article I wrote: Decode Android Project from APK, we know that revise engineers can easily decode codes and get your source files. there are a number of possible vulnerabilities for unprotected mobile applications, such as insertion of malware, intellectual property theft, priacy and data theft. Therefore, we can use ProGuard or DexGuard to protect. This is a way to apply multiple obfuscation and encryption to make our source codes unreadable.</p><a id="more"></a><h3 id="How-to-apply-Dexguard"><a href="#How-to-apply-Dexguard" class="headerlink" title="How to apply Dexguard?"></a>How to apply Dexguard?</h3><ol><li>Download Dexguard file from website.</li><li>Add <code>dexguard.dir=/Users/../../../tools/Dexguard/DexGuard-X.X.X</code> in local.properties. Add your local position where you downloaded and put the Dexguard.</li><li>Add <code>apply plugin &#39;dexguard&#39;</code> in library build.gradle to enable Dexguard. It will find local.properties’ link to execute the dexguard.</li><li>Add <code>consumerProguardFiles &#39;proguard-rules.pro&#39;</code> and <code>proguardFile &#39;dexguard-project.txt&#39;</code> in the buildType you want to generate the obfuscation.<ul><li>Look at the above, we can see the dexguard rules is edited in dexguard-project.txt. This is the main place we manage obfuscation. If you don’t have dexguard-project.txt yet, create one under the main directory of your module.</li></ul></li><li>Now you are able to generate aar file for library we want to obfuscate. Open gradle. Find the module’s assemble task. If you choose a buildType, run the specific assemble type. For example, I choose debug type, double click <code>Library: assembleDebug</code> in the build.</li></ol><h3 id="If-you-face-any-problems-it-might-be"><a href="#If-you-face-any-problems-it-might-be" class="headerlink" title="If you face any problems, it might be:"></a>If you face any problems, it might be:</h3><ol><li>clean up build. It is the same way you run the assemble. For example, find <code>Library: clean</code> under build gradle.</li><li>Dexguard terminates whenever there is a warning or error. Use –stacktrace or –debug to get more info of what is happening. If there are many warnings. You can add <code>dontwarn com.package.**</code> in dexguard-project.txt to avoid warnings.</li></ol><p>If you generate successfully, you will get a .aar file under build/output/aar. This is the library export file. If you are generating an app, you can also see the .jar file under build/output.</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Based on the article I wrote: Decode Android Project from APK, we know that revise engineers can easily decode codes and get your source files. there are a number of possible vulnerabilities for unprotected mobile applications, such as insertion of malware, intellectual property theft, priacy and data theft. Therefore, we can use ProGuard or DexGuard to protect. This is a way to apply multiple obfuscation and encryption to make our source codes unreadable.&lt;/p&gt;
     
     </summary>
     
@@ -459,6 +458,36 @@
       <category term="Android" scheme="http://yoursite.com/tags/Android/"/>
     
       <category term="SDK" scheme="http://yoursite.com/tags/SDK/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>How to publish your Android App?</title>
+    <link href="http://yoursite.com/2018/06/27/How-to-publish-your-Android-App/"/>
+    <id>http://yoursite.com/2018/06/27/How-to-publish-your-Android-App/</id>
+    <published>2018-06-28T02:04:53.000Z</published>
+    <updated>2018-09-19T13:00:12.600Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="Steps"><a href="#Steps" class="headerlink" title="Steps:"></a>Steps:</h3><ol><li>Make sure the current version is great.</li><li>Change version number for all gradles.</li><li>Generate signed APK<ul><li><strong>File &gt; Project Structure</strong>, deal with Signing and Build Types</li><li><strong>Build &gt; Generate Signed APK</strong></li></ul></li></ol><a id="more"></a><ol start="4"><li>Wrap APK and mapping file to a binary directory. Make sure everything is consistent.</li><li>Add tags<ul><li>git tag -a X.X.X -m “some commit”</li><li>git push origin X.X.X</li><li>more info: <a href="https://git-scm.com/book/en/v2/Git-Basics-Tagging" target="_blank" rel="noopener">https://git-scm.com/book/en/v2/Git-Basics-Tagging</a></li></ul></li><li>Go to Google Play, app releases to release.</li></ol>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;Steps&quot;&gt;&lt;a href=&quot;#Steps&quot; class=&quot;headerlink&quot; title=&quot;Steps:&quot;&gt;&lt;/a&gt;Steps:&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;Make sure the current version is great.&lt;/li&gt;
+&lt;li&gt;Change version number for all gradles.&lt;/li&gt;
+&lt;li&gt;Generate signed APK&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;File &amp;gt; Project Structure&lt;/strong&gt;, deal with Signing and Build Types&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Build &amp;gt; Generate Signed APK&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+    
+    </summary>
+    
+      <category term="Android" scheme="http://yoursite.com/categories/Android/"/>
+    
+    
+      <category term="Android" scheme="http://yoursite.com/tags/Android/"/>
     
   </entry>
   

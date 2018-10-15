@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="AmyZhu&#39;s Blog">
-    <title>Enable Localization - AmyZhu&#39;s Blog</title>
+    <title>Arrays.binarySearch() in java - AmyZhu&#39;s Blog</title>
     <meta name="author" content="Amy Zhu">
     
         <meta name="keywords" content="hexo,java,Android,Dexguard,">
@@ -17,19 +17,19 @@
     
         <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Amy Zhu","sameAs":["https://github.com/AmyAmyZhu","https://www.linkedin.com/in/zefang-zhu-6a9259113/"],"image":"icon.png"},"articleBody":"When we have customized strings in an Andriod App, where are you store them? Some people choose to assign strings directly in the code. However, cosidering a good desgin patern, Andriod separates code and resources. Most of good Android developer put strings in strings.xml which is located under res &gt; values. This is because we can easily manipulates and customize values.\n\nOne of the benefits that is intuitionally affects an Andriod App is we can enable localizations. Localization means you can have multiple languages of your App based on the language users setted up. For example, if you implements your App in English, but your user is a French. You can translates values in strings.xml in French version, so that when user open your App, they can understand your App because the language of your App will be French.\nHow to Enable Localization?It is easy, just follow the following steps:\n\nSelect res &gt; values.\nRight-click the strings.xml file and select Open Translations Editor.\n\nThen traslations editor will displays the key and value pairs from the strings.xml, you can add any languages you want by click the small add button. It will generate a new row that you can put the new language values your want to translate.\nActually, traslations editor is just a GUI table for you to manipulates values, sometimes, if your App is big, Android Studio might be slow to change values. Then you can go to the language specific strings.xml, for example, you will find strings.xml(ch) after your first time add value in translations editor. Go there, and change values in those new files.\n","dateCreated":"2018-06-29T12:51:12-04:00","dateModified":"2018-09-19T08:59:00-04:00","datePublished":"2018-06-29T12:51:12-04:00","description":"When we have customized strings in an Andriod App, where are you store them? Some people choose to assign strings directly in the code. However, cosidering a good desgin patern, Andriod separates code and resources. Most of good Android developer put strings in strings.xml which is located under res &gt; values. This is because we can easily manipulates and customize values.","headline":"Enable Localization","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://yoursite.com/2018/06/29/Enable-Localization/"},"publisher":{"@type":"Organization","name":"Amy Zhu","sameAs":["https://github.com/AmyAmyZhu","https://www.linkedin.com/in/zefang-zhu-6a9259113/"],"image":"icon.png","logo":{"@type":"ImageObject","url":"icon.png"}},"url":"http://yoursite.com/2018/06/29/Enable-Localization/","keywords":"Android"}</script>
-    <meta name="description" content="When we have customized strings in an Andriod App, where are you store them? Some people choose to assign strings directly in the code. However, cosidering a good desgin patern, Andriod separates code">
-<meta name="keywords" content="Android">
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Amy Zhu","sameAs":["https://github.com/AmyAmyZhu","https://www.linkedin.com/in/zefang-zhu-6a9259113/"],"image":"icon.png"},"articleBody":"Comparing Arrays and LinkedList, we know it is easy for Array to access element(takes O(1)), but hard to insert or delete(takes O(n)), LinkedList is opposite, access element takes O(n), but deletion and insertion is easy(takes O(1)).\nWhat about comparing elements and find a sepecfic elemnt in a sorted array?\nWell, we can do linear search (O(n)). Loop through the elements in array and find out the value that is exact same as target value.\nWe can also use binary search: repeatedly dividing the search interval in harf to narrow down the search. Binary search only takes O(logn) time complexity.\n\nHere is the sample code:\n123456789101112131415161718192021int binarySearch(int arr[], int l, int r, int x) &#123;         if (r &gt;= l) &#123;             int mid = l + (r - l)/2;             // If the element is present at the middle itself             if (arr[mid] == x) &#123;              return mid;            &#125;            // If element is smaller than mid, then              // it can only be present in left subarray             if (arr[mid] &gt; x) &#123;               return binarySearch(arr, l, mid-1, x);                            // Else the element can only be present             // in right subarray             &#125; else &#123;              return binarySearch(arr, mid+1, r, x);             &#125;        &#125;        return -1;     &#125;&#125;\nJava Arrays collection provides Arrays.binarySearch(arr, key). Then you don’t need to write a helper function for binary search. It is simple use and convenient.\nParameters:arr – the array to be searchedkey – the value to be searched for\nReturns:index of the search key, if it is contained in the array; otherwise, (-(insertion point) – 1). The insertion point is defined as the point at which the key would be inserted into the array: the index of the first element greater than the key, or a.length if all elements in the array are less than the specified key. Note that this guarantees that the return value will be &gt;= 0 if and only if the key is found.\n","dateCreated":"2018-10-15T11:04:42-04:00","dateModified":"2018-10-15T11:25:44-04:00","datePublished":"2018-10-15T11:04:42-04:00","description":"Comparing Arrays and LinkedList, we know it is easy for Array to access element(takes O(1)), but hard to insert or delete(takes O(n)), LinkedList is opposite, access element takes O(n), but deletion and insertion is easy(takes O(1)).\nWhat about comparing elements and find a sepecfic elemnt in a sorted array?\nWell, we can do linear search (O(n)). Loop through the elements in array and find out the value that is exact same as target value.\nWe can also use binary search: repeatedly dividing the search interval in harf to narrow down the search. Binary search only takes O(logn) time complexity.","headline":"Arrays.binarySearch() in java","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://yoursite.com/2018/10/15/Arrays-binarySearch-in-java/"},"publisher":{"@type":"Organization","name":"Amy Zhu","sameAs":["https://github.com/AmyAmyZhu","https://www.linkedin.com/in/zefang-zhu-6a9259113/"],"image":"icon.png","logo":{"@type":"ImageObject","url":"icon.png"}},"url":"http://yoursite.com/2018/10/15/Arrays-binarySearch-in-java/","keywords":"Java, Concepts"}</script>
+    <meta name="description" content="Comparing Arrays and LinkedList, we know it is easy for Array to access element(takes O(1)), but hard to insert or delete(takes O(n)), LinkedList is opposite, access element takes O(n), but deletion a">
+<meta name="keywords" content="Java,Concepts">
 <meta property="og:type" content="blog">
-<meta property="og:title" content="Enable Localization">
-<meta property="og:url" content="http://yoursite.com/2018/06/29/Enable-Localization/index.html">
+<meta property="og:title" content="Arrays.binarySearch() in java">
+<meta property="og:url" content="http://yoursite.com/2018/10/15/Arrays-binarySearch-in-java/index.html">
 <meta property="og:site_name" content="AmyZhu&#39;s Blog">
-<meta property="og:description" content="When we have customized strings in an Andriod App, where are you store them? Some people choose to assign strings directly in the code. However, cosidering a good desgin patern, Andriod separates code">
+<meta property="og:description" content="Comparing Arrays and LinkedList, we know it is easy for Array to access element(takes O(1)), but hard to insert or delete(takes O(n)), LinkedList is opposite, access element takes O(n), but deletion a">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-09-19T12:59:00.385Z">
+<meta property="og:updated_time" content="2018-10-15T15:25:44.450Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Enable Localization">
-<meta name="twitter:description" content="When we have customized strings in an Andriod App, where are you store them? Some people choose to assign strings directly in the code. However, cosidering a good desgin patern, Andriod separates code">
+<meta name="twitter:title" content="Arrays.binarySearch() in java">
+<meta name="twitter:description" content="Comparing Arrays and LinkedList, we know it is easy for Array to access element(takes O(1)), but hard to insert or delete(takes O(n)), LinkedList is opposite, access element takes O(n), but deletion a">
     
     
         
@@ -204,20 +204,20 @@
         <div class="post-header main-content-wrap text-left">
     
         <h1 class="post-title">
-            Enable Localization
+            Arrays.binarySearch() in java
         </h1>
     
     
         <div class="post-meta">
-    <time datetime="2018-06-29T12:51:12-04:00">
+    <time datetime="2018-10-15T11:04:42-04:00">
 	
-		    Jun 29, 2018
+		    Oct 15, 2018
     	
     </time>
     
         <span>in </span>
         
-    <a class="category-link" href="/categories/Android/">Android</a>
+    <a class="category-link" href="/categories/Java/">Java</a>, <a class="category-link" href="/categories/Java/Concepts/">Concepts</a>
 
 
     
@@ -229,16 +229,16 @@
     
     <div class="post-content markdown">
         <div class="main-content-wrap">
-            <p>When we have customized strings in an Andriod App, where are you store them? Some people choose to assign strings directly in the code. However, cosidering a good desgin patern, Andriod separates code and resources. Most of good Android developer put strings in <code>strings.xml</code> which is located under <strong>res &gt; values</strong>. This is because we can easily manipulates and customize values.</p>
+            <p>Comparing Arrays and LinkedList, we know it is easy for Array to access element(takes O(1)), but hard to insert or delete(takes O(n)), LinkedList is opposite, access element takes O(n), but deletion and insertion is easy(takes O(1)).</p>
+<p>What about comparing elements and find a sepecfic elemnt in a sorted array?</p>
+<p>Well, we can do linear search (O(n)). Loop through the elements in array and find out the value that is exact same as target value.</p>
+<p>We can also use binary search: repeatedly dividing the search interval in harf to narrow down the search. Binary search only takes O(logn) time complexity.</p>
 <a id="more"></a>
-<p>One of the benefits that is intuitionally affects an Andriod App is we can enable localizations. Localization means you can have multiple languages of your App based on the language users setted up. For example, if you implements your App in English, but your user is a French. You can translates values in <code>strings.xml</code> in French version, so that when user open your App, they can understand your App because the language of your App will be French.</p>
-<h3 id="How-to-Enable-Localization"><a href="#How-to-Enable-Localization" class="headerlink" title="How to Enable Localization?"></a>How to Enable Localization?</h3><p>It is easy, just follow the following steps:</p>
-<ol>
-<li>Select <strong>res &gt; values</strong>.</li>
-<li>Right-click the strings.xml file and select Open Translations Editor.</li>
-</ol>
-<p>Then traslations editor will displays the key and value pairs from the <code>strings.xml</code>, you can add any languages you want by click the small add button. It will generate a new row that you can put the new language values your want to translate.</p>
-<p>Actually, traslations editor is just a GUI table for you to manipulates values, sometimes, if your App is big, Android Studio might be slow to change values. Then you can go to the language specific <code>strings.xml</code>, for example, you will find <code>strings.xml(ch)</code> after your first time add value in translations editor. Go there, and change values in those new files.</p>
+<p>Here is the sample code:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">int binarySearch(int arr[], int l, int r, int x) &#123; </span><br><span class="line">        if (r &gt;= l) &#123; </span><br><span class="line">            int mid = l + (r - l)/2; </span><br><span class="line">            // If the element is present at the middle itself </span><br><span class="line">            if (arr[mid] == x) &#123;</span><br><span class="line">              return mid;</span><br><span class="line">            &#125;</span><br><span class="line">            // If element is smaller than mid, then  </span><br><span class="line">            // it can only be present in left subarray </span><br><span class="line">            if (arr[mid] &gt; x) &#123;</span><br><span class="line">               return binarySearch(arr, l, mid-1, x); </span><br><span class="line">               </span><br><span class="line">            // Else the element can only be present </span><br><span class="line">            // in right subarray </span><br><span class="line">            &#125; else &#123;</span><br><span class="line">              return binarySearch(arr, mid+1, r, x); </span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return -1; </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Java Arrays collection provides <code>Arrays.binarySearch(arr, key)</code>. Then you don’t need to write a helper function for binary search. It is simple use and convenient.</p>
+<p><strong>Parameters</strong>:<br>arr – the array to be searched<br>key – the value to be searched for</p>
+<p><strong>Returns</strong>:<br>index of the search key, if it is contained in the array; otherwise, (-(insertion point) – 1). The insertion point is defined as the point at which the key would be inserted into the array: the index of the first element greater than the key, or a.length if all elements in the array are less than the specified key. Note that this guarantees that the return value will be &gt;= 0 if and only if the key is found.</p>
 
             
 
@@ -249,7 +249,7 @@
             <div class="post-footer-tags">
                 <span class="text-color-light text-small">TAGGED IN</span><br/>
                 
-    <a class="tag tag--primary tag--small t-link" href="/tags/Android/">Android</a>
+    <a class="tag tag--primary tag--small t-link" href="/tags/Concepts/">Concepts</a> <a class="tag tag--primary tag--small t-link" href="/tags/Java/">Java</a>
 
             </div>
         
@@ -259,8 +259,7 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2018/07/03/Synch-Asynch-Callback-in-Java/" data-tooltip="Synch/Asynch Callback in Java" aria-label="PREVIOUS: Synch/Asynch Callback in Java">
+                    <a class="post-action-btn btn btn--disabled">
                 
                     <i class="fa fa-angle-left" aria-hidden="true"></i>
                     <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
@@ -269,7 +268,7 @@
             <li class="post-action">
                 
                     
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2018/06/28/Read-and-Store-Json-Files-in-Internal-Storage/" data-tooltip="Read and Store Json Files in Internal Storage" aria-label="NEXT: Read and Store Json Files in Internal Storage">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2018/10/05/AtomicBoolean-in-Java-Enhance-Thread-safe/" data-tooltip="AtomicBoolean in Java Enhance Thread-safe" aria-label="NEXT: AtomicBoolean in Java Enhance Thread-safe">
                 
                     <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
                     <i class="fa fa-angle-right" aria-hidden="true"></i>
@@ -330,8 +329,7 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2018/07/03/Synch-Asynch-Callback-in-Java/" data-tooltip="Synch/Asynch Callback in Java" aria-label="PREVIOUS: Synch/Asynch Callback in Java">
+                    <a class="post-action-btn btn btn--disabled">
                 
                     <i class="fa fa-angle-left" aria-hidden="true"></i>
                     <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
@@ -340,7 +338,7 @@
             <li class="post-action">
                 
                     
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2018/06/28/Read-and-Store-Json-Files-in-Internal-Storage/" data-tooltip="Read and Store Json Files in Internal Storage" aria-label="NEXT: Read and Store Json Files in Internal Storage">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2018/10/05/AtomicBoolean-in-Java-Enhance-Thread-safe/" data-tooltip="AtomicBoolean in Java Enhance Thread-safe" aria-label="NEXT: AtomicBoolean in Java Enhance Thread-safe">
                 
                     <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
                     <i class="fa fa-angle-right" aria-hidden="true"></i>

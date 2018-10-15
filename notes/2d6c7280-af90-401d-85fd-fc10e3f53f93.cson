@@ -1,0 +1,64 @@
+createdAt: "2018-10-15T15:04:42.136Z"
+updatedAt: "2018-10-15T15:25:31.781Z"
+content: '''
+  title: Arrays.binarySearch() in java
+  date: 2018-10-15 11:04:42
+  categories:
+  - [Java, Concepts]
+  tags:
+  - Java
+  - Concepts
+  ---
+  
+  Comparing Arrays and LinkedList, we know it is easy for Array to access element(takes O(1)), but hard to insert or delete(takes O(n)), LinkedList is opposite, access element takes O(n), but deletion and insertion is easy(takes O(1)).
+  
+  What about comparing elements and find a sepecfic elemnt in a sorted array?
+  
+  Well, we can do linear search (O(n)). Loop through the elements in array and find out the value that is exact same as target value.
+  
+  We can also use binary search: repeatedly dividing the search interval in harf to narrow down the search. Binary search only takes O(logn) time complexity.
+  
+  <!-- more -->
+  
+  Here is the sample code:
+  
+  ```
+  int binarySearch(int arr[], int l, int r, int x) { 
+          if (r >= l) { 
+              int mid = l + (r - l)/2; 
+              // If the element is present at the middle itself 
+              if (arr[mid] == x) {
+                return mid;
+              }
+              // If element is smaller than mid, then  
+              // it can only be present in left subarray 
+              if (arr[mid] > x) {
+                 return binarySearch(arr, l, mid-1, x); 
+                 
+              // Else the element can only be present 
+              // in right subarray 
+              } else {
+                return binarySearch(arr, mid+1, r, x); 
+              }
+          }
+          return -1; 
+      }
+  }
+  ```
+  
+  Java Arrays collection provides `Arrays.binarySearch(arr, key)`. Then you don't need to write a helper function for binary search. It is simple use and convenient.
+  
+  __Parameters__:
+  arr – the array to be searched
+  key – the value to be searched for
+  
+  __Returns__:
+  index of the search key, if it is contained in the array; otherwise, (-(insertion point) – 1). The insertion point is defined as the point at which the key would be inserted into the array: the index of the first element greater than the key, or a.length if all elements in the array are less than the specified key. Note that this guarantees that the return value will be >= 0 if and only if the key is found.
+  
+'''
+folder: "677c6f5c3ec3b2b88bb9"
+title: "title: Arrays.binarySearch() in java"
+type: "MARKDOWN_NOTE"
+tags: []
+isStarred: false
+isTrashed: false
