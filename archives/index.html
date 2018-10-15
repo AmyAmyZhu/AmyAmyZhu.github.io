@@ -200,7 +200,7 @@
     <section class="postShorten-group main-content-wrap">
     
     
-    <article class="postShorten postShorten--thumbnailimg-bottom">
+    <article class="postShorten postShorten--thumbnailimg-right">
         <div class="postShorten-wrap">
             
             <div class="postShorten-header">
@@ -228,28 +228,14 @@
 
             </div>
             
-                <div class="postShorten-content">
+                <div class="postShorten-excerpt">
                     <p>Recently I found when I use a boolean value in multiple threads, it is not thread-safe enough. For example, in one thread you are writing values for a boolean value, in another thread you are checking the boolean in order to process the thread. How does the program know the value when you check? This suitation also happens in other values not limited to boolean.</p>
 <p>We should aviod checking and writing a value in multiple thread in the same time. Here is a simple solution I found: use <strong>java.util.concurrent.atomic</strong> package. Atomic Collections support lock-free thread-safe programming on single variables.</p>
-<p>We can use classes in atomic packages like:</p>
-<ul>
-<li>AtomicBoolean</li>
-<li>AtomicInteger</li>
-<li>AtomicLong</li>
-<li>AtomicIntegerArray, etc.</li>
-</ul>
-<p>Use atomic classes is strightforward, you can <code>set()</code> or <code>get()</code> values. For example:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">AtomicBoolean value = new AtomicBoolean();</span><br><span class="line">value.set(true);</span><br><span class="line">boolean b = value.get();</span><br></pre></td></tr></table></figure>
                     
+                        <a href="/2018/10/05/AtomicBoolean-in-Java-Enhance-Thread-safe/" class="postShorten-excerpt_link link">
+                            Continue reading
+                        </a>
                         
-
-                    
-                    
-                        <p>
-                            <a href="/2018/10/05/AtomicBoolean-in-Java-Enhance-Thread-safe/#post-footer" class="postShorten-excerpt_link link">
-                                Comment and share
-                            </a>
-                        </p>
                     
                 </div>
             

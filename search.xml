@@ -7,7 +7,7 @@
       <link href="/2018/10/05/AtomicBoolean-in-Java-Enhance-Thread-safe/"/>
       <url>/2018/10/05/AtomicBoolean-in-Java-Enhance-Thread-safe/</url>
       
-        <content type="html"><![CDATA[<p>Recently I found when I use a boolean value in multiple threads, it is not thread-safe enough. For example, in one thread you are writing values for a boolean value, in another thread you are checking the boolean in order to process the thread. How does the program know the value when you check? This suitation also happens in other values not limited to boolean.</p><p>We should aviod checking and writing a value in multiple thread in the same time. Here is a simple solution I found: use <strong>java.util.concurrent.atomic</strong> package. Atomic Collections support lock-free thread-safe programming on single variables.</p><p>We can use classes in atomic packages like:</p><ul><li>AtomicBoolean</li><li>AtomicInteger</li><li>AtomicLong</li><li>AtomicIntegerArray, etc.</li></ul><p>Use atomic classes is strightforward, you can <code>set()</code> or <code>get()</code> values. For example:</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">AtomicBoolean value = new AtomicBoolean();</span><br><span class="line">value.set(true);</span><br><span class="line">boolean b = value.get();</span><br></pre></td></tr></table></figure>]]></content>
+        <content type="html"><![CDATA[<p>Recently I found when I use a boolean value in multiple threads, it is not thread-safe enough. For example, in one thread you are writing values for a boolean value, in another thread you are checking the boolean in order to process the thread. How does the program know the value when you check? This suitation also happens in other values not limited to boolean.</p><p>We should aviod checking and writing a value in multiple thread in the same time. Here is a simple solution I found: use <strong>java.util.concurrent.atomic</strong> package. Atomic Collections support lock-free thread-safe programming on single variables.</p><a id="more"></a><p>We can use classes in atomic packages like:</p><ul><li>AtomicBoolean</li><li>AtomicInteger</li><li>AtomicLong</li><li>AtomicIntegerArray, etc.</li></ul><p>Use atomic classes is strightforward, you can <code>set()</code> or <code>get()</code> values. For example:</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">AtomicBoolean value = new AtomicBoolean();</span><br><span class="line">value.set(true);</span><br><span class="line">boolean b = value.get();</span><br></pre></td></tr></table></figure>]]></content>
       
       
       <categories>
@@ -319,33 +319,6 @@
     </entry>
     
     <entry>
-      <title>Apply Optimizer for Java Bytecode to Gain Security</title>
-      <link href="/2018/06/27/Apply-Optimizer-for-Java-Bytecode-to-Gain-Security/"/>
-      <url>/2018/06/27/Apply-Optimizer-for-Java-Bytecode-to-Gain-Security/</url>
-      
-        <content type="html"><![CDATA[<p>Based on the article I wrote: Decode Android Project from APK, we know that revise engineers can easily decode codes and get your source files. there are a number of possible vulnerabilities for unprotected mobile applications, such as insertion of malware, intellectual property theft, priacy and data theft. Therefore, we can use ProGuard or DexGuard to protect. This is a way to apply multiple obfuscation and encryption to make our source codes unreadable.</p><a id="more"></a><h3 id="How-to-apply-Dexguard"><a href="#How-to-apply-Dexguard" class="headerlink" title="How to apply Dexguard?"></a>How to apply Dexguard?</h3><ol><li>Download Dexguard file from website.</li><li>Add <code>dexguard.dir=/Users/../../../tools/Dexguard/DexGuard-X.X.X</code> in local.properties. Add your local position where you downloaded and put the Dexguard.</li><li>Add <code>apply plugin &#39;dexguard&#39;</code> in library build.gradle to enable Dexguard. It will find local.properties’ link to execute the dexguard.</li><li>Add <code>consumerProguardFiles &#39;proguard-rules.pro&#39;</code> and <code>proguardFile &#39;dexguard-project.txt&#39;</code> in the buildType you want to generate the obfuscation.<ul><li>Look at the above, we can see the dexguard rules is edited in dexguard-project.txt. This is the main place we manage obfuscation. If you don’t have dexguard-project.txt yet, create one under the main directory of your module.</li></ul></li><li>Now you are able to generate aar file for library we want to obfuscate. Open gradle. Find the module’s assemble task. If you choose a buildType, run the specific assemble type. For example, I choose debug type, double click <code>Library: assembleDebug</code> in the build.</li></ol><h3 id="If-you-face-any-problems-it-might-be"><a href="#If-you-face-any-problems-it-might-be" class="headerlink" title="If you face any problems, it might be:"></a>If you face any problems, it might be:</h3><ol><li>clean up build. It is the same way you run the assemble. For example, find <code>Library: clean</code> under build gradle.</li><li>Dexguard terminates whenever there is a warning or error. Use –stacktrace or –debug to get more info of what is happening. If there are many warnings. You can add <code>dontwarn com.package.**</code> in dexguard-project.txt to avoid warnings.</li></ol><p>If you generate successfully, you will get a .aar file under build/output/aar. This is the library export file. If you are generating an app, you can also see the .jar file under build/output.</p>]]></content>
-      
-      
-      <categories>
-          
-          <category> Android </category>
-          
-          <category> Proguard/Dexguard </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Android </tag>
-            
-            <tag> Proguard/Dexguard </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    <entry>
       <title>How to publish your Android App?</title>
       <link href="/2018/06/27/How-to-publish-your-Android-App/"/>
       <url>/2018/06/27/How-to-publish-your-Android-App/</url>
@@ -374,6 +347,33 @@
       <url>/2018/06/27/Decode-an-Android-App-from-APK/</url>
       
         <content type="html"><![CDATA[<p>If an Android App not doing encryption or obfuscation, an APK (Android application package) is easily be decoded. A reverse engineer can see its source codes and XML files.</p><p>Here is the procedure how to decoding .apk files to get source files.</p><ol><li>Go to project, Build -&gt; Build APK(s). After .apk file is generated, click “locate” to the path of the file.</li><li>Create a new folder, let’s call it “decode”.</li></ol><a id="more"></a><ol start="3"><li>Copy .apk file into decode folder. Rename the extension of it to .zip and save it. Now you can see classes.dex file in this directory.</li><li>Extract .zip file in decode folder.</li><li>Download <a href="https://sourceforge.net/projects/dex2jar/files/latest/download" target="_blank" rel="noopener">dex2jar</a> and extract it in decode directory.</li></ol><ol start="6"><li>Copy classes.dex and paste it besides dex2jar.jar, which is inside dex2jar directory.</li><li>Open command prompt and go to dex2jar directory, call <code>d2j-dex2jar classes.dex</code> to pass in calsses.dex into d2j-dex2jar and execute it to get classes.dex.dex2jar.</li><li>Download <a href="http://jd.benow.ca/" target="_blank" rel="noopener">jd-gui</a>. For Windows, download jd-gui-windows-X.X.X.zip.</li><li>Open jd-gui, and open classes.dex.dex2jar file.</li></ol><p>Now you are able to see all source files from .apk file.</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Android </category>
+          
+          <category> Proguard/Dexguard </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Android </tag>
+            
+            <tag> Proguard/Dexguard </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>Apply Optimizer for Java Bytecode to Gain Security</title>
+      <link href="/2018/06/27/Apply-Optimizer-for-Java-Bytecode-to-Gain-Security/"/>
+      <url>/2018/06/27/Apply-Optimizer-for-Java-Bytecode-to-Gain-Security/</url>
+      
+        <content type="html"><![CDATA[<p>Based on the article I wrote: Decode Android Project from APK, we know that revise engineers can easily decode codes and get your source files. there are a number of possible vulnerabilities for unprotected mobile applications, such as insertion of malware, intellectual property theft, priacy and data theft. Therefore, we can use ProGuard or DexGuard to protect. This is a way to apply multiple obfuscation and encryption to make our source codes unreadable.</p><a id="more"></a><h3 id="How-to-apply-Dexguard"><a href="#How-to-apply-Dexguard" class="headerlink" title="How to apply Dexguard?"></a>How to apply Dexguard?</h3><ol><li>Download Dexguard file from website.</li><li>Add <code>dexguard.dir=/Users/../../../tools/Dexguard/DexGuard-X.X.X</code> in local.properties. Add your local position where you downloaded and put the Dexguard.</li><li>Add <code>apply plugin &#39;dexguard&#39;</code> in library build.gradle to enable Dexguard. It will find local.properties’ link to execute the dexguard.</li><li>Add <code>consumerProguardFiles &#39;proguard-rules.pro&#39;</code> and <code>proguardFile &#39;dexguard-project.txt&#39;</code> in the buildType you want to generate the obfuscation.<ul><li>Look at the above, we can see the dexguard rules is edited in dexguard-project.txt. This is the main place we manage obfuscation. If you don’t have dexguard-project.txt yet, create one under the main directory of your module.</li></ul></li><li>Now you are able to generate aar file for library we want to obfuscate. Open gradle. Find the module’s assemble task. If you choose a buildType, run the specific assemble type. For example, I choose debug type, double click <code>Library: assembleDebug</code> in the build.</li></ol><h3 id="If-you-face-any-problems-it-might-be"><a href="#If-you-face-any-problems-it-might-be" class="headerlink" title="If you face any problems, it might be:"></a>If you face any problems, it might be:</h3><ol><li>clean up build. It is the same way you run the assemble. For example, find <code>Library: clean</code> under build gradle.</li><li>Dexguard terminates whenever there is a warning or error. Use –stacktrace or –debug to get more info of what is happening. If there are many warnings. You can add <code>dontwarn com.package.**</code> in dexguard-project.txt to avoid warnings.</li></ol><p>If you generate successfully, you will get a .aar file under build/output/aar. This is the library export file. If you are generating an app, you can also see the .jar file under build/output.</p>]]></content>
       
       
       <categories>

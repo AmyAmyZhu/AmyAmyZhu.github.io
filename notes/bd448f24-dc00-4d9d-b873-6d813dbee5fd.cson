@@ -1,5 +1,5 @@
 createdAt: "2018-10-05T12:52:15.025Z"
-updatedAt: "2018-10-15T14:59:31.556Z"
+updatedAt: "2018-10-15T15:02:27.437Z"
 content: '''
   title: AtomicBoolean in Java Enhance Thread-safe
   date: 2018-10-05 08:52:14
@@ -14,6 +14,8 @@ content: '''
   Recently I found when I use a boolean value in multiple threads, it is not thread-safe enough. For example, in one thread you are writing values for a boolean value, in another thread you are checking the boolean in order to process the thread. How does the program know the value when you check? This suitation also happens in other values not limited to boolean.
   
   We should aviod checking and writing a value in multiple thread in the same time. Here is a simple solution I found: use __java.util.concurrent.atomic__ package. Atomic Collections support lock-free thread-safe programming on single variables.
+  
+  <!-- more -->
   
   We can use classes in atomic packages like:
   - AtomicBoolean
