@@ -3,6 +3,35 @@
   
     
     <entry>
+      <title>AtomicBoolean in Java Enhance Thread-safe</title>
+      <link href="/2018/10/05/AtomicBoolean-in-Java-Enhance-Thread-safe/"/>
+      <url>/2018/10/05/AtomicBoolean-in-Java-Enhance-Thread-safe/</url>
+      
+        <content type="html"><![CDATA[<p>Recently I found when I use a boolean value in multiple threads, it is not thread-safe enough. For example, in one thread you are writing values for a boolean value, in another thread you are checking the boolean in order to process the thread. How does the program know the value when you check? This suitation also happens in other values not limited to boolean.</p><p>We should aviod checking and writing a value in multiple thread in the same time. Here is a simple solution I found: use <strong>java.util.concurrent.atomic</strong> package. Atomic Collections support lock-free thread-safe programming on single variables.</p><p>We can use classes in atomic packages like:</p><ul><li>AtomicBoolean</li><li>AtomicInteger</li><li>AtomicLong</li><li>AtomicIntegerArray, etc.</li></ul><p>Use atomic classes is strightforward, you can <code>set()</code> or <code>get()</code> values. For example:</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">AtomicBoolean value = new AtomicBoolean();</span><br><span class="line">value.set(true);</span><br><span class="line">boolean b = value.get();</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> Java </category>
+          
+          <category> Concurrency </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Java </tag>
+            
+            <tag> Concurrency </tag>
+            
+            <tag> Concepts </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
       <title>Use MkDocs to Build-up Documentation Wiki</title>
       <link href="/2018/09/19/Use-MkDocs-to-Build-up-Documentation-Wiki/"/>
       <url>/2018/09/19/Use-MkDocs-to-Build-up-Documentation-Wiki/</url>
@@ -290,33 +319,6 @@
     </entry>
     
     <entry>
-      <title>Maunally Import a Library in an Android Project</title>
-      <link href="/2018/06/27/Maunally-Import-a-Library-in-an-Android-Project/"/>
-      <url>/2018/06/27/Maunally-Import-a-Library-in-an-Android-Project/</url>
-      
-        <content type="html"><![CDATA[<p>Sometimes we use third-party library, or we implements a module and want it to be a part of our main code’s library. In both scenarios, we can import a library as a module.</p><h3 id="How-to-import-a-library-in-Android-Studio"><a href="#How-to-import-a-library-in-Android-Studio" class="headerlink" title="How to import a library in Android Studio?"></a>How to import a library in Android Studio?</h3><ol><li><strong>File &gt; New &gt; Import modlue &gt; add the library path</strong>.</li><li>Change library module gradle:<ol><li>Change <code>“apply plugin: ‘com.android.application’”</code> to <code>“apply plugin: ‘com.android.library’”</code></li><li>Remove applicationId.</li></ol></li></ol><a id="more"></a><ol start="3"><li>Change dependency from “compile” to “implementation”</li><li><strong>File &gt; Project Structure &gt; app &gt; Dependencies</strong>, add module library.</li><li>Downgrade gradle version in project gradle to “2.3.3” or “2.3.2”</li><li>Put/Change “buildToolsVersion “27.0.1” and “useLibrary ‘org.apache.http.legacy’” in app and carto library module.</li></ol><h3 id="UnsatisfiedLinkError-happens"><a href="#UnsatisfiedLinkError-happens" class="headerlink" title="UnsatisfiedLinkError happens?"></a>UnsatisfiedLinkError happens?</h3><p>This is because no .so file in the app to let the app know there is a new library added. There are several steps involved to add up .so file.</p><ol><li>Go to <strong>Project</strong> view.</li><li>Copy library directory, move it under <strong>app &gt; libs</strong>. Now you are able to see .so files.</li><li>Copy <strong>jni</strong> directory under <strong>app &gt; src &gt; main</strong>.</li><li>Change name of this directory from <strong>jni</strong> to <strong>jniLibs</strong>.</li><li>Delete no longer using library directory in <strong>app &gt; libs</strong>.</li></ol><p>Now .so file exists in the app in a correct directory.<br>Then open mainAcitivity add those lines in the class:</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> &#123;         </span><br><span class="line">    System.loadLibrary(<span class="string">"library"</span>); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="How-to-Run"><a href="#How-to-Run" class="headerlink" title="How to Run?"></a>How to Run?</h3><p>Since we added a library as a module, therefore, our compile will ask us to edit configuration. To avoid that, go back to MainActivity and run MainActivity instead.</p><h3 id="Import-library-by-aar-file"><a href="#Import-library-by-aar-file" class="headerlink" title="Import library by .aar file"></a>Import library by .aar file</h3><p>It is much more easy than import a library by moudle. Some library provide .aar file, we can simply import it by those following steps:</p><ol><li><p>add <code>flatDir {dirs &#39;libs&#39; }</code> in the project level build.gradle under <code>allprojects { repositories { ... } }</code> level.</p></li><li><p>copy .aar file that you want to import under the app’s libs directory.</p></li><li><p>add <code>implementation(name: &#39;XXX&#39;, ext: &#39;aar&#39;)</code> in the app level build.gradle under dependencies level.</p></li></ol>]]></content>
-      
-      
-      <categories>
-          
-          <category> Android </category>
-          
-          <category> SDK </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Android </tag>
-            
-            <tag> SDK </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    <entry>
       <title>Apply Optimizer for Java Bytecode to Gain Security</title>
       <link href="/2018/06/27/Apply-Optimizer-for-Java-Bytecode-to-Gain-Security/"/>
       <url>/2018/06/27/Apply-Optimizer-for-Java-Bytecode-to-Gain-Security/</url>
@@ -388,6 +390,33 @@
             <tag> Android </tag>
             
             <tag> Proguard/Dexguard </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>Maunally Import a Library in an Android Project</title>
+      <link href="/2018/06/27/Maunally-Import-a-Library-in-an-Android-Project/"/>
+      <url>/2018/06/27/Maunally-Import-a-Library-in-an-Android-Project/</url>
+      
+        <content type="html"><![CDATA[<p>Sometimes we use third-party library, or we implements a module and want it to be a part of our main code’s library. In both scenarios, we can import a library as a module.</p><h3 id="How-to-import-a-library-in-Android-Studio"><a href="#How-to-import-a-library-in-Android-Studio" class="headerlink" title="How to import a library in Android Studio?"></a>How to import a library in Android Studio?</h3><ol><li><strong>File &gt; New &gt; Import modlue &gt; add the library path</strong>.</li><li>Change library module gradle:<ol><li>Change <code>“apply plugin: ‘com.android.application’”</code> to <code>“apply plugin: ‘com.android.library’”</code></li><li>Remove applicationId.</li></ol></li></ol><a id="more"></a><ol start="3"><li>Change dependency from “compile” to “implementation”</li><li><strong>File &gt; Project Structure &gt; app &gt; Dependencies</strong>, add module library.</li><li>Downgrade gradle version in project gradle to “2.3.3” or “2.3.2”</li><li>Put/Change “buildToolsVersion “27.0.1” and “useLibrary ‘org.apache.http.legacy’” in app and carto library module.</li></ol><h3 id="UnsatisfiedLinkError-happens"><a href="#UnsatisfiedLinkError-happens" class="headerlink" title="UnsatisfiedLinkError happens?"></a>UnsatisfiedLinkError happens?</h3><p>This is because no .so file in the app to let the app know there is a new library added. There are several steps involved to add up .so file.</p><ol><li>Go to <strong>Project</strong> view.</li><li>Copy library directory, move it under <strong>app &gt; libs</strong>. Now you are able to see .so files.</li><li>Copy <strong>jni</strong> directory under <strong>app &gt; src &gt; main</strong>.</li><li>Change name of this directory from <strong>jni</strong> to <strong>jniLibs</strong>.</li><li>Delete no longer using library directory in <strong>app &gt; libs</strong>.</li></ol><p>Now .so file exists in the app in a correct directory.<br>Then open mainAcitivity add those lines in the class:</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> &#123;         </span><br><span class="line">    System.loadLibrary(<span class="string">"library"</span>); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="How-to-Run"><a href="#How-to-Run" class="headerlink" title="How to Run?"></a>How to Run?</h3><p>Since we added a library as a module, therefore, our compile will ask us to edit configuration. To avoid that, go back to MainActivity and run MainActivity instead.</p><h3 id="Import-library-by-aar-file"><a href="#Import-library-by-aar-file" class="headerlink" title="Import library by .aar file"></a>Import library by .aar file</h3><p>It is much more easy than import a library by moudle. Some library provide .aar file, we can simply import it by those following steps:</p><ol><li><p>add <code>flatDir {dirs &#39;libs&#39; }</code> in the project level build.gradle under <code>allprojects { repositories { ... } }</code> level.</p></li><li><p>copy .aar file that you want to import under the app’s libs directory.</p></li><li><p>add <code>implementation(name: &#39;XXX&#39;, ext: &#39;aar&#39;)</code> in the app level build.gradle under dependencies level.</p></li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> Android </category>
+          
+          <category> SDK </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Android </tag>
+            
+            <tag> SDK </tag>
             
         </tags>
       

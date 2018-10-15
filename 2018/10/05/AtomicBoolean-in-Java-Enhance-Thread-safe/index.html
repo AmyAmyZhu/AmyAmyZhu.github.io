@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="AmyZhu&#39;s Blog">
-    <title>wait() and notify() in Java - AmyZhu&#39;s Blog</title>
+    <title>AtomicBoolean in Java Enhance Thread-safe - AmyZhu&#39;s Blog</title>
     <meta name="author" content="Amy Zhu">
     
         <meta name="keywords" content="hexo,java,Android,Dexguard,">
@@ -17,19 +17,19 @@
     
         <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Amy Zhu","sameAs":["https://github.com/AmyAmyZhu","https://www.linkedin.com/in/zefang-zhu-6a9259113/"],"image":"icon.png"},"articleBody":"Remember in article synch/Asynch Callback in Java I wrote, multithreading in Java is important and can improve performance. We can use callbacks to notify some threads finish executing. What if we don’t need to pass arguments, but we still want to implements multithreads falixable? Another simple way to let a thread wait and wake up is to use Object.wait() and Object.notify().\nKeep in mind that:\n\nObject.wait() means suspend a thread.\nObject.notify() means wake a thread up.\n\n\nLogicTo use wait() and notify(), we need to create an object to control execuations. This is similary to a lock. We use the common object to lock execuation steps.\nHere is the sample code that keep waiting if the condition is not satisfied:\n12345678synchronized (object) &#123;    while (!condition) &#123;        object.wait();    &#125;    // do something:    // those things will wait     // until other place calls notify&#125;\nUse the following code in other places to notify the above wait code:\n123synchronized (object) &#123;    object.notify();&#125;\nKeep in mind, there are two places need to be paid attention:\n\nuse synchronized() to keep wait() and notify() under the same thread.\nuse while loop instead of if loop to keep waiting and traking notifying.\n\n","dateCreated":"2018-07-03T10:30:00-04:00","dateModified":"2018-09-19T10:02:56-04:00","datePublished":"2018-07-03T10:30:00-04:00","description":"Remember in article synch/Asynch Callback in Java I wrote, multithreading in Java is important and can improve performance. We can use callbacks to notify some threads finish executing. What if we don’t need to pass arguments, but we still want to implements multithreads falixable? Another simple way to let a thread wait and wake up is to use Object.wait() and Object.notify().\nKeep in mind that:\n\nObject.wait() means suspend a thread.\nObject.notify() means wake a thread up.\n","headline":"wait() and notify() in Java","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://yoursite.com/2018/07/03/wait-and-notify-in-Java/"},"publisher":{"@type":"Organization","name":"Amy Zhu","sameAs":["https://github.com/AmyAmyZhu","https://www.linkedin.com/in/zefang-zhu-6a9259113/"],"image":"icon.png","logo":{"@type":"ImageObject","url":"icon.png"}},"url":"http://yoursite.com/2018/07/03/wait-and-notify-in-Java/","keywords":"Java, Concurrency"}</script>
-    <meta name="description" content="Remember in article synch/Asynch Callback in Java I wrote, multithreading in Java is important and can improve performance. We can use callbacks to notify some threads finish executing. What if we don">
-<meta name="keywords" content="Java,Concurrency">
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Amy Zhu","sameAs":["https://github.com/AmyAmyZhu","https://www.linkedin.com/in/zefang-zhu-6a9259113/"],"image":"icon.png"},"articleBody":"Recently I found when I use a boolean value in multiple threads, it is not thread-safe enough. For example, in one thread you are writing values for a boolean value, in another thread you are checking the boolean in order to process the thread. How does the program know the value when you check? This suitation also happens in other values not limited to boolean.\nWe should aviod checking and writing a value in multiple thread in the same time. Here is a simple solution I found: use java.util.concurrent.atomic package. Atomic Collections support lock-free thread-safe programming on single variables.\nWe can use classes in atomic packages like:\n\nAtomicBoolean\nAtomicInteger\nAtomicLong\nAtomicIntegerArray, etc.\n\nUse atomic classes is strightforward, you can set() or get() values. For example:\n123AtomicBoolean value = new AtomicBoolean();value.set(true);boolean b = value.get();","dateCreated":"2018-10-05T08:52:14-04:00","dateModified":"2018-10-15T11:00:26-04:00","datePublished":"2018-10-05T08:52:14-04:00","description":"","headline":"AtomicBoolean in Java Enhance Thread-safe","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://yoursite.com/2018/10/05/AtomicBoolean-in-Java-Enhance-Thread-safe/"},"publisher":{"@type":"Organization","name":"Amy Zhu","sameAs":["https://github.com/AmyAmyZhu","https://www.linkedin.com/in/zefang-zhu-6a9259113/"],"image":"icon.png","logo":{"@type":"ImageObject","url":"icon.png"}},"url":"http://yoursite.com/2018/10/05/AtomicBoolean-in-Java-Enhance-Thread-safe/","keywords":"Java, Concurrency, Concepts"}</script>
+    <meta name="description" content="Recently I found when I use a boolean value in multiple threads, it is not thread-safe enough. For example, in one thread you are writing values for a boolean value, in another thread you are checking">
+<meta name="keywords" content="Java,Concurrency,Concepts">
 <meta property="og:type" content="blog">
-<meta property="og:title" content="wait() and notify() in Java">
-<meta property="og:url" content="http://yoursite.com/2018/07/03/wait-and-notify-in-Java/index.html">
+<meta property="og:title" content="AtomicBoolean in Java Enhance Thread-safe">
+<meta property="og:url" content="http://yoursite.com/2018/10/05/AtomicBoolean-in-Java-Enhance-Thread-safe/index.html">
 <meta property="og:site_name" content="AmyZhu&#39;s Blog">
-<meta property="og:description" content="Remember in article synch/Asynch Callback in Java I wrote, multithreading in Java is important and can improve performance. We can use callbacks to notify some threads finish executing. What if we don">
+<meta property="og:description" content="Recently I found when I use a boolean value in multiple threads, it is not thread-safe enough. For example, in one thread you are writing values for a boolean value, in another thread you are checking">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-09-19T14:02:56.945Z">
+<meta property="og:updated_time" content="2018-10-15T15:00:26.507Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="wait() and notify() in Java">
-<meta name="twitter:description" content="Remember in article synch/Asynch Callback in Java I wrote, multithreading in Java is important and can improve performance. We can use callbacks to notify some threads finish executing. What if we don">
+<meta name="twitter:title" content="AtomicBoolean in Java Enhance Thread-safe">
+<meta name="twitter:description" content="Recently I found when I use a boolean value in multiple threads, it is not thread-safe enough. For example, in one thread you are writing values for a boolean value, in another thread you are checking">
     
     
         
@@ -204,14 +204,14 @@
         <div class="post-header main-content-wrap text-left">
     
         <h1 class="post-title">
-            wait() and notify() in Java
+            AtomicBoolean in Java Enhance Thread-safe
         </h1>
     
     
         <div class="post-meta">
-    <time datetime="2018-07-03T10:30:00-04:00">
+    <time datetime="2018-10-05T08:52:14-04:00">
 	
-		    Jul 03, 2018
+		    Oct 05, 2018
     	
     </time>
     
@@ -229,24 +229,17 @@
     
     <div class="post-content markdown">
         <div class="main-content-wrap">
-            <p>Remember in article synch/Asynch Callback in Java I wrote, multithreading in Java is important and can improve performance. We can use callbacks to notify some threads finish executing. What if we don’t need to pass arguments, but we still want to implements multithreads falixable? Another simple way to let a thread wait and wake up is to use <strong>Object.wait()</strong> and <strong>Object.notify()</strong>.</p>
-<p>Keep in mind that:</p>
+            <p>Recently I found when I use a boolean value in multiple threads, it is not thread-safe enough. For example, in one thread you are writing values for a boolean value, in another thread you are checking the boolean in order to process the thread. How does the program know the value when you check? This suitation also happens in other values not limited to boolean.</p>
+<p>We should aviod checking and writing a value in multiple thread in the same time. Here is a simple solution I found: use <strong>java.util.concurrent.atomic</strong> package. Atomic Collections support lock-free thread-safe programming on single variables.</p>
+<p>We can use classes in atomic packages like:</p>
 <ul>
-<li><strong>Object.wait()</strong> means suspend a thread.</li>
-<li><strong>Object.notify()</strong> means wake a thread up.</li>
+<li>AtomicBoolean</li>
+<li>AtomicInteger</li>
+<li>AtomicLong</li>
+<li>AtomicIntegerArray, etc.</li>
 </ul>
-<a id="more"></a>
-<h3 id="Logic"><a href="#Logic" class="headerlink" title="Logic"></a>Logic</h3><p>To use <strong>wait()</strong> and <strong>notify()</strong>, we need to create an object to control execuations. This is similary to a lock. We use the common object to lock execuation steps.</p>
-<p>Here is the sample code that keep waiting if the condition is not satisfied:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">synchronized</span> (object) &#123;</span><br><span class="line">    <span class="keyword">while</span> (!condition) &#123;</span><br><span class="line">        object.wait();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// do something:</span></span><br><span class="line">    <span class="comment">// those things will wait </span></span><br><span class="line">    <span class="comment">// until other place calls notify</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>Use the following code in other places to notify the above wait code:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">synchronized</span> (object) &#123;</span><br><span class="line">    object.notify();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>Keep in mind, there are two places need to be paid attention:</p>
-<ol>
-<li>use <strong>synchronized()</strong> to keep <strong>wait()</strong> and <strong>notify()</strong> under the same thread.</li>
-<li>use while loop instead of if loop to keep waiting and traking notifying.</li>
-</ol>
-
+<p>Use atomic classes is strightforward, you can <code>set()</code> or <code>get()</code> values. For example:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">AtomicBoolean value = new AtomicBoolean();</span><br><span class="line">value.set(true);</span><br><span class="line">boolean b = value.get();</span><br></pre></td></tr></table></figure>
             
 
         </div>
@@ -256,7 +249,7 @@
             <div class="post-footer-tags">
                 <span class="text-color-light text-small">TAGGED IN</span><br/>
                 
-    <a class="tag tag--primary tag--small t-link" href="/tags/Concurrency/">Concurrency</a> <a class="tag tag--primary tag--small t-link" href="/tags/Java/">Java</a>
+    <a class="tag tag--primary tag--small t-link" href="/tags/Concepts/">Concepts</a> <a class="tag tag--primary tag--small t-link" href="/tags/Concurrency/">Concurrency</a> <a class="tag tag--primary tag--small t-link" href="/tags/Java/">Java</a>
 
             </div>
         
@@ -266,8 +259,7 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2018/07/13/Apply-Dexguard-for-Modules/" data-tooltip="Apply Dexguard for Modules" aria-label="PREVIOUS: Apply Dexguard for Modules">
+                    <a class="post-action-btn btn btn--disabled">
                 
                     <i class="fa fa-angle-left" aria-hidden="true"></i>
                     <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
@@ -276,7 +268,7 @@
             <li class="post-action">
                 
                     
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2018/07/03/Synch-Asynch-Callback-in-Java/" data-tooltip="Synch/Asynch Callback in Java" aria-label="NEXT: Synch/Asynch Callback in Java">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2018/09/19/Use-MkDocs-to-Build-up-Documentation-Wiki/" data-tooltip="Use MkDocs to Build-up Documentation Wiki" aria-label="NEXT: Use MkDocs to Build-up Documentation Wiki">
                 
                     <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
                     <i class="fa fa-angle-right" aria-hidden="true"></i>
@@ -337,8 +329,7 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2018/07/13/Apply-Dexguard-for-Modules/" data-tooltip="Apply Dexguard for Modules" aria-label="PREVIOUS: Apply Dexguard for Modules">
+                    <a class="post-action-btn btn btn--disabled">
                 
                     <i class="fa fa-angle-left" aria-hidden="true"></i>
                     <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
@@ -347,7 +338,7 @@
             <li class="post-action">
                 
                     
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2018/07/03/Synch-Asynch-Callback-in-Java/" data-tooltip="Synch/Asynch Callback in Java" aria-label="NEXT: Synch/Asynch Callback in Java">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2018/09/19/Use-MkDocs-to-Build-up-Documentation-Wiki/" data-tooltip="Use MkDocs to Build-up Documentation Wiki" aria-label="NEXT: Use MkDocs to Build-up Documentation Wiki">
                 
                     <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
                     <i class="fa fa-angle-right" aria-hidden="true"></i>
